@@ -23,6 +23,7 @@ Now that you've got the code, follow these steps to get acclimated:
 
 - Update project name and description in `package.json`
 - `npm install`
+- DATABASES are called GraceShopperTeam1 && GraceShopperTeam1-test
 - Create two postgres databases (`MY_APP_NAME` should match the `name`
   parameter in `package.json`):
 - These commands will create both your **development** and **test** databases
