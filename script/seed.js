@@ -1,25 +1,30 @@
 'use strict'
 const { productsForSeed, usersForSeed } =require('./seedData')
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Product} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
- */
+*/
+
 async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
 
   // Creating Users
-  const users = await Promise.all([
-    User.create({ username: 'admin@email.com', password: '123', firstName: 'cody', lastName: 'johnson', role: 'admin' }),
+  const users = await Promise.all(
+    usersForSeed.map(async (user) => {
+      await User.create(user)
+    }));
 
-    User.create({ username: 'user@email.com', password: '123', firstName: 'patrick', lastName: 'star', role: 'user' }),
-
-    User.create({ username: 'guest@email.com', password: '123', firstName: 'sandy', lastName: 'cheeks', role: 'guest' }),
-  ])
+  const products = await Promise.all(
+    productsForSeed.map(async (product) => {
+      await Product.create(product)
+    }));
 
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${products.length} products`)
+
   console.log(`seeded successfully`)
   return {
     users: {
