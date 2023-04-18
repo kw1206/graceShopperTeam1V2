@@ -1,6 +1,6 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
-const jwt = require('jsonwebtoken')
+const Sequelize = require('sequelize');
+const db = require('../db');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 5;
@@ -8,12 +8,43 @@ const SALT_ROUNDS = 5;
 const User = db.define('user', {
   username: {
     type: Sequelize.STRING,
+    allowNull: false,
     unique: true,
-    allowNull: false
+    validate: {
+      notEmpty: true,
+      isEmail: true,
+    },
   },
   password: {
     type: Sequelize.STRING,
-  }
+    allowNull: false,
+  },
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    },
+  },
+  role: {
+    type: Sequelize.ENUM('guest', 'user', 'admin'),
+    defaultValue: 'guest',
+  },
+  orderHistory: {
+    type: Sequelize.ARRAY(Sequelize.JSON),
+    defaultValue: []
+  },
+  cart: {
+    type: Sequelize.ARRAY(Sequelize.JSON),
+    defaultValue: []
+  },
 })
 
 module.exports = User
