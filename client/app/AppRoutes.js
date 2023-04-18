@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
-import Home from '../features/home/Home';
+import Home from "../features/Home"
 import { me } from './store';
 
 /**
