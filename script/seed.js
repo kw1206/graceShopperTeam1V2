@@ -1,5 +1,5 @@
 'use strict'
-import { productsForSeed, usersForSeed } from './seedData'
+const { productsForSeed, usersForSeed } =require('./seedData')
 const {db, models: {User} } = require('../server/db')
 
 /**

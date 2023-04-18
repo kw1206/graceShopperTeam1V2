@@ -1,4 +1,4 @@
-let products = [
+const products = [
   {
     "id": 1,
     "title": "iPhone 9",
@@ -1545,217 +1545,216 @@ let products = [
 const users = [
   {
     "id": 1,
-    "email": "atuny0@sohu.com",
+    "username": "atuny0@sohu.com",
     "password": "9uQFF1Lh",
     "firstName": "Terry",
     "lastName": "Medhurst"
   },
   {
     "id": 2,
-    "email": "hbingley1@plala.or.jp",
+    "username": "hbingley1@plala.or.jp",
     "password": "CQutx25i8r",
     "firstName": "Sheldon",
     "lastName": "Quigley"
   },
   {
     "id": 3,
-    "email": "rshawe2@51.la",
+    "username": "rshawe2@51.la",
     "password": "OWsTbMUgFc",
     "firstName": "Terrill",
     "lastName": "Hills"
   },
   {
     "id": 4,
-    "email": "yraigatt3@nature.com",
+    "username": "yraigatt3@nature.com",
     "password": "sRQxjPfdS",
     "firstName": "Miles",
     "lastName": "Cummerata"
   },
   {
     "id": 5,
-    "email": "kmeus4@upenn.edu",
+    "username": "kmeus4@upenn.edu",
     "password": "aUTdmmmbH",
     "firstName": "Mavis",
     "lastName": "Schultz"
   },
   {
     "id": 6,
-    "email": "jtreleven5@nhs.uk",
+    "username": "jtreleven5@nhs.uk",
     "password": "zY1nE46Zm",
     "firstName": "Alison",
     "lastName": "Reichert"
   },
   {
     "id": 7,
-    "email": "dpettegre6@columbia.edu",
+    "username": "dpettegre6@columbia.edu",
     "password": "YVmhktgYVS",
     "firstName": "Oleta",
     "lastName": "Abbott"
   },
   {
     "id": 8,
-    "email": "ggude7@chron.com",
+    "username": "ggude7@chron.com",
     "password": "MWwlaeWcOoF6",
     "firstName": "Ewell",
     "lastName": "Mueller"
   },
   {
     "id": 9,
-    "email": "nloiterton8@aol.com",
+    "username": "nloiterton8@aol.com",
     "password": "HTQxxXV9Bq4",
     "firstName": "Demetrius",
     "lastName": "Corkery"
   },
   {
     "id": 10,
-    "email": "umcgourty9@jalbum.net",
+    "username": "umcgourty9@jalbum.net",
     "password": "i0xzpX",
     "firstName": "Eleanora",
     "lastName": "Price"
   },
   {
     "id": 11,
-    "email": "acharlota@liveinternet.ru",
+    "username": "acharlota@liveinternet.ru",
     "password": "M9lbMdydMN",
     "firstName": "Marcel",
     "lastName": "Jones"
   },
   {
     "id": 12,
-    "email": "rhallawellb@dropbox.com",
+    "username": "rhallawellb@dropbox.com",
     "password": "esTkitT1r",
     "firstName": "Assunta",
     "lastName": "Rath"
   },
   {
     "id": 13,
-    "email": "lgribbinc@posterous.com",
+    "username": "lgribbinc@posterous.com",
     "password": "ftGj8LZTtv9g",
     "firstName": "Trace",
     "lastName": "Douglas"
   },
   {
     "id": 14,
-    "email": "mturleyd@tumblr.com",
+    "username": "mturleyd@tumblr.com",
     "password": "GyLnCB8gNIp",
     "firstName": "Enoch",
     "lastName": "Lynch"
   },
   {
     "id": 15,
-    "email": "kminchelle@qq.com",
+    "username": "kminchelle@qq.com",
     "password": "0lelplR",
     "firstName": "Jeanne",
     "lastName": "Halvorson"
   },
   {
     "id": 16,
-    "email": "dpierrof@vimeo.com",
+    "username": "dpierrof@vimeo.com",
     "password": "Vru55Y4tufI4",
     "firstName": "Trycia",
     "lastName": "Fadel"
   },
   {
     "id": 17,
-    "email": "vcholdcroftg@ucoz.com",
+    "username": "vcholdcroftg@ucoz.com",
     "password": "mSPzYZfR",
     "firstName": "Bradford",
     "lastName": "Prohaska"
   },
   {
     "id": 18,
-    "email": "sberminghamh@chron.com",
+    "username": "sberminghamh@chron.com",
     "password": "cAjfb8vg",
     "firstName": "Arely",
     "lastName": "Skiles"
   },
   {
     "id": 19,
-    "email": "bleveragei@so-net.ne.jp",
+    "username": "bleveragei@so-net.ne.jp",
     "password": "UZGAiqPqWQHQ",
     "firstName": "Gust",
     "lastName": "Purdy"
   },
   {
     "id": 20,
-    "email": "aeatockj@psu.edu",
+    "username": "aeatockj@psu.edu",
     "password": "szWAG6hc",
     "firstName": "Lenna",
     "lastName": "Renner"
   },
   {
     "id": 21,
-    "email": "ckensleyk@pen.io",
+    "username": "ckensleyk@pen.io",
     "password": "tq7kPXyf",
     "firstName": "Doyle",
     "lastName": "Ernser"
   },
   {
     "id": 22,
-    "email": "froachel@howstuffworks.com",
+    "username": "froachel@howstuffworks.com",
     "password": "rfVSKImC",
     "firstName": "Tressa",
     "lastName": "Weber"
   },
   {
     "id": 23,
-    "email": "beykelhofm@wikispaces.com",
+    "username": "beykelhofm@wikispaces.com",
     "password": "zQwaHTHbuZyr",
     "firstName": "Felicity",
     "lastName": "O'Reilly"
   },
   {
     "id": 24,
-    "email": "brickeardn@fema.gov",
+    "username": "brickeardn@fema.gov",
     "password": "bMQnPttV",
     "firstName": "Jocelyn",
     "lastName": "Schuster"
   },
   {
     "id": 25,
-    "email": "dfundello@amazon.co.jp",
+    "username": "dfundello@amazon.co.jp",
     "password": "k9zgV68UKw8m",
     "firstName": "Edwina",
     "lastName": "Ernser"
   },
   {
     "id": 26,
-    "email": "lgronaverp@cornell.edu",
+    "username": "lgronaverp@cornell.edu",
     "password": "4a1dAKDv9KB9",
     "firstName": "Griffin",
     "lastName": "Braun"
   },
   {
     "id": 27,
-    "email": "fokillq@amazon.co.jp",
+    "username": "fokillq@amazon.co.jp",
     "password": "xZnWSWnqH",
     "firstName": "Piper",
     "lastName": "Schowalter"
   },
   {
     "id": 28,
-    "email": "xisherwoodr@ask.com",
+    "username": "xisherwoodr@ask.com",
     "password": "HLDqN5vCF",
     "firstName": "Kody",
     "lastName": "Terry"
   },
   {
     "id": 29,
-    "email": "jissetts@hostgator.com",
+    "username": "jissetts@hostgator.com",
     "password": "ePawWgrnZR8L",
     "firstName": "Macy",
     "lastName": "Greenfelder"
   },
   {
     "id": 30,
-    "email": "kdulyt@umich.edu",
+    "username": "kdulyt@umich.edu",
     "password": "5t6q4KC7O",
     "firstName": "Maurine",
     "lastName": "Stracke"
   }
 ]
 
-// console.log(products);
 const removeID = (array, key) => {
     for(let i=0; i<array.length; i++) {
         delete array[i][key]
@@ -1765,4 +1764,4 @@ const removeID = (array, key) => {
 const productsForSeed = removeID(products, 'id')
 const usersForSeed = removeID(users, 'id')
 
-export default { productsForSeed, usersForSeed }
+module.exports = { productsForSeed, usersForSeed }
