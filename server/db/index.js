@@ -3,8 +3,8 @@ const User = require('./models/User');
 const Product = require('./models/Product');
 
 //associations could go here!
-User.belongsToMany(Product)
-Product.belongsToMany(User)
+User.hasMany(Product)
+Product.hasMany(User)
 
 module.exports = {
   db,

@@ -41,10 +41,10 @@ const Product = db.define('product', {
     },
   },
   images: {
-    // KIT can you fill this in
+    type: Sequelize.STRING,
   },
   thumbnails: {
-    // KIT can you fill this in
+    type: Sequelize.STRING,
   },
 })
 

@@ -34,7 +34,7 @@ const User = db.define('user', {
   },
   role: {
     type: Sequelize.ENUM('guest', 'user', 'admin'),
-    defaultValue: 'guest'
+    defaultValue: 'guest',
   },
   orderHistory: {
     type: Sequelize.ARRAY(Sequelize.JSON),
