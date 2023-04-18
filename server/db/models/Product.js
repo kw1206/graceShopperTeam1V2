@@ -29,19 +29,20 @@ const Product = db.define('product', {
   quantity: {
     type: Sequelize.INTEGER,
     allowNull: false,
+    defaultValue: 10,
     validate: {
       min: 0
     },
   },
   category: {
-    type: Sequelize.ENUM('shirts', 'pants', 'shoes'), //not our real categories
+    type: Sequelize.STRING,
     allowNull: false,
     validate: {
       notEmpty: true,
     },
   },
   images: {
-    type: Sequelize.STRING,
+    type: Sequelize.ARRAY(Sequelize.STRING),
   },
   thumbnails: {
     type: Sequelize.STRING,
