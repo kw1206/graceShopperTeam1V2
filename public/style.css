@@ -1,21 +1,115 @@
 body {
   font-family: sans-serif;
+  margin: 0;
 }
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! GENERAL !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 a {
   text-decoration: none;
 }
 
-label {
-  display: block;
+button:hover {
+  cursor: pointer;
 }
 
-nav a {
-  display: inline-block;
-  margin: 1em;
+/* !!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! FORM !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+label {
+  display: block;
 }
 
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! NAV BAR !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+#navBar {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  border: 2px solid red;
+  align-items: center;
+}
+
+#navBar nav button, #navBar a {
+  display: inline-block;
+  margin: 1em;
+  color: black;
+  background-color: white;
+  border: 0;
+  font-size: 1em;
+}
+
+nav div p {
+  display: inline-block;
+  margin: 1em;
+  color: black;
+  background-color: white;
+  border: 0;
+  font-size: 1em;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! ALL PRODUCTS !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+#allProducts {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! SINGLE PRODUCTS !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+.smallProductView {
+  margin: 10px;
+  width: 250px;
+  height: 350px;
+  border: 2px solid blue;
+  overflow: hidden;
+  justify-items: center
+;}
+
+.smallProductView > * {
+  margin: 0;
+  padding: 0
+}
+
+.thumbnail {
+  width: 230px;
+  height: 230px;
+  object-fit: cover;
+}
+
+.smallViewAddBtn {
+  width: 20px;
+  height: 20px;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! EXPANDED PRODUCT !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+.expandedProduct {
+  border: 2px solid green;
+  display: flex;
+}
+
+.imgCarousel {
+  border: 2px solid orange;
+  width:fit-content;
+}
+
+.scrollImages {
+  display: flex;
 }
