@@ -1,4 +1,13 @@
 import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+//Adjust this later
+import store from "../../app/store";
+// import Cart from './Cart';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+const root = createRoot(document.getElementById('cart'));
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -32,13 +41,8 @@ const dummyCartAndUser = {
 };
 
 const Cart = () => {
-    
   // has a header that lists username, friendly message, and Items in cart
-//   return(
-//   <div>
-//       <h2> Here is your Cart `${dummyCartAndUser.username}!</h2>
-//   </div>)
-
+  <h2>Here is your Cart {`${dummyCartAndUser.username}`}!</h2>
   // contains another component which has individual items.
   // each individual item is a thumbnail image the product  with a more details button? name price per unit and a + button the quanity and a - button
   // quanity could also be a form that accepts values 1-product available amount
@@ -47,3 +51,11 @@ const Cart = () => {
 };
 
 export default Cart;
+
+root.render(
+//   <Router>
+//     <Provider store={store}>
+      <Cart />
+//     </Provider>
+//   </Router>
+);
