@@ -34,14 +34,10 @@ const User = db.define('user', {
     },
   },
   role: {
-    type: Sequelize.ENUM('guest', 'user', 'admin'),
-    defaultValue: 'guest',
+    type: Sequelize.ENUM('user', 'admin'),
+    defaultValue: 'user',
   },
   orderHistory: {
-    type: Sequelize.ARRAY(Sequelize.JSON),
-    defaultValue: []
-  },
-  cart: {
     type: Sequelize.ARRAY(Sequelize.JSON),
     defaultValue: []
   },
