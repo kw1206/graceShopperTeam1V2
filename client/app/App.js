@@ -11,7 +11,7 @@ const App = () => {
     <div>
       <Navbar />
       <AppRoutes />
-      <AllProducts/>
+      {/* <AllProducts/> */}
       <Cart/>
     </div>
   );

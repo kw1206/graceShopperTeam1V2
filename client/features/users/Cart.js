@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import CartItem from './CartItem';
 
 const dummyOrder = [
   {
@@ -37,18 +38,25 @@ const dummyCart = {
 const Cart = () => {
   // has a header that lists username, friendly message, and Items in cart
   return (
-    <div>
-      <h2> Here is your Cart {dummyCart.username}!</h2>
-      <div className="cart-list">
-        <span id={dummyOrder[0].id}>
+    <>
+      <div id="cart-list">
+        <h2> Here is your Cart {dummyCart.username}!</h2>
+        {dummyOrder.length > 0 ? (
+          dummyOrder.map((cartProduct) => (
+            <CartItem cartProduct={cartProduct} key={cartProduct.id} />
+          ))
+        ) : (
+          <p>Your Cart is Empty!</p>
+        )}
+
+        {/* <span id={dummyOrder[0].id}>
           <h4 className="item-Name">{dummyOrder[0].title}</h4>
           <img className="cart-thumbnail"src={dummyOrder[0].thumbnail} />
           {dummyOrder[0].price}
           <button> + </button> {dummyOrder[0].orderAmount} <button> - </button>
-        </span>
-        <br></br>
+        </span> */}
       </div>
-    </div>
+    </>
   );
 
   // contains another component which has individual items.

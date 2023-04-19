@@ -1,19 +1,18 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 const CartItem = (props) => {
-  const { product } = props;
-  const { id, title, description, price, brand, category, thumbnail } = product;
+  const { cartProduct } = props;
+  const { id, title, price, thumbnail, orderAmount } = cartProduct;
 
   return (
     <>
-      <div className="smallProductView">
-        <img className="thumbnail" src={thumbnail} />
-        <h3>{title}</h3>
-        <h4>{brand}</h4>
-        <p>${price.toLocaleString()}</p>
-        <button className="smallViewAddBtn">+</button>
-      </div>
+      <span id={id}>
+        <h4 className="item-Name">{title}</h4>
+        <img className="cart-thumbnail" src={thumbnail} />
+        {price}
+        <button> + </button> {orderAmount} <button> - </button>
+      </span>
     </>
   );
 };
