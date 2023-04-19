@@ -1,4 +1,4 @@
-const products = [
+const productsForSeed = [
   {
     id: 1,
     title: "iPhone 9",
@@ -1621,253 +1621,308 @@ const products = [
   },
 ];
 
-const users = [
+const usersForSeed = [
   {
     id: 1,
-    username: "atuny0@sohu.com",
-    password: "9uQFF1Lh",
-    firstName: "Terry",
-    lastName: "Medhurst",
+    firstName: "AdminFirstName",
+    lastName: "AdminLastName",
+    username: "admin@email.com",
+    password: "123",
+    ip: "117.29.86.254",
+    address: {
+      address: "1745 T Street Southeast",
+      city: "Washington",
+      coordinates: {
+        lat: 38.867033,
+        lng: -76.979235,
+      },
+      postalCode: "20020",
+      state: "DC",
+    },
+    bank: {
+      cardExpire: "06/22",
+      cardNumber: "50380955204220685",
+      cardType: "maestro",
+      currency: "Peso",
+      iban: "NO17 0695 2754 967",
+    },
+    role: "admin",
   },
   {
     id: 2,
-    username: "hbingley1@plala.or.jp",
-    password: "CQutx25i8r",
     firstName: "Sheldon",
     lastName: "Quigley",
+    username: "hbingley1@plala.or.jp",
+    password: "CQutx25i8r",
+    ip: "253.240.20.181",
+    address: {
+      address: "6007 Applegate Lane",
+      city: "Louisville",
+      coordinates: {
+        lat: 38.1343013,
+        lng: -85.6498512,
+      },
+      postalCode: "40219",
+      state: "KY",
+    },
+    bank: {
+      cardExpire: "10/23",
+      cardNumber: "5355920631952404",
+      cardType: "mastercard",
+      currency: "Ruble",
+      iban: "MD63 L6YC 8YH4 QVQB XHIK MTML",
+    }
   },
   {
     id: 3,
-    username: "rshawe2@51.la",
-    password: "OWsTbMUgFc",
     firstName: "Terrill",
     lastName: "Hills",
+    username: "rshawe2@51.la",
+    password: "OWsTbMUgFc",
+    ip: "205.226.160.3",
+    address: {
+      address: "560 Penstock Drive",
+      city: "Grass Valley",
+      coordinates: {
+        lat: 39.213076,
+        lng: -121.077583,
+      },
+      postalCode: "95945",
+      state: "CA",
+    },
+    bank: {
+      cardExpire: "10/23",
+      cardNumber: "3586082982526703",
+      cardType: "jcb",
+      currency: "Peso",
+      iban: "AT24 1095 9625 1434 9703",
+    }
   },
   {
     id: 4,
-    username: "yraigatt3@nature.com",
-    password: "sRQxjPfdS",
     firstName: "Miles",
     lastName: "Cummerata",
+    username: "yraigatt3@nature.com",
+    password: "sRQxjPfdS",
+    ip: "243.20.78.113",
+    address: {
+      address: "150 Carter Street",
+      city: "Manchester",
+      coordinates: {
+        lat: 41.76556000000001,
+        lng: -72.473091,
+      },
+      postalCode: "06040",
+      state: "CT",
+    },
+    bank: {
+      cardExpire: "07/24",
+      cardNumber: "3580047879369323",
+      cardType: "jcb",
+      currency: "Yuan Renminbi",
+      iban: "KZ43 658B M6VS TZOU OXSO",
+    },
   },
   {
     id: 5,
-    username: "kmeus4@upenn.edu",
-    password: "aUTdmmmbH",
     firstName: "Mavis",
     lastName: "Schultz",
+    username: "user@email.com",
+    password: "123",
+    ip: "103.72.86.183",
+    address: {
+      address: "2721 Lindsay Avenue",
+      city: "Louisville",
+      coordinates: {
+        lat: 38.263793,
+        lng: -85.700243,
+      },
+      postalCode: "40206",
+      state: "KY",
+    },
+    bank: {
+      cardExpire: "01/24",
+      cardNumber: "4917245076693618",
+      cardType: "visa-electron",
+      currency: "Euro",
+      iban: "IT41 T114 5127 716J RGYB ZRUX DSJ",
+    },
   },
   {
     id: 6,
-    username: "jtreleven5@nhs.uk",
-    password: "zY1nE46Zm",
     firstName: "Alison",
     lastName: "Reichert",
+    username: "jtreleven5@nhs.uk",
+    password: "zY1nE46Zm",
+    ip: "49.201.206.36",
+    address: {
+      address: "18 Densmore Drive",
+      city: "Essex",
+      coordinates: {
+        lat: 44.492953,
+        lng: -73.101883,
+      },
+      postalCode: "05452",
+      state: "VT",
+    },
+    bank: {
+      cardExpire: "03/22",
+      cardNumber: "345675888286047",
+      cardType: "americanexpress",
+      currency: "Euro",
+      iban: "LB69 1062 QCY5 XS5T VOKU KJFG XP4S",
+    },
   },
   {
     id: 7,
-    username: "dpettegre6@columbia.edu",
-    password: "YVmhktgYVS",
     firstName: "Oleta",
     lastName: "Abbott",
+    username: "dpettegre6@columbia.edu",
+    password: "YVmhktgYVS",
+    ip: "25.207.107.146",
+    address: {
+      address: "637 Britannia Drive",
+      city: "Vallejo",
+      coordinates: {
+        lat: 38.10476999999999,
+        lng: -122.193849,
+      },
+      postalCode: "94591",
+      state: "CA",
+    },
+    bank: {
+      cardExpire: "10/23",
+      cardNumber: "3589640949470047",
+      cardType: "jcb",
+      currency: "Rupiah",
+      iban: "GI97 IKPF 9DUO X25M FG8D UXY",
+    },
   },
   {
     id: 8,
-    username: "ggude7@chron.com",
-    password: "MWwlaeWcOoF6",
     firstName: "Ewell",
     lastName: "Mueller",
+    username: "ggude7@chron.com",
+    password: "MWwlaeWcOoF6",
+    ip: "91.200.56.127",
+    address: {
+      address: "5601 West Crocus Drive",
+      city: "Glendale",
+      coordinates: {
+        lat: 33.6152469,
+        lng: -112.179737,
+      },
+      postalCode: "85306",
+      state: "AZ",
+    },
+    bank: {
+      cardExpire: "09/23",
+      cardNumber: "30549925358905",
+      cardType: "diners-club-carte-blanche",
+      currency: "Yuan Renminbi",
+      iban: "CY02 9914 5346 0PMT G6XW TP0R AWRZ",
+    },
   },
   {
     id: 9,
-    username: "nloiterton8@aol.com",
-    password: "HTQxxXV9Bq4",
     firstName: "Demetrius",
     lastName: "Corkery",
+    username: "nloiterton8@aol.com",
+    password: "HTQxxXV9Bq4",
+    ip: "78.170.185.120",
+    address: {
+      address: "5403 Illinois Avenue",
+      city: "Nashville",
+      coordinates: {
+        lat: 36.157077,
+        lng: -86.853827,
+      },
+      postalCode: "37209",
+      state: "TN",
+    },
+    bank: {
+      cardExpire: "02/24",
+      cardNumber: "5372664789004621",
+      cardType: "mastercard",
+      currency: "Yuan Renminbi",
+      iban: "BR68 9829 0581 3669 5088 5533 025N V",
+    },
   },
   {
     id: 10,
-    username: "umcgourty9@jalbum.net",
-    password: "i0xzpX",
     firstName: "Eleanora",
     lastName: "Price",
-  },
-  {
-    id: 11,
-    username: "acharlota@liveinternet.ru",
-    password: "M9lbMdydMN",
-    firstName: "Marcel",
-    lastName: "Jones",
-  },
-  {
-    id: 12,
-    username: "rhallawellb@dropbox.com",
-    password: "esTkitT1r",
-    firstName: "Assunta",
-    lastName: "Rath",
-  },
-  {
-    id: 13,
-    username: "lgribbinc@posterous.com",
-    password: "ftGj8LZTtv9g",
-    firstName: "Trace",
-    lastName: "Douglas",
-  },
-  {
-    id: 14,
-    username: "mturleyd@tumblr.com",
-    password: "GyLnCB8gNIp",
-    firstName: "Enoch",
-    lastName: "Lynch",
-  },
-  {
-    id: 15,
-    username: "kminchelle@qq.com",
-    password: "0lelplR",
-    firstName: "Jeanne",
-    lastName: "Halvorson",
-  },
-  {
-    id: 16,
-    username: "dpierrof@vimeo.com",
-    password: "Vru55Y4tufI4",
-    firstName: "Trycia",
-    lastName: "Fadel",
-  },
-  {
-    id: 17,
-    username: "vcholdcroftg@ucoz.com",
-    password: "mSPzYZfR",
-    firstName: "Bradford",
-    lastName: "Prohaska",
-  },
-  {
-    id: 18,
-    username: "sberminghamh@chron.com",
-    password: "cAjfb8vg",
-    firstName: "Arely",
-    lastName: "Skiles",
-  },
-  {
-    id: 19,
-    username: "bleveragei@so-net.ne.jp",
-    password: "UZGAiqPqWQHQ",
-    firstName: "Gust",
-    lastName: "Purdy",
-  },
-  {
-    id: 20,
-    username: "aeatockj@psu.edu",
-    password: "szWAG6hc",
-    firstName: "Lenna",
-    lastName: "Renner",
-  },
-  {
-    id: 21,
-    username: "ckensleyk@pen.io",
-    password: "tq7kPXyf",
-    firstName: "Doyle",
-    lastName: "Ernser",
-  },
-  {
-    id: 22,
-    username: "froachel@howstuffworks.com",
-    password: "rfVSKImC",
-    firstName: "Tressa",
-    lastName: "Weber",
-  },
-  {
-    id: 23,
-    username: "beykelhofm@wikispaces.com",
-    password: "zQwaHTHbuZyr",
-    firstName: "Felicity",
-    lastName: "O'Reilly",
-  },
-  {
-    id: 24,
-    username: "brickeardn@fema.gov",
-    password: "bMQnPttV",
-    firstName: "Jocelyn",
-    lastName: "Schuster",
-  },
-  {
-    id: 25,
-    username: "dfundello@amazon.co.jp",
-    password: "k9zgV68UKw8m",
-    firstName: "Edwina",
-    lastName: "Ernser",
-  },
-  {
-    id: 26,
-    username: "lgronaverp@cornell.edu",
-    password: "4a1dAKDv9KB9",
-    firstName: "Griffin",
-    lastName: "Braun",
-  },
-  {
-    id: 27,
-    username: "fokillq@amazon.co.jp",
-    password: "xZnWSWnqH",
-    firstName: "Piper",
-    lastName: "Schowalter",
-  },
-  {
-    id: 28,
-    username: "xisherwoodr@ask.com",
-    password: "HLDqN5vCF",
-    firstName: "Kody",
-    lastName: "Terry",
-  },
-  {
-    id: 29,
-    username: "jissetts@hostgator.com",
-    password: "ePawWgrnZR8L",
-    firstName: "Macy",
-    lastName: "Greenfelder",
-  },
-  {
-    id: 30,
-    username: "kdulyt@umich.edu",
-    password: "5t6q4KC7O",
-    firstName: "Maurine",
-    lastName: "Stracke",
-  },
-  {
-    id: 998,
-    username: "admin@email.com",
-    password: "123",
-    firstName: "cody",
-    lastName: "johnson",
-    role: "admin",
-  },
+    username: "umcgourty9@jalbum.net",
+    password: "i0xzpX",
+    ip: "73.15.179.178",
+    address: {
+      address: "8821 West Myrtle Avenue",
+      city: "Glendale",
+      coordinates: {
+        lat: 33.5404296,
+        lng: -112.2488391,
+      },
+      postalCode: "85305",
+      state: "AZ",
+    },
+    bank: {
+      cardExpire: "01/24",
+      cardNumber: "3557806620295254",
+      cardType: "jcb",
+      currency: "Ringgit",
+      iban: "GT40 DWAD 9UHA VEOZ ZF4J 2Y0F OOFD",
+    },
+  }
+];
 
-  {
-    id: 999,
-    username: "user@email.com",
-    password: "123",
-    firstName: "patrick",
-    lastName: "star",
-    role: "user",
+const cartsForSeed = [
+  { 
+    // id: 1, // the first cart ever at the store
+    cartStatus: "pending", 
+    userId: 1, // it belongs to stefani
   },
-
-  {
-    id: 1000,
-    username: "guest@email.com",
-    password: "123",
-    firstName: "sandy",
-    lastName: "cheeks",
-    role: "guest",
+  { 
+    // id: 2,
+    cartStatus: "pending",
+    userId: 2
+  },
+  { 
+    // id: 3,
+    cartStatus: "fulfilled",
+    userId: 3
+  },
+  { 
+    // id: 4,
+    cartStatus: "pending",
+    userId: 3
   },
 ];
 
-const removeID = (array, key) => {
-  for (let i = 0; i < array.length; i++) {
-    delete array[i][key];
+const itemsForSeed = [
+  { 
+    // id: 1, // first instance of the item ever being put into someone's cart at the store
+    quantity: 10,
+    cartId: 1, // stefani's cart
+    productId: 1 // peanut butter
+  },
+  { 
+    // id: 2, // second instance of the item ever put into someone's cart at the store
+    quantity: 5,
+    cartId: 2, // kit's cart
+    productId: 1 // peanut butter
+  },
+  { 
+    // id: 3, // third instance of an item being put into someone's cart
+    quantity: 4,
+    cartId: 3, // elizabeth's cart
+    productId: 2 // jelly
+  },
+  { 
+    // id: 4, // fourth instance of an item being put into someone'cart
+    quantity: 4,
+    cartId: 1, // stefani's cart
+    productId: 3 // bread
   }
-  return array
-};
+] 
 
-const productsForSeed = removeID(products, "id");
-const usersForSeed = removeID(users, "id");
-
-module.exports = { productsForSeed, usersForSeed };
+module.exports = { productsForSeed, usersForSeed, cartsForSeed, itemsForSeed };

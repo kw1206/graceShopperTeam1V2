@@ -1,5 +1,5 @@
 'use strict'
-const { productsForSeed, usersForSeed } =require('./seedData')
+const { productsForSeed, usersForSeed, cartsForSeed, itemsForSeed } =require('./seedData')
 const {db, models: {User, Product} } = require('../server/db')
 
 /**
@@ -17,10 +17,23 @@ async function seed() {
       await User.create(user)
     }));
 
+  // // Creating Carts
+  // const carts = await Promise.all(
+  //   cartsForSeed.map(async (cart) => {
+  //   await Cart.create(cart)
+  // }))
+
+  // Creating products
   const products = await Promise.all(
     productsForSeed.map(async (product) => {
       await Product.create(product)
     }));
+
+  // // Creating Items
+  // const items = await Promise.all(
+  //   itemsForSeed.map(async (item) => {
+  //   await Item.create(item)
+  // }))
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
@@ -33,6 +46,7 @@ async function seed() {
     }
   }
 }
+
 
 /*
  We've separated the `seed` function from the `runSeed` function.
