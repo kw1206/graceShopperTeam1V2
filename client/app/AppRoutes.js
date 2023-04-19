@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
-import Home from "../features/Home"
+import Home from '../features/Home';
+import Cart from '../features/users/Cart';
 import { me } from './store';
 
 /**
@@ -38,6 +39,7 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       )}
     </div>

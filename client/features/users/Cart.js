@@ -34,10 +34,10 @@ const dummyCartAndUser = {
 const Cart = () => {
     
   // has a header that lists username, friendly message, and Items in cart
-//   return(
-//   <div>
-//       <h2> Here is your Cart `${dummyCartAndUser.username}!</h2>
-//   </div>)
+  return(
+  <div>
+      <h2> Here is your Cart `${dummyCartAndUser.username}!</h2>
+  </div>)
 
   // contains another component which has individual items.
   // each individual item is a thumbnail image the product  with a more details button? name price per unit and a + button the quanity and a - button
