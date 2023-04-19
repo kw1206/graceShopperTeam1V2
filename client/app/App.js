@@ -1,6 +1,4 @@
 import React from 'react';
-//REMOVE
-import Cart from '../features/users/Cart';
 
 import Navbar from '../features/Navbar';
 import AppRoutes from './AppRoutes';
@@ -10,7 +8,6 @@ const App = () => {
     <div>
       <Navbar />
       <AppRoutes />
-      <Cart/>
     </div>
   );
 };
