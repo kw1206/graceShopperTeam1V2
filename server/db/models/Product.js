@@ -7,7 +7,7 @@ const Product = db.define('product', {
     allowNull: false,
     validate: {
       notEmpty: true
-    }
+    },
   },
   brand: {
     type: Sequelize.STRING,
@@ -23,14 +23,7 @@ const Product = db.define('product', {
     type: Sequelize.DECIMAL(10, 2),
     allowNull: false,
     validate: {
-      min: 0
-    },
-  },
-  quantity: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
-    defaultValue: 10,
-    validate: {
+      notEmpty: true,
       min: 0
     },
   },
@@ -41,11 +34,18 @@ const Product = db.define('product', {
       notEmpty: true,
     },
   },
+  inventory: {
+    type: Sequelize.INTEGER,
+    defaultValue: 10,
+    validate: {
+      min: 0
+    },
+  },
+  thumbnail: {
+    type: Sequelize.STRING,
+  },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING),
-  },
-  thumbnails: {
-    type: Sequelize.STRING,
   },
 })
 
