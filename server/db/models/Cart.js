@@ -3,8 +3,8 @@ const db = require('../db');
 
 const Cart = db.define('cart', {
   isFulfilled: {
-    type: Sequelize.Boolean
-  }
-})
+    type: Sequelize.BOOLEAN,
+  },
+});
 
-module.export = Cart
+module.export = Cart;
