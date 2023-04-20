@@ -4,14 +4,14 @@ const Product = require('./models/Product');
 const Item = require("./models/Item");
 const Cart = require('./models/Cart');
 
-// User.hasMany(Cart)
-// Cart.belongsTo(User)
+User.hasMany(Cart)
+Cart.belongsTo(User)
 
-// Product.hasMany(Item)
-// Item.belongsTo(Product)
+Product.hasMany(Item)
+Item.belongsTo(Product)
 
-// Cart.hasMany(Item)
-// Item.belongsTo(Cart)
+Cart.hasMany(Item)
+Item.belongsTo(Cart)
 
 
 module.exports = {
