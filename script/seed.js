@@ -1,6 +1,6 @@
 'use strict'
 const { productsForSeed, usersForSeed, cartsForSeed, itemsForSeed } =require('./seedData')
-const {db, models: {User, Product} } = require('../server/db')
+const {db, models: {User, Product, Cart, Item} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -17,11 +17,11 @@ async function seed() {
       await User.create(user)
     }));
 
-  // // Creating Carts
-  // const carts = await Promise.all(
-  //   cartsForSeed.map(async (cart) => {
-  //   await Cart.create(cart)
-  // }))
+  // Creating Carts
+  const carts = await Promise.all(
+    cartsForSeed.map(async (cart) => {
+    await Cart.create(cart)
+  }))
 
   // Creating products
   const products = await Promise.all(
@@ -30,13 +30,17 @@ async function seed() {
     }));
 
   // // Creating Items
-  // const items = await Promise.all(
-  //   itemsForSeed.map(async (item) => {
-  //   await Item.create(item)
-  // }))
+  const items = await Promise.all(
+    itemsForSeed.map(async (item) => {
+    await Item.create(item)
+  }))
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded ${products.length} products`)
+  console.log(`seeded ${carts.length} carts`)
+  console.log(`seeded ${items.length} items`)
+
+
 
   console.log(`seeded successfully`)
   return {

@@ -1,8 +1,8 @@
 const db = require('./db');
 const User = require('./models/User');
 const Product = require('./models/Product');
-const Item = require('./models/Item')
-const Cart = require('./models/Cart')
+const Item = require("./models/Item");
+const Cart = require('./models/Cart');
 
 //whats wrong with these?
 // User.hasMany(Cart)

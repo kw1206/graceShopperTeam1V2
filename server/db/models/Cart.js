@@ -3,8 +3,13 @@ const db = require('../db');
 
 const Cart = db.define('cart', {
   isFulfilled: {
-    type: Sequelize.BOOLEAN
-  }
-})
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  userId: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
+  },
+});
 
-module.export = Cart
+module.exports = Cart;
