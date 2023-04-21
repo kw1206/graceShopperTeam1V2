@@ -9,7 +9,9 @@ import { authenticate } from '../../app/store';
 **/
 
 const AuthForm = ({ name, displayName }) => {
+// ^ name and displayName are props passed down to the AuthForm component from the AppRoutes component.
   const { error } = useSelector((state) => state.auth);
+// ^ in the initial state, error is set to null
   const dispatch = useDispatch();
 
   const handleSubmit = (evt) => {

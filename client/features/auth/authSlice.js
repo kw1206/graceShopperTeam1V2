@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Item from '../../../server/db/models/Item';
 
 /*
   CONSTANT VARIABLES
