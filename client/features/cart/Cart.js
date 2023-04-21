@@ -38,12 +38,16 @@ const dummyOrder =[
   }
 ]
 
+const personInfo =[
+
+]
+
 const Cart = () => {
   // has a header that lists username, friendly message, and Items in cart
   return (
     <>
       <div id="cart-list">
-        <h2> Here is your Cart {dummyCart.username}!</h2>
+        <h2> Here is your Cart {dummyCart.firstName}!</h2>
         {dummyOrder.length > 0 ? (
           dummyOrder.map((cartProduct) => (
             <CartItem cartProduct={cartProduct} key={cartProduct.id} />
