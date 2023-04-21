@@ -79,7 +79,8 @@ router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
   }
 });
 
-// router.get('/:id/cart', async (req, res, next) => {
+// add if statement, if theres no unfilfilled cart, create a new cart
+// router.get('/:id/cart', isUserOrAdmin, async (req, res, next) => {
 //   try {
 //     const cart = await Cart.findAll({
 //       where: { 
