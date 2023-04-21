@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-import AuthForm from '../features/auth/AuthForm';
-import Home from '../features/Home';
-import Cart from '../features/cart/Cart';
-import { me } from './store';
-import AllProducts from '../features/products/AllProducts';
-import AllUsers from '../features/admin/AllUsers'
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Route, Routes } from "react-router-dom";
+import AuthForm from "../features/auth/AuthForm";
+import Home from "../features/Home";
+import Cart from "../features/cart/Cart";
+import { me } from "./store";
+import AllProducts from "../features/products/AllProducts";
+import AllUsers from "../features/admin/AllUsers";
 
 /**
  * COMPONENT
@@ -25,17 +25,19 @@ const AppRoutes = () => {
       {isLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<AllProducts />} />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products" element={<AllProducts/>}/>
-          <Route path="/users" element={<AllUsers/>}/>
+          <Route path="/products" element={<AllProducts />} />
+          <Route path="/admin/products" element={<AllProducts />} />
+          <Route path="/admin/users" element={<AllUsers />} />
         </Routes>
       ) : (
         <Routes>
-          <Route
+          {/* <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
+          <Route path="/*" element={<AllProducts />} />
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
@@ -45,10 +47,7 @@ const AppRoutes = () => {
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products" element={<AllProducts/>}/>
-          <Route path="/users" element={<AllUsers/>}/>
-
-
+          <Route path="/products" element={<AllProducts />} />
         </Routes>
       )}
     </div>

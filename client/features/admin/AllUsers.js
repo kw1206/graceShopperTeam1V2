@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { selectAllUsers } from "./allUsersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllUsers } from "./allUsersSlice";
@@ -75,7 +74,6 @@ const SearchBar = ({ searchTable }) => {
           value={searchValue}
           onChange={(event) => setSearchValue(event.target.value)}
         />
-        <button type="submit">Submit</button>
       </form>
     </div>
   );
