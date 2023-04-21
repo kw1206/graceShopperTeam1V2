@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
+import { selectAllUsers } from "./allUsersSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllUsers } from "./allUsersSlice";
 // TUTORIAL FOR MAKING DYNAMIC REACT TABLE
 // https://www.youtube.com/watch?v=BqVH9Z_6p38
 
@@ -56,57 +59,6 @@ const dummyUsers = [
     },
   },
 ];
-
-const HeaderCell = ({ column, sorting, sortTable }) => {
-  const isDescSorting = sorting.column === column && sorting.order === "desc";
-  const isAscSorting = sorting.column === column && sorting.order === "asc";
-  const futureSortingOrder = isDescSorting ? "asc" : "des";
-  return (
-    <th
-      key={column}
-      className="usersTableHeader"
-      onClick={sortTable({ column, order: futureSortingOrder })}
-    >
-      {column}
-      {isDescSorting && <span>⬇</span>}
-      {isAscSorting && <span>⬆</span>}
-    </th>
-  );
-};
-
-const Header = ({ columns, sorting, sortTable }) => {
-  return (
-    <thead>
-      <tr>
-        {columns.map((column) => (
-          <HeaderCell
-            column={column}
-            sorting={sorting}
-            key={column}
-            sortTable={sortTable}
-          />
-        ))}
-      </tr>
-    </thead>
-  );
-};
-
-const Content = ({ entries, columns }) => {
-  return (
-    <tbody>
-      {entries.map((entry) => (
-        <Link to={`/admin/user/${entry.id}`}>
-          <tr key={entry.id}>
-            {columns.map((column) => (
-              <td key={column}>{entry[column]}</td>
-            ))}
-          </tr>
-        </Link>
-      ))}
-    </tbody>
-  );
-};
-
 const SearchBar = ({ searchTable }) => {
   const [searchValue, setSearchValue] = useState("");
   const submitForm = (event) => {
@@ -126,25 +78,81 @@ const SearchBar = ({ searchTable }) => {
     </div>
   );
 };
+const Content = ({ entries, columns }) => {
+  return (
+    <tbody>
+      {entries.map((entry) => (
+        <tr key={entry.id}>
+          {columns.map((column) => (
+            <td key={column} className="usersTableCell">
+              {entry[column]}
+            </td>
+          ))}
+        </tr>
+      ))}
+    </tbody>
+  );
+};
+const HeaderCell = ({ column, sorting, sortTable }) => {
+  // TO IMPLEMENT SORTING, WE'LL NEED TO UPDATE/CHANGE BACKEND ROUTES TO SERVE UP DIFFERENTLY SORTED DATA WITH EACH CLICK
+
+  // const isDescSorting = sorting.column === column && sorting.order === "desc";
+  // const isAscSorting = sorting.column === column && sorting.order === "asc";
+  // const futureSortingOrder = isDescSorting ? "asc" : "des";
+  return (
+    <th
+      key={column}
+      className="usersTableCell"
+      // onClick={() => sortTable({ column, order: futureSortingOrder })}
+    >
+      {column}
+      {/* {isDescSorting && <span>⬇</span>}
+      {isAscSorting && <span>⬆</span>} */}
+    </th>
+  );
+};
+const Header = ({ columns, sorting, sortTable }) => {
+  return (
+    <thead>
+      <tr>
+        {columns.map((column) => (
+          <HeaderCell
+            column={column}
+            sorting={sorting}
+            key={column}
+            sortTable={sortTable}
+          />
+        ))}
+      </tr>
+    </thead>
+  );
+};
 
 const AllUsers = () => {
-  const [users, setUsers] = useState(dummyUsers);
+  const users = useSelector(selectAllUsers);
   const [sorting, setSorting] = useState({ column: "id", order: "asc" });
   const [searchValue, setSearchValue] = useState("");
-  const columns = ["id", "lastName", "fullName"]; // could we change User model so fullName is "lastName, fullName"?
+  const columns = ["id", "username", "lastName", "firstName"]; // could we change User model so fullName is "lastName, fullName"?
+
   const sortTable = (newSorting) => {
     setSorting(newSorting);
   };
+
   const searchTable = (newSearchValue) => {
     setSearchValue(newSearchValue);
   };
+
+  const dispatch = useDispatch();
+
   // need to write the admin users slice first to get this route
-  // useEffect(() => {
-  //   // fetch all users route
-  // }, [sorting, searchValue])
+  useEffect(() => {
+    dispatch(fetchAllUsers());
+  }, [searchValue]); // add sorting to dependencies if we decide to implement sorting feature later
+
+  console.log(users);
 
   return (
-    <div id="allUsers">
+    <div id="usersTable">
       <SearchBar searchTable={searchTable} />
       <table>
         <Header columns={columns} sorting={sorting} sortTable={sortTable} />
