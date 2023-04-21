@@ -57,37 +57,47 @@ router.get('/:id', isUserOrAdmin, async (req, res, next) => {
   } catch (err) {
     next(err)
   }
-})
-
-// router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
-//   try {
-//     const orderHistory = await Cart.findAll({
-//         where: { userId: req.params.id },
-//         include: [Item, Product]
-//         // include: [Cart, Item]
-//       });
-//     res.json(orderHistory)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+});
 
 router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
   try {
-    //loop through all the user carts
-    const userCart = await Cart.findAll({
-        where: { userId: req.params.id },
-      });
-    const userCartIds = userCart.map((cart) => (cart.id))
-    const orderHistory = await Item.findAll({
-      where: { cartId: userCart.id },
-      include: [Product]
-    })
-    res.json(orderHistory)
+    const orderHistory = await Cart.findAll({
+      where: { 
+        userId: req.params.id,
+        isFulfilled: true,
+      },
+      include: [
+        {
+          model: Item,
+          include: [Product],
+        },
+      ],
+    });
+    res.json(orderHistory);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
+
+// router.get('/:id/cart', async (req, res, next) => {
+//   try {
+//     const cart = await Cart.findAll({
+//       where: { 
+//         userId: req.params.id,
+//         isFulfilled: false,
+//       },
+//       include: [
+//         {
+//           model: Item,
+//           include: [Product],
+//         },
+//       ],
+//     });
+//     res.json(cart);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 //add route to users cart
 
