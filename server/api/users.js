@@ -1,6 +1,7 @@
-const router = require('express').Router()
-const { models: { User, Cart, Item, Product }} = require('../db');
-
+const router = require('express').Router();
+const {
+  models: { User, Cart, Item, Product },
+} = require('../db');
 
 // middleware function to check if user isAdmin
 const isAdmin = async (req, res, next) => {
@@ -38,31 +39,29 @@ router.get('/', isAdmin, async (req, res, next) => {
       // explicitly select only the id and username fields - even though
       // users' passwords are encrypted, it won't help if we just
       // send everything to anyone who asks!
-      attributes: ['id', 'username', 'lastName', 'firstName']
-    })
-    res.json(users)
-  } catch (err) {
-    next(err)
-  }
-})
-
-// removed isUserOrAdmin 
-router.get('/:id', async (req, res, next) => {
-  try {
-    const user = await User.findByPk(req.params.id, {
-      attributes: ['id', 'username', 'firstName', 'lastName', 'fullName']
+      attributes: ['id', 'username', 'lastName', 'firstName'],
     });
-    res.json(user)
+    res.json(users);
   } catch (err) {
-    next(err)
+    next(err);
   }
 });
 
-//removed isUserOrAdmin
-router.get('/:id/orderHistory', async (req, res, next) => {
+router.get('/:id', isUserOrAdmin, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id, {
+      attributes: ['id', 'username', 'firstName', 'lastName', 'fullName'],
+    });
+    res.json(user);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
   try {
     const orderHistory = await Cart.findAll({
-      where: { 
+      where: {
         userId: req.params.id,
         isFulfilled: true,
       },
@@ -80,11 +79,10 @@ router.get('/:id/orderHistory', async (req, res, next) => {
 });
 
 // add if statement, if theres no unfilfilled cart, create a new cart
-//removed isUserOrAdmin for testing
-router.get('/:id/cart', async (req, res, next) => {
+router.get('/:id/cart', isUserOrAdmin, async (req, res, next) => {
   try {
     const cart = await Cart.findAll({
-      where: { 
+      where: {
         userId: req.params.id,
         isFulfilled: false,
       },
@@ -103,4 +101,4 @@ router.get('/:id/cart', async (req, res, next) => {
 
 //add route to users cart
 
-module.exports = router
+module.exports = router;
