@@ -20,10 +20,8 @@ const isAdmin = async (req, res, next) => {
 // middleware function to check if user is the same user or isAdmin
 const isUserOrAdmin = async (req, res, next) => {
   try {
-    console.log(req.headers)
     const user = await User.findByToken(req.headers.authorization);
-    console.log(user)
-    if (!user.isAdmin && user.id !== req.params.id) {
+    if (!user.isAdmin && user.id !== Number(req.params.id)) {
       const error = new Error('Not authorized');
       error.status = 401;
       throw error;
