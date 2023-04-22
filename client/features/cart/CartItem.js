@@ -11,12 +11,13 @@ function subtractOne(n) {
 }
 
 const CartItem = (props) => {
-  // console.log("here is one prop item ", props)
+  console.log("here is one prop item ", props)
   const { cartItem } = props;
+  const {quantity} = cartItem;
   const { product } = cartItem;
 
   console.log("here is product info ", product)
-  const { id, title, price, thumbnail, orderAmount } = product;
+  const { id, title, price, thumbnail} = product;
 
   return (
     <>
@@ -24,16 +25,16 @@ const CartItem = (props) => {
         <h4 className="item-Name">{title}</h4>
         <img className="cart-thumbnail" src={thumbnail} />
         <span>${price}</span>
-        <button className="addOne" onClick={addOne(orderAmount)}>
+        <button className="addOne" onClick={addOne(quantity)}>
           {' '}
           +{' '}
         </button>{' '}
-        {orderAmount}{' '}
-        <button className="subtractOne" onClick={subtractOne(orderAmount)}>
+        {quantity}{' '}
+        <button className="subtractOne" onClick={subtractOne(quantity)}>
           {' '}
           -{' '}
         </button>
-        <DeleteBtn></DeleteBtn>
+        <DeleteBtn/>
       </span>
     </>
   );
