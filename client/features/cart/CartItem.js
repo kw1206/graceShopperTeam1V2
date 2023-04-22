@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import DeleteBtn from './DeleteBtn';
 
 //Need to add these to slices eventually
 function addOne(n) {
@@ -9,16 +10,18 @@ function subtractOne(n) {
   console.log("click sub one");
 }
 
-const CartItem = (props) => {
-  const { cartProduct } = props;
-  const { id, title, price, thumbnail, orderAmount } = cartProduct;
+const CartItem = (product) => {
+  console.log("here is one prop item ", product)
+  const itemInfo = product
+  console.log("here is product info ", itemInfo)
+  const { id, title, price, thumbnail, orderAmount } = itemInfo.product;
 
   return (
     <>
       <span id={id}>
         <h4 className="item-Name">{title}</h4>
         <img className="cart-thumbnail" src={thumbnail} />
-        <span>${price.toLocaleString()}</span>
+        <span>${price}</span>
         <button className="addOne" onClick={addOne(orderAmount)}>
           {' '}
           +{' '}
@@ -28,6 +31,7 @@ const CartItem = (props) => {
           {' '}
           -{' '}
         </button>
+        <DeleteBtn></DeleteBtn>
       </span>
     </>
   );

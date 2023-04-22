@@ -1,5 +1,5 @@
 //localHost:8080/api/users/3/OrderHistory
-const user3OrderHistory = [
+export const user3OrderHistory = [
   {
     id: 3,
     isFulfilled: true,
@@ -66,7 +66,7 @@ const user3OrderHistory = [
 ];
 
 //localHost:8080/api/users/3/cart
-const user3CurrentCart = [
+export const user3CurrentCart = [
   {
     id: 4,
     isFulfilled: false,
@@ -128,7 +128,7 @@ const user3CurrentCart = [
 ];
 
 //localHost:8080/api/users/3
-const user3 = {
+export const user3 = {
     "fullName": "TempUser TempUserLast",
     "id": 3,
     "username": "a@b.com",
