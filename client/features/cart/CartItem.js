@@ -7,17 +7,17 @@ function addOne(n) {
   console.log("click add one");
 }
 function subtractOne(n) {
-  console.log("click sub one");
+  console.log(n, "click sub one");
 }
 
 const CartItem = (props) => {
-  console.log("here is one prop item ", props)
-  const { cartItem } = props;
+  // console.log("here is one prop item ", props)
+  const {cartItem } = props;
   const {quantity} = cartItem;
   const { product } = cartItem;
 
-  console.log("here is product info ", product)
-  const { id, title, price, thumbnail} = product;
+  // console.log("here is product info ", product)
+  const {id, title, price, thumbnail} = product;
 
   return (
     <>
@@ -34,7 +34,7 @@ const CartItem = (props) => {
           {' '}
           -{' '}
         </button>
-        <DeleteBtn/>
+        {/* <DeleteBtn/> */}
       </span>
     </>
   );

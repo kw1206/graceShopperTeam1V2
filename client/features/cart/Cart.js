@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import CartItem from './CartItem';
+import { fetchCurrentCart } from './cartSlice';
 
 const dummyOrder = [
   {
@@ -73,9 +74,18 @@ const personInfo = {
 };
 
 const Cart = () => {
-  console.log('orignal person info ', personInfo);
-  console.log('orignal order info ', dummyOrder);
+  const { id } = useParams();
+  console.log(id);
+  const currentCart = useSelector(fetchCurrentCart);
+  console.log(currentCart);
+  // console.log('orignal person info ', personInfo);
+  // console.log('orignal order info ', dummyOrder);
+  const dispatch = useDispatch();
   // has a header that lists username, friendly message, and Items in cart
+  useEffect(() => {
+    dispatch(fetchCurrentCart(3));
+  }, [dispatch]);
+  const [cartView, setCartView] = useState('');
 
   const cartItems = dummyOrder[0].items;
 
@@ -95,6 +105,8 @@ const Cart = () => {
           </p>
         )}
       </div>
+      <br></br>
+      <button to="order"> Submit your order </button>
     </>
   );
 
