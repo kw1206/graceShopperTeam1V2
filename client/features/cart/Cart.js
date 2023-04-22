@@ -72,8 +72,6 @@ const personInfo = {
   lastName: 'TempUserLast',
 };
 
-console.log('orignal person info ', personInfo);
-
 const Cart = () => {
   console.log('orignal person info ', personInfo);
   console.log('orignal order info ', dummyOrder);

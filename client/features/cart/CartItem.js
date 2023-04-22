@@ -10,11 +10,13 @@ function subtractOne(n) {
   console.log("click sub one");
 }
 
-const CartItem = (product) => {
-  console.log("here is one prop item ", product)
-  const itemInfo = product
-  console.log("here is product info ", itemInfo)
-  const { id, title, price, thumbnail, orderAmount } = itemInfo.product;
+const CartItem = (props) => {
+  // console.log("here is one prop item ", props)
+  const { cartItem } = props;
+  const { product } = cartItem;
+
+  console.log("here is product info ", product)
+  const { id, title, price, thumbnail, orderAmount } = product;
 
   return (
     <>
