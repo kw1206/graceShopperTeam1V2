@@ -8,7 +8,7 @@ const store = configureStore({
   reducer: {
     auth: authReducer,
     allUsers: selectAllUsers,
-    currentCart: selectCurrentCart
+    currentCartB: selectCurrentCart
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

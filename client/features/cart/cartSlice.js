@@ -35,20 +35,28 @@ export const deleteCartProduct = createAsyncThunk(
   }
 );
 
+export const selectCurrentCart = (state) => {
+  return state.currentCartB;
+};
+
+const initialState = {
+  cartInfoB: {},
+  cartItemsB: [],
+}
+
 const currentCartSlice = createSlice({
   name: 'currentCart',
-  initialState: {},
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentCart.fulfilled, (state, action) => {
-      console.log('slice activated suceeded');
+      // state.cartInfoB = action.payload
+      // state.cartItemsB = action.payload.items
+      // console.log('slice activated suceeded', state.items);
       return action.payload;
     });
   },
 });
 
-export const selectCurrentCart = (state) => {
-  return state.currentCart;
-};
 
 export default currentCartSlice.reducer;

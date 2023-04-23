@@ -10,7 +10,7 @@ import { fetchCurrentCart, selectCurrentCart } from './cartSlice';
 // the above would do a put request to change quantity and  a delete request to remove it from database and also make a call to refresh the cartView.
 // should maybe use a random generator to make these cartitem keys?
 // also need to remember to check for token?
-const dummyOrder = [
+let dummyOrder = [
   {
     id: 4,
     isFulfilled: false,
@@ -80,22 +80,29 @@ const personInfo = {
 };
 
 const Cart = () => {
+  const { id } = useParams();
+
   // I can see that there is an axios request triggered on loading cart. {id, items, userId, isFulfilled, }
   const currentCart = useSelector(selectCurrentCart);
+  console.log("your current cart is ", currentCart)
 
-  const [cartView, setCartView] = useState("");
+
+  // console.log(typeof currentCart[0])
+  // const {dummyOrder} = currentCart[0]
+  const [cartView, setCartView] = useState([]);
 // const carttest = setCartView(fetchCurrentCart(3))
   const dispatch = useDispatch();
-  const { id } = useParams();
+  // const { id } = useParams();
   // has a header that lists username, friendly message, and Items in cart
   useEffect(() => {
     dispatch(fetchCurrentCart());
-  }, [cartView]);
+  }, [dispatch]);
+
   const cartItems = dummyOrder[0].items;
 
   return (
     <>
-      <div id="cart-list">
+      <div id="cart-list" value={currentCart}>
         <h2> Here is your Cart {personInfo.firstName}!</h2>
         {cartItems.length > 0 ? (
           cartItems.map((cartItem) => (
