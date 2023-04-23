@@ -2,8 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import CartItem from './CartItem';
-import { fetchCurrentCart } from './cartSlice';
+import { fetchCurrentCart, selectCurrentCart } from './cartSlice';
 
+//TO DO follow the logic on the Auth.me slice to mimic the cart user slice.
+// Also might need more cart routes so that can make axios adjustments directly to the order items 
+// something like api/itemList/id
+// the above would do a put request to change quantity and  a delete request to remove it from database and also make a call to refresh the cartView.
+// should maybe use a random generator to make these cartitem keys?
+// also need to remember to check for token?
 const dummyOrder = [
   {
     id: 4,
@@ -74,22 +80,25 @@ const personInfo = {
 };
 
 const Cart = () => {
+  // I can see that there is an axios request triggered on loading cart.
+  const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id);
-  const currentCart = useSelector(fetchCurrentCart);
-  console.log(currentCart);
+  console.log("this is the id",useParams());
+  const currentCart = useSelector(selectCurrentCart);
+  console.log("axios request of cart", currentCart)
   // console.log('orignal person info ', personInfo);
   // console.log('orignal order info ', dummyOrder);
-  const dispatch = useDispatch();
   // has a header that lists username, friendly message, and Items in cart
   useEffect(() => {
-    dispatch(fetchCurrentCart(3));
+    dispatch(fetchCurrentCart(id));
   }, [dispatch]);
+
   const [cartView, setCartView] = useState('');
+  console.log(cartView)
 
   const cartItems = dummyOrder[0].items;
 
-  console.log('here is cart items List ', cartItems);
+  // console.log('here is cart items List ', cartItems);
   return (
     <>
       <div id="cart-list">
@@ -106,7 +115,7 @@ const Cart = () => {
         )}
       </div>
       <br></br>
-      <button to="order"> Submit your order </button>
+      <button to="order"value={`${dummyOrder.id}`}> Submit your order </button>
     </>
   );
 

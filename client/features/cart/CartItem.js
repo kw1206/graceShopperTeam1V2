@@ -4,10 +4,10 @@ import DeleteBtn from './DeleteBtn';
 
 //Need to add these to slices eventually
 function addOne(n) {
-  console.log("click add one");
+  // console.log(n, "user click add one");
 }
 function subtractOne(n) {
-  console.log(n, "click sub one");
+  // console.log(n, "user clicked sub one");
 }
 
 const CartItem = (props) => {
