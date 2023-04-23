@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: 'Comfortaa', cursive;
   margin: 0;
 }
 
@@ -7,12 +7,41 @@ body {
 /* !!!!!!!!!! GENERAL !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
+#app {
+  margin: auto;
+  width: 1500px;
+}
+
 a {
   text-decoration: none;
+  color: black;
+}
+
+button {
+  font-family: 'Comfortaa', cursive;
+  border-radius: 20px;
+  background-color: #3d348b00;
+}
+
+a, button, nav p {
+  padding: 10px;
+  font-weight: bold;
 }
 
 a:hover, button:hover {
   cursor: pointer;
+  font-style: italic;
+}
+
+h3 {
+  padding: 0;
+  margin: 0
+}
+.page {
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
+  /* border: 2px solid blue */
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -21,6 +50,7 @@ a:hover, button:hover {
 
 label {
   display: block;
+  padding: 5px;
 }
 
 form div {
@@ -28,43 +58,68 @@ form div {
   display: inline-block;
 }
 
+input, textarea {
+  width: 300px
+}
+
+textarea {
+  height: 4em;
+}
+
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! NAV BAR !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-#navBar {
+.navBar {
   margin: 0;
   padding: 0;
   display: flex;
-  border: 2px solid red;
   align-items: center;
+  justify-content: space-between;
 }
 
-#navBar nav button, #navBar a {
-  display: inline-block;
-  margin: 1em;
-  color: black;
-  background-color: white;
-  border: 0;
-  font-size: 1em;
+.navBar h1 {
+  color: white;
+  padding: 15px;
 }
 
-nav div p {
-  display: inline-block;
-  margin: 1em;
-  color: black;
-  background-color: white;
-  border: 0;
-  font-size: 1em;
+nav {
+  display: flex;
 }
+
+nav button {
+  margin: 1em;
+  font-size: 1em;
+  color: white;
+  border: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+nav a,
+nav p {
+  margin: 1em;
+  font-size: 1em;
+  color: white;
+  vertical-align: middle;
+}
+
+#navBarAdmin {
+  background-color: #F35B04;
+}
+
+#navBarUserGuest {
+  background-color: #3D348B;
+}
+
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! ALL PRODUCTS !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-#allProducts {
+#allProductsUserGuestView {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -74,33 +129,52 @@ nav div p {
 .smallProductView {
   margin: 10px;
   width: 250px;
-  height: 350px;
-  border: 2px solid blue;
+  height: 370px;
+  border: 2px solid rgba(0, 0, 0, 0);
   overflow: hidden;
   justify-items: center
 ;}
 
+.smallProductView:hover {
+  border: 2px solid #F7B801;
+  border-radius: 20px
+;}
+
 .smallProductView > * {
-  margin: 0;
-  padding: 0
+  margin: 0px;
+  padding: 10px
 }
 
 .thumbnail {
-  width: 230px;
-  height: 230px;
+  width: 210px;
+  height: 210px;
   object-fit: cover;
+  border-radius: 20px;
+  padding: 10px
 }
 
 .smallViewAddBtn {
-  width: 20px;
-  height: 20px;
+  right: 0;
+}
+
+.smallProductView > a {
+  padding: 10px;
+}
+
+.smallProductView > a:hover {
+  color: #F7B801
+}
+
+.smallProductViewInfo > * {
+  padding: 0px 10px;
+  margin: 3px
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! EXPANDED PRODUCT !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-.expandedProduct {
+.expandedProductInfo {
   border: 2px solid green;
   display: flex;
 }
@@ -112,9 +186,24 @@ nav div p {
 
 .scrollImages {
   display: flex;
+  justify-content: center;
 }
 
+.expandedImages {
+  max-width: 460px;
+  /* height: 460px; */
+  object-fit: cover;
+}
 
+.imageScrollBtn {
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+}
+
+.imageScrollBtn:hover {
+  color:#F35B04;
+  font-style: normal;
+}
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! SINGLE CART ITEM !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -139,4 +228,38 @@ nav div p {
   border: 1px solid;
   text-align: left;
   padding: 8px
+}
+
+#id {
+  width: 50px;
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! ALLPRODUCTS (ADMIN VIEW) !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+#productsPageAdminView {
+  /* border: 2px solid pink; */
+  display: flex;
+}
+
+#addProductForm {
+  border: 2px solid #F7B801;
+  width: fit-content;
+  height: fit-content;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+#allProductsAdminView {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#createProductBtn:hover, #editProductBtn:hover, #cancelEditBtn:hover, #deletBtn:hover, #editBtn:hover {
+  color: white;
+  border-color: #F7B801;
+  background-color: #F35B04;
 }

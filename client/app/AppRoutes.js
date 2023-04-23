@@ -5,9 +5,10 @@ import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/Home";
 import Cart from "../features/cart/Cart";
 import { me } from "./store";
-import AllProducts from "../features/products/AllProducts";
+import AllProductsPage from "../features/products/AllProducts";
 import AllUsers from "../features/admin/AllUsers";
-
+import ExpandedProduct from "../features/products/ExpandedProduct";
+import EditProductForm from "../features/admin/EditProductForm";
 /**
  * COMPONENT
  */
@@ -23,31 +24,37 @@ const AppRoutes = () => {
   return (
     <div>
       {isLoggedIn ? (
+        // ROUTES IF YOU ARE LOGGED IN
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route path="/home" element={<AllProducts />} />
+          {/* GENERAL */}
+          <Route path="/*" element={<AllProductsPage />} />
+          <Route path="/home" element={<AllProductsPage />} />
+          {/* PRODUCT ROUTES */}
+          <Route path="/products" element={<AllProductsPage />} />
+          <Route path="/products/:id" element={<ExpandedProduct />} />
+          {/* CART ROUTE */}
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products" element={<AllProducts />} />
-          <Route path="/admin/products" element={<AllProducts />} />
-          <Route path="/admin/users" element={<AllUsers />} />
+          {/* ROUTES FOR LOGGED IN USERS */}
+          {/* <Route path="/myaccount" element={<UserAccountDetails />} /> */}
+          {/* ROUTES FOR ADMINS */}
+          <Route path="/users" element={<AllUsers />} />
+          <Route path="/products/:id/editProduct" element={<EditProductForm />} />
+
         </Routes>
       ) : (
+        // ROUTES IF YOU ARE NOT LOGGED IN
         <Routes>
-          {/* <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          /> */}
-          <Route path="/*" element={<AllProducts />} />
-          <Route
-            path="/login"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-          <Route
-            path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
-          />
+          {/* LOGIN ROUTES */}
+          <Route path="/login" element={<AuthForm name="login" displayName="Login" />} />
+          <Route path="/signup" element={<AuthForm name="signup" displayName="Sign Up" />} />
+          {/* GENERAL */}
+          <Route path="/*" element={<AllProductsPage />} />
+          <Route path="/home" element={<AllProductsPage />} />
+          {/* PRODUCT ROUTES */}
+          <Route path="/products" element={<AllProductsPage />} />
+          <Route path="/products/:id" element={<ExpandedProduct />} />
+          {/* CART ROUTE */}
           <Route path="/cart" element={<Cart />} />
-          <Route path="/products" element={<AllProducts />} />
         </Routes>
       )}
     </div>

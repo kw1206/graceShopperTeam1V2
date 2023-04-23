@@ -1,54 +1,105 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-
-const dummyProduct = {
-    id: 12,
-    title: "Brown Perfume",
-    description: "Royal_Mirage Sport Brown Perfume for Men & Women - 120ml",
-    price: 40,
-    brand: "Royal_Mirage",
-    category: "fragrances",
-    thumbnail: "https://i.dummyjson.com/data/products/12/thumbnail.jpg",
-    images: [
-      "https://i.dummyjson.com/data/products/12/1.jpg",
-      "https://i.dummyjson.com/data/products/12/2.jpg",
-      "https://i.dummyjson.com/data/products/12/3.png",
-      "https://i.dummyjson.com/data/products/12/4.jpg",
-      "https://i.dummyjson.com/data/products/12/thumbnail.jpg",
-    ],
-};
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+  fetchSingleProduct,
+  selectSingleProduct,
+  deleteProduct,
+} from "./expandedProductSlice";
 
 const ExpandedProduct = () => {
+  const { id } = useParams();
   const [imageIdx, setImageIdx] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [allImages, setAllImages] = useState([]);
 
+  const loggedInAsAdmin = useSelector((state) => state.auth.me);
+  const selectedProduct = useSelector(selectSingleProduct);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchSingleProduct(id));
+  }, []);
+  useEffect(() => {
+    if (selectedProduct.id > 0) {
+      const thumbnail = selectedProduct.thumbnail;
+      const extraImages = [...selectedProduct.images];
+      const combinedImages = extraImages.unshift(thumbnail);
+      setAllImages(extraImages);
+    }
+  }, [selectedProduct]);
+  useEffect(() => {
+    if (selectedProduct.id > 0) {
+      setLoading(false);
+    }
+  }, [selectedProduct]);
+
+  const navigate = useNavigate();
+  const deleteThisProduct = async (event) => {
+    event.preventDefault();
+    if (confirm("Are you sure you want to delete this product?") === true) {
+      dispatch(deleteProduct(id));
+      navigate("/products/");
+    }
+  };
+
+  // image carousel functionality
   const imgBack = () => {
     if (imageIdx > 0) return setImageIdx(imageIdx - 1);
   };
   const imgFwd = () => {
-    if (imageIdx < dummyProduct.images.length-1) return setImageIdx(imageIdx + 1);
+    if (imageIdx < allImages.length - 1) return setImageIdx(imageIdx + 1);
   };
 
   return (
-    <div className="expandedProduct">
-      <div className="imgCarousel">
-        <img src={dummyProduct.images[imageIdx]} />
-        <div className="scrollImages">
-          <br />
-          <button onClick={imgBack}>{`<`}</button>
-          <p>
-            image {imageIdx + 1} of {dummyProduct.images.length}
-          </p>
-          <button onClick={imgFwd}>{`>`}</button>
-        </div>
-      </div>
-      <div className="productInfo">
-        <h2>{dummyProduct.title}</h2>
-        <h3>{dummyProduct.brand}</h3>
-        <p>{dummyProduct.description}</p>
-        <p>Product ID #{dummyProduct.id}</p>
-        <p>${dummyProduct.price.toLocaleString()}</p>
-        <p>View more {dummyProduct.category}</p>
-        <button>Add to cart</button>
+    <div className="page">
+      <Link to="/products">
+        <p>❮❮❮ Back to all products</p>
+      </Link>
+      <div className="expandedProductInfo">
+        {loading ? (
+          <h3>Product loading</h3>
+        ) : selectedProduct ? (
+          <>
+            <div className="imgCarousel">
+              <img className="expandedImages" src={allImages[imageIdx]} />
+              <div className="scrollImages">
+                <button className="imageScrollBtn" onClick={imgBack}>
+                  ❮
+                </button>
+                <p>
+                  image {imageIdx + 1} of {allImages.length}
+                </p>
+                <button className="imageScrollBtn" onClick={imgFwd}>
+                  ❯
+                </button>
+              </div>
+            </div>
+            <div className="productInfo">
+              <h2>{selectedProduct.title}</h2>
+              <h3>{selectedProduct.brand}</h3>
+              <p>{selectedProduct.description}</p>
+              <p>${selectedProduct.price}</p>
+              {loggedInAsAdmin.isAdmin ? (
+                <>
+                  <p>Inventory: {selectedProduct.invnetory}</p>
+                  <p>Product ID #{selectedProduct.id}</p>
+                  <button id="deleteBtn" onClick={deleteThisProduct}>Delete product</button>
+                  <Link to={`/products/${id}/editProduct`}>
+                    <button id="editBtn">Edit product</button>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <p>View more {selectedProduct.category}</p>
+                  <button>Add to cart</button>
+                </>
+              )}
+            </div>
+          </>
+        ) : (
+          <h3>Product does not exist</h3>
+        )}
       </div>
     </div>
   );
