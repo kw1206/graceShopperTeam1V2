@@ -16,12 +16,17 @@ export const fetchSingleProduct = createAsyncThunk(
 export const deleteProduct = createAsyncThunk(
   "product/delete",
   async ({ id }) => {
+    const token = window.localStorage.getItem("token");
     try {
-      const { data } = await axios.delete(`/api/products/${id}`);
-      if (data) {
+      if (token) {
+        const { data } = await axios.delete(`/api/products/${id}`, {
+          headers: {
+            authorization: token,
+          },
+        });
         return data;
       } else {
-        console.log("cannot find that product");
+        console.log("You are not authorized to delete products.");
       }
     } catch (error) {
       console.log(error);
@@ -32,6 +37,7 @@ export const deleteProduct = createAsyncThunk(
 export const editProduct = createAsyncThunk(
   "product/edit",
   async ({
+    id,
     title,
     brand,
     description,
@@ -41,18 +47,23 @@ export const editProduct = createAsyncThunk(
     images,
     inventory,
   }) => {
+    const token = window.localStorage.getItem("token");
     try {
-      const { data } = await axios.put(`/api/products/${id}`, {
-        title,
-        brand,
-        description,
-        price,
-        category,
-        thumbnail,
-        images,
-        inventory,
-      });
-      return data;
+      if (token) {
+        const { data } = await axios.put(`/api/products/${id}`, {
+          title,
+          brand,
+          description,
+          price,
+          category,
+          thumbnail,
+          images,
+          inventory,
+        });
+        return data;
+      } else {
+        console.log("You are not authorized to edit products.");
+      }
     } catch (error) {
       console.log(error);
     }
@@ -71,18 +82,23 @@ export const addProduct = createAsyncThunk(
     images,
     inventory,
   }) => {
+    const token = window.localStorage.getItem("token");
     try {
-      const { data } = await axios.post("/api/products", {
-        title,
-        brand,
-        description,
-        price,
-        category,
-        thumbnail,
-        images,
-        inventory,
-      });
-      return data;
+      if (token) {
+        const { data } = await axios.post("/api/products", {
+          title,
+          brand,
+          description,
+          price,
+          category,
+          thumbnail,
+          images,
+          inventory,
+        });
+        return data;
+      } else {
+        console.log("You are not authorized to add products.");
+      }
     } catch (error) {
       console.log(error);
     }

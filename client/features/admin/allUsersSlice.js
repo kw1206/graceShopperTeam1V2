@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const fetchAllUsers = createAsyncThunk(
   "admin/fetchAllUsers",
-  async () => {
+  async ({ column, order }) => {
     const token = window.localStorage.getItem("token");
     try {
       if (token) {
@@ -12,7 +12,11 @@ export const fetchAllUsers = createAsyncThunk(
             authorization: token,
           },
         });
-        return data;
+        if (order === "asc") {
+          return data.sort((a, b) => a[column] > b[column] ? 1 : -1);
+        } else if (order === "desc") {
+          return data.sort((a, b) => b[column] > a[column] ? 1 : -1);
+        }
       }
     } catch (error) {
       console.log(error);
