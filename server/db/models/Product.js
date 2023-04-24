@@ -46,6 +46,7 @@ const Product = db.define('product', {
   },
   images: {
     type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: ['https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg']
   },
 })
 

@@ -59,7 +59,7 @@ router.get('/:id', isUserOrAdmin, async (req, res, next) => {
 });
 
 //removed isUserOrAdmin
-router.get('/:id/orderHistory', async (req, res, next) => {
+router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
   try {
     const orderHistory = await Cart.findAll({
       where: { 

@@ -59,6 +59,11 @@ User.prototype.generateToken = function() {
   return jwt.sign({id: this.id}, process.env.JWT)
 }
 
+// User.prototype.generateToken = function() {
+//   return jwt.sign({id: this.id, isAdmin: this.isAdmin}, process.env.JWT)
+// }
+
+
 /**
  * classMethods
  */
