@@ -63,7 +63,8 @@ const Header = ({ columns, sorting, sortTable }) => {
 };
 
 const ProductSummary = () => {
-  const products = useSelector(selectAllProducts);
+  // const products = useSelector(selectAllProducts);
+  const products = useSelector((state) => state.allProducts);
   const [sorting, setSorting] = useState({ column: "id", order: "asc", filter: "all" });
   const columns = ["id", "title", "brand", "category", "price", "inventory"];
 

@@ -24,6 +24,7 @@ const EditProductForm = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
+    console.log(id)
     dispatch(fetchSingleProduct(id));
   }, []);
   useEffect(() => {
@@ -47,7 +48,7 @@ const EditProductForm = () => {
   const navigate = useNavigate();
 
   const editThisProduct = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     if (!editedTitle || !editedDesc || !editedPrice || !editedCategory) return;
     if (editedImages.includes(" "))
       return alert(
@@ -56,6 +57,7 @@ const EditProductForm = () => {
     if (editedImages !== selectedProduct.images.join(",")) {
       let formattedExtraImages = editedImages.split(",");
       const editedProduct = {
+        id: id,
         title: editedTitle,
         brand: editedBrand,
         description: editedDesc,
@@ -72,6 +74,7 @@ const EditProductForm = () => {
       }
     } else {
       const editedProduct = {
+        id: id,
         title: editedTitle,
         brand: editedBrand,
         description: editedDesc,
