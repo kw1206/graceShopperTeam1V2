@@ -24,15 +24,37 @@ export const fetchAllProducts = createAsyncThunk(
   }
 );
 
+// export const addProductAsync = createAsyncThunk('products/addProduct', async ({ title, brand, description, price, category, inventory, thumbnail, images }) => {
+//   try {
+//     const { data } = await axios.post(`api/products`, {
+//       title,
+//       brand,
+//       description,
+//       price,
+//       category,
+//       inventory,
+//       thumbnail,
+//       images
+//     });
+//   } catch (err) {
+//     return err.message
+//   }
+// });
+
 const allProducts = createSlice({
   name: "allProducts",
   initialState: [],
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
+    builder
+      .addCase(fetchAllProducts.fulfilled, (state, action) => {
       return action.payload;
-    });
-  },
+      // state.products = action.payload
+      })
+      // .addCase(addProductAsync.fulfilled, (state, action) => {
+      //   state.push(action.payload)
+      // })
+  }
 });
 
 export const selectAllProducts = (state) => {
