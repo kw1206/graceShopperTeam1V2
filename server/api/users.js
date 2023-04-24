@@ -59,6 +59,14 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.put('/:id', isUserOrAdmin, async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.params.id);
+    res.json(await user.update(req.body));
+  } catch (error) {
+    next(error);
+  }
+});
 
 router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
   try {
