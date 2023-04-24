@@ -80,29 +80,33 @@ const personInfo = {
 };
 
 const Cart = () => {
-  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  // const { id } = useParams();
 
   // I can see that there is an axios request triggered on loading cart. {id, items, userId, isFulfilled, }
   const currentCart = useSelector(selectCurrentCart);
-  console.log("your current cart is ", currentCart)
 
+  console.log('your current cart is ', currentCart);
 
-  // console.log(typeof currentCart[0])
-  // const {dummyOrder} = currentCart[0]
+  let cartItems = [];
   const [cartView, setCartView] = useState([]);
-// const carttest = setCartView(fetchCurrentCart(3))
-  const dispatch = useDispatch();
-  // const { id } = useParams();
   // has a header that lists username, friendly message, and Items in cart
   useEffect(() => {
     dispatch(fetchCurrentCart());
+    console.log('useEffect active');
   }, [dispatch]);
 
-  const cartItems = dummyOrder[0].items;
+  useEffect(()=> {
+    if (currentCart){
+      console.log("here is cart in use effect", currentCart)
+    }
+  },[currentCart])
 
   return (
     <>
       <div id="cart-list" value={currentCart}>
+        <h4></h4>
         <h2> Here is your Cart {personInfo.firstName}!</h2>
         {cartItems.length > 0 ? (
           cartItems.map((cartItem) => (

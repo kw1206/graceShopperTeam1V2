@@ -36,15 +36,14 @@ export const deleteCartProduct = createAsyncThunk(
 );
 
 export const selectCurrentCart = (state) => {
-  return state.currentCartB;
+  return state.currentCart;
 };
 
 const initialState = {
-  cartInfoB: {},
-  cartItemsB: [],
+  cart: [],
 }
 
-const currentCartSlice = createSlice({
+export const currentCartSlice = createSlice({
   name: 'currentCart',
   initialState,
   reducers: {},
