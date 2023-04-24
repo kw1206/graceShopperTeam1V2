@@ -1,14 +1,35 @@
-//    const token = window.localStorage.getItem("token");
 // use to grab token from local Storage
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+export const fetchCurrentUser = createAsyncThunk(
+  'admin/fetchCurrentUser',
+  async ({ id }) => {
+    const token = window.localStorage.getItem('token');
+    try {
+      if (token) {
+        const { data } = await axios.get(`/api/users/${id}`, {
+          headers: {
+            authorization: token,
+          },
+        });
+        console.log(data);
+        return data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
   async (id) => {
     //works when hardCoded and id is single number
-    id = 3;
+    // id = 3;
+    console.log(typeof id)
     try {
+      // const user = await axios.get()
       const { data } = await axios.get(`api/users/${id}/cart`);
       console.log('fetch cart activated data is ', data);
       return data;
@@ -39,9 +60,13 @@ export const selectCurrentCart = (state) => {
   return state.currentCart;
 };
 
+export const selectCurrentUser = (state) => {
+  return state.auth
+};
+
 const initialState = {
   cart: [],
-}
+};
 
 export const currentCartSlice = createSlice({
   name: 'currentCart',
@@ -53,6 +78,5 @@ export const currentCartSlice = createSlice({
     });
   },
 });
-
 
 export default currentCartSlice.reducer;

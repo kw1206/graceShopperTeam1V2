@@ -2,7 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import CartItem from './CartItem';
-import { fetchCurrentCart, selectCurrentCart } from './cartSlice';
+import {
+  fetchCurrentCart,
+  selectCurrentCart,
+  fetchCurrentUser,
+  selectCurrentUser,
+} from './cartSlice';
 
 //TO DO follow the logic on the Auth.me slice to mimic the cart user slice.
 // Also might need more cart routes so that can make axios adjustments directly to the order items
@@ -80,30 +85,36 @@ const personInfo = {
 };
 
 const Cart = () => {
-  const { id } = useParams();
+  const currentUser = useSelector(selectCurrentUser);
+  const currentUserID = currentUser.me.id;
   // const [cartView, setCartView] = useState([]);
-  const [loading, setloading] = useState(true)
+  // const [loading, setloading] = useState(true)
   const dispatch = useDispatch();
   const currentCart = useSelector(selectCurrentCart);
-  const [cartItems, setCartItems] = useState([])
+  const [cartItems, setCartItems] = useState([]);
+  const [currentUserIs, setcurrentUserIs] = useState([]);
+
   console.log('your current cart is ', currentCart);
+  console.log('your current user is ', currentUser.me.id);
 
   // has a header that lists username, friendly message, and Items in cart
   useEffect(() => {
-    dispatch(fetchCurrentCart(id));
-    console.log('useEffect active');
-   if(currentCart[0]) {setCartItems(currentCart[0].items)}
-
+    // if (currentUserID) {
+      dispatch(fetchCurrentCart(3));
+      console.log('useEffect active');
+      if (currentCart[0]) {
+        setCartItems(currentCart[0].items);
+      }
+    // }
   }, [dispatch]);
 
-  useEffect(()=> {
-    if (currentCart.id > 0){
-      console.log("here is cart in use effect", currentCart)
+  useEffect(() => {
+    if (currentCart.id > 0) {
+      console.log('here is cart in use effect', currentCart);
     }
-  },[currentCart])
+  }, [currentCart]);
 
   return (
-    
     <>
       <div id="cart-list" value={currentCart}>
         <h4></h4>
