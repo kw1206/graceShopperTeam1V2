@@ -143,15 +143,15 @@ textarea {
 /* !!!!!!!!!! PRODUCT BUTTONS !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-#createProductBtn:hover, #editProductBtn:hover, #cancelEditBtn:hover, #deleteBtn:hover, #editBtn:hover, .smallViewAddBtn:hover, #addBtn:hover {
+#createProductBtn:hover, #editProductBtn:hover, #cancelEditBtn:hover, #deleteBtn:hover, #editBtn:hover, .smallViewAddBtn:hover, #addBtn:hover, #editAccountBtn:hover {
   color: white;
-  border-color: #F7B801;
+  border-color: #f7ba0100;
   background-color: #F35B04;
 }
 
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-/* !!!!!!!!!! ALL PRODUCTS !!!!!!!!!! */
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! ALL PRODUCTS PAGE !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 .selectSortAndFilter {
   display: flex;
@@ -301,12 +301,22 @@ table {
   padding: 0;
 }
 
+#allUsersTable {
+  border: 2px solid purple
+}
+
+#allUsersTable td {
+  border: 2px solid purple;
+  width: 100%;
+  font-size: 12px;
+}
+
 .usersTableCell {
   text-align: left;
   padding: 8px;
 }
 
-#productsTable > *, .usersTableCell {
+#productsTable > * {
   font-size: 12px;
 }
 
@@ -473,4 +483,79 @@ th, thead {
   position: relative;
   top: -127px;
   left: 0px
+}
+
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+/* !!!!!!!!!! USER ACCOUNT DETAILS PAGE !!!!!!!!!! */
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+.userInfo {
+  display: flex;
+  border: 2px solid green;
+  margin: 30px;
+}
+
+#accountDetails, #orderHistory {
+  margin: 20px;
+}
+
+#userDetailsTable {
+  width: 500px;
+}
+
+#orderHistoryTable {
+  width: 100%;
+  padding: 0px
+}
+
+#userDetailsTable {
+  margin: 20px;
+}
+
+#userDetailsTable td, #orderHistoryTable td, #orderHistoryTable th {
+  padding: 8px;
+  font-size: 12px;
+}
+
+#orderHistoryTable td, #orderHistoryTable th {
+  text-align: center;
+}
+
+.accountProperty {
+  width: 125px;
+}
+
+#userDetailsTable tr:hover {
+  background: white;
+}
+
+#orderNum {
+  width: 75px;
+}
+
+#dateSubmitted {
+  width: 175px;
+}
+
+#editAccountBtn {
+  margin: 20px;
+}
+
+.userInfo h2 {
+  padding: 20px;
+  margin: 0px;
+  border-radius: 20px 20px 0px 0px;
+  background-color: #F7B801;
+}
+
+li {
+  list-style: none;
+}
+
+ul a {
+  padding: 0px;
+}
+
+ul a:hover {
+  background-color: white;
 }

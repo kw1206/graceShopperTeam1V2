@@ -7,16 +7,19 @@ import { fetchAllUsers } from "./allUsersSlice";
 // https://www.youtube.com/watch?v=BqVH9Z_6p38
 
 const Content = ({ entries, columns }) => {
+  console.log(entries);
   return (
     <tbody>
       {entries.map((entry) => (
-        <tr key={entry.id}>
-          {columns.map((column) => (
-            <td key={column} className="usersTableCell">
-              {entry[column]}
-            </td>
-          ))}
-        </tr>
+        <Link to={`/users/${entry.id}`}>
+          <tr key={entry.id}>
+            {columns.map((column) => (
+              <td key={column} className="usersTableCell">
+                {entry[column]}
+              </td>
+            ))}
+          </tr>
+        </Link>
       ))}
     </tbody>
   );
@@ -78,7 +81,7 @@ const AllUsers = () => {
 
   return (
     <div id="usersTable">
-      <table>
+      <table id="allUsersTable">
         <Header columns={columns} sorting={sorting} sortTable={sortTable} />
         <Content entries={users} columns={columns} />
         <tbody></tbody>

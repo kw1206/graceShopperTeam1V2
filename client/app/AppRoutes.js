@@ -11,6 +11,7 @@ import AllUsers from "../features/admin/AllUsers";
 import ExpandedProduct from "../features/products/ExpandedProduct";
 import EditProductForm from "../features/admin/EditProductForm";
 import AddProductForm from "../features/admin/AddProductForm";
+import UserAccountDetails from "../features/users/UserAccount";
 /**
  * COMPONENT
  */
@@ -42,6 +43,10 @@ const AppRoutes = () => {
               path="/products/:id/editProduct"
               element={<EditProductForm />}
             />
+            <Route
+              path="/users/:id"
+              element={<UserAccountDetails />}
+            />
           </Routes>
         ) : (
           // ROUTES FOR LOGGED IN USERS
@@ -55,7 +60,7 @@ const AppRoutes = () => {
             {/* CART ROUTE */}
             <Route path="/cart" element={<Cart />} />
             {/* ROUTES FOR LOGGED IN USERS */}
-            {/* <Route path="/myaccount" element={<UserAccountDetails />} /> */}
+            <Route path="/myaccount" element={<UserAccountDetails />} />
           </Routes>
         )
       ) : (
