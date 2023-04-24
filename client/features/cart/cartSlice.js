@@ -25,11 +25,7 @@ export const fetchCurrentUser = createAsyncThunk(
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
   async (id) => {
-    //works when hardCoded and id is single number
-    // id = 3;
-    console.log(typeof id)
     try {
-      // const user = await axios.get()
       const { data } = await axios.get(`api/users/${id}/cart`);
       console.log('fetch cart activated data is ', data);
       return data;

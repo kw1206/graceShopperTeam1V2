@@ -4,7 +4,7 @@ import DeleteBtn from './DeleteBtn';
 
 //Need to add these to slices eventually
 function addOne(n) {
-  // console.log(n, "user click add one");
+  console.log(n, "user click add one");
 }
 function subtractOne(n) {
   // console.log(n, "user clicked sub one");
@@ -25,12 +25,12 @@ const CartItem = (props) => {
         <h4 className="item-Name">{title}</h4>
         <img className="cart-thumbnail" src={thumbnail} />
         <span>${price}</span>
-        <button className="addOne" onClick={addOne(quantity)}>
+        <button className="addOne" onClick={()=> addOne(quantity)}>
           {' '}
           +{' '}
         </button>{' '}
         {quantity}{' '}
-        <button className="subtractOne" onClick={subtractOne(quantity)}>
+        <button className="subtractOne" onClick={()=>subtractOne(quantity)}>
           {' '}
           -{' '}
         </button>
