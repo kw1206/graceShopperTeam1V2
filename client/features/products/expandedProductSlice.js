@@ -15,7 +15,7 @@ export const fetchSingleProduct = createAsyncThunk(
 
 export const deleteProduct = createAsyncThunk(
   "product/delete",
-  async ({ id }) => {
+  async (id) => {
     const token = window.localStorage.getItem("token");
     try {
       if (token) {
@@ -43,9 +43,9 @@ export const editProduct = createAsyncThunk(
     description,
     price,
     category,
-    thumbnail,
-    images,
     inventory,
+    thumbnail,
+    images
   }) => {
     const token = window.localStorage.getItem("token");
     try {
@@ -59,6 +59,10 @@ export const editProduct = createAsyncThunk(
           thumbnail,
           images,
           inventory,
+        }, {
+        headers: {
+          authorization: token,
+        }
         });
         return data;
       } else {
@@ -78,9 +82,9 @@ export const addProduct = createAsyncThunk(
     description,
     price,
     category,
-    thumbnail,
-    images,
     inventory,
+    thumbnail,
+    // images
   }) => {
     const token = window.localStorage.getItem("token");
     try {
@@ -91,9 +95,14 @@ export const addProduct = createAsyncThunk(
           description,
           price,
           category,
-          thumbnail,
-          images,
           inventory,
+          thumbnail,
+          // images
+        },
+        {
+          headers: {
+            authorization: token,
+          },
         });
         return data;
       } else {
@@ -110,15 +119,19 @@ const expandedProductSlice = createSlice({
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchSingleProduct.fulfilled, (state, action) => {
+    builder
+      .addCase(fetchSingleProduct.fulfilled, (state, action) => {
       return action.payload;
-    });
-    builder.addCase(editProduct.fulfilled, (state, action) => {
+      })
+      .addCase(editProduct.fulfilled, (state, action) => {
       return action.payload;
-    });
-    builder.addCase(addProduct.fulfilled, (state, action) => {
+      })
+      .addCase(addProduct.fulfilled, (state, action) => {
       return action.payload;
-    });
+      })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        return action.payload;
+      })
   },
 });
 

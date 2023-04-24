@@ -38,7 +38,8 @@ const ExpandedProduct = () => {
   const deleteThisProduct = async (event) => {
     event.preventDefault();
     if (confirm("Are you sure you want to delete this product?") === true) {
-      dispatch(deleteProduct(Number(selectedProduct.id)));
+      console.log(id)
+      dispatch(deleteProduct(id));
       navigate("/products/");
     }
   };

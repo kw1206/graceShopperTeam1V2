@@ -36,6 +36,7 @@ router.get('/:id', async (req, res, next) => {
 
 router.post('/', isAdmin, async (req, res, next) => {
   try {
+    console.log(req.body)
     const product = await Product.create(req.body);
     res.status(201).json(product)
   } catch (err) {

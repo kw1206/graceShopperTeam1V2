@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import SingleProduct from "./SingleProduct";
 import { selectAllProducts, fetchAllProducts } from "./allProductsSlice";
 import AddProductForm from "../admin/AddProductForm.js";
-// import { addProduct } from "./expandedProductSlice";
 
 const AllProductsPage = () => {
   const loggedInAsAdmin = useSelector((state) => state.auth.me);
+  // const products = useSelector((state) => state.allProducts);
   const products = useSelector(selectAllProducts);
   const [loading, setLoading] = useState(true);
   // default sort order + filter is ascending by id with all products on view
