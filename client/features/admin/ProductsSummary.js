@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  selectAllProducts,
+  fetchAllProducts,
+} from "../products/allProductsSlice";
 import { Link } from "react-router-dom";
-import { selectAllUsers } from "./allUsersSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllUsers } from "./allUsersSlice";
-// TUTORIAL FOR MAKING DYNAMIC REACT TABLE
-// https://www.youtube.com/watch?v=BqVH9Z_6p38
-
 const Content = ({ entries, columns }) => {
   return (
     <tbody>
@@ -13,7 +12,7 @@ const Content = ({ entries, columns }) => {
         <tr key={entry.id}>
           {columns.map((column) => (
             <td key={column} className="usersTableCell">
-              {entry[column]}
+              <Link to={`/products/${entry.id}`}>{entry[column]}</Link>
             </td>
           ))}
         </tr>
@@ -26,11 +25,12 @@ const HeaderCell = ({ column, sorting, sortTable }) => {
   const isDescSorting = sorting.column === column && sorting.order === "desc";
   const isAscSorting = sorting.column === column && sorting.order === "asc";
   const futureSortingOrder = isDescSorting ? "asc" : "desc";
+  // const noSortingOrder = !sorting.order;
   return (
     <th
       key={column}
       className="usersTableCell"
-      id={column}
+      id={`product${column}`}
       onClick={() =>
         sortTable({
           column: column,
@@ -62,10 +62,10 @@ const Header = ({ columns, sorting, sortTable }) => {
   );
 };
 
-const AllUsers = () => {
-  const users = useSelector(selectAllUsers);
-  const [sorting, setSorting] = useState({ column: "id", order: "asc" });
-  const columns = ["id", "username", "lastName", "firstName"];
+const ProductSummary = () => {
+  const products = useSelector(selectAllProducts);
+  const [sorting, setSorting] = useState({ column: "id", order: "asc", filter: "all" });
+  const columns = ["id", "title", "brand", "category", "price", "inventory"];
 
   const sortTable = (newSorting) => {
     setSorting({ ...sorting, ...newSorting });
@@ -73,18 +73,19 @@ const AllUsers = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchAllUsers(sorting));
+    dispatch(fetchAllProducts(sorting));
   }, [sorting]);
 
+  console.log(products);
+
   return (
-    <div id="usersTable">
-      <table>
-        <Header columns={columns} sorting={sorting} sortTable={sortTable} />
-        <Content entries={users} columns={columns} />
-        <tbody></tbody>
-      </table>
-    </div>
+    <>
+        <table id="productsTable">
+          <Header columns={columns} sorting={sorting} sortTable={sortTable} />
+          <Content entries={products} columns={columns} />
+        </table>
+      </>
   );
 };
 
-export default AllUsers;
+export default ProductSummary;
