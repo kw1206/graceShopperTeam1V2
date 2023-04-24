@@ -18,7 +18,6 @@ const Cart = () => {
   useEffect(() => {
     if (currentUserID) {
       dispatch(fetchCurrentCart(currentUserID));
-      console.log('the current user exists');
       if (currentCart[0]) {
         setCartItems(currentCart[0].items);
       }

@@ -21,6 +21,9 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+export const selectCurrentUser = (state) => {
+  return state.auth;
+};
 
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
@@ -54,10 +57,6 @@ export const deleteCartProduct = createAsyncThunk(
 
 export const selectCurrentCart = (state) => {
   return state.currentCart;
-};
-
-export const selectCurrentUser = (state) => {
-  return state.auth
 };
 
 const initialState = {
