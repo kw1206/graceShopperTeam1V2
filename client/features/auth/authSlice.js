@@ -46,10 +46,15 @@ export const me = createAsyncThunk('auth/me', async () => {
 export const authenticate = createAsyncThunk(
       // ^ this is the name of the thunk.
   'auth/authenticate',
-  async ({ username, password, method }, thunkAPI) => {
+  async ({ username, password, firstName, lastName, method }, thunkAPI) => {
     // ^ this is an asynchronus function that will run when the thunk is dispatched. 'thunkAPI' is an object that gives access to the dispatch function and the 'getState' function.
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password });
+      let res;
+      if (method === 'signup') {
+        res = await axios.post(`/auth/${method}`, { username, password, firstName, lastName });
+      } else {
+        res = await axios.post(`/auth/${method}`, { username, password });
+      }
       window.localStorage.setItem(TOKEN, res.data.token);
       // ^ first we try to POST the username and password from req.body to the route '/auth/${method}'. 'method' will either be 'login' or 'signup' depending if the user is logging into an existing account or creating a new account. if the POST is successful, the resulting response data will be saved in the 'res' variable. 
       // with the res data returned by the axios POST request, we use dot notation to access the token property on the data property of the response ('res.data.token'). 'TOKEN' is a string ('token', defined globally) that will be passed along with 'res.data.token' into the method 'setItem'. 'setItem' creates a key value pair (TOKEN: res.data.token) and, because it is called on 'window.localStorage', this key/value pair will be stored in the browser's local storage.
