@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import CartItem from './CartItem';
 import { fetchCurrentCart, selectCurrentCart } from './cartSlice';
 
@@ -80,26 +80,24 @@ const personInfo = {
 };
 
 const Cart = () => {
+  const { id } = useParams();
+  const [cartView, setCartView] = useState([]);
+  const [loading, setloading] = useState(true)
   const dispatch = useDispatch();
-
-  // const { id } = useParams();
-
-  // I can see that there is an axios request triggered on loading cart. {id, items, userId, isFulfilled, }
   const currentCart = useSelector(selectCurrentCart);
-
   console.log('your current cart is ', currentCart);
 
   let cartItems = [];
-  const [cartView, setCartView] = useState([]);
   // has a header that lists username, friendly message, and Items in cart
   useEffect(() => {
-    dispatch(fetchCurrentCart());
+    dispatch(fetchCurrentCart(id));
     console.log('useEffect active');
   }, [dispatch]);
 
   useEffect(()=> {
-    if (currentCart){
+    if (currentCart.id >0){
       console.log("here is cart in use effect", currentCart)
+      setCartView(currentCart)
     }
   },[currentCart])
 

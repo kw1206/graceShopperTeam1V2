@@ -49,9 +49,6 @@ export const currentCartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCurrentCart.fulfilled, (state, action) => {
-      // state.cartInfoB = action.payload
-      // state.cartItemsB = action.payload.items
-      // console.log('slice activated suceeded', state.items);
       return action.payload;
     });
   },
