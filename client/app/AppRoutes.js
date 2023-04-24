@@ -9,12 +9,15 @@ import AllProductsPage from "../features/products/AllProducts";
 import AllUsers from "../features/admin/AllUsers";
 import ExpandedProduct from "../features/products/ExpandedProduct";
 import EditProductForm from "../features/admin/EditProductForm";
+import AddProductForm from "../features/admin/AddProductForm";
 /**
  * COMPONENT
  */
 
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const loggedInAsAdmin = useSelector((state) => state.auth.me);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,32 +27,51 @@ const AppRoutes = () => {
   return (
     <div>
       {isLoggedIn ? (
-        // ROUTES IF YOU ARE LOGGED IN
-        <Routes>
-          {/* GENERAL */}
-          <Route path="/*" element={<AllProductsPage />} />
-          <Route path="/home" element={<AllProductsPage />} />
-          {/* PRODUCT ROUTES */}
-          <Route path="/products" element={<AllProductsPage />} />
-          <Route path="/products/:id" element={<ExpandedProduct />} />
-          {/* CART ROUTE */}
-          <Route path="/cart" element={<Cart />} />
-          {/* ROUTES FOR LOGGED IN USERS */}
-          {/* <Route path="/myaccount" element={<UserAccountDetails />} /> */}
-          {/* ROUTES FOR ADMINS */}
-          <Route path="/users" element={<AllUsers />} />
-          <Route path="/products/:id/editProduct" element={<EditProductForm />} />
-
-        </Routes>
+        loggedInAsAdmin.isAdmin ? (
+          // ROUTES FOR ADMINS
+          <Routes>
+            {/* GENERAL */}
+            <Route path="/*" element={<AllProductsPage />} />
+            <Route path="/home" element={<Home />} />
+            {/* PRODUCT ROUTES */}
+            <Route path="/products" element={<AllProductsPage />} />
+            <Route path="/products/:id" element={<ExpandedProduct />} />
+            {/* SPECIFIC TO ADMINS */}
+            <Route
+              path="/products/:id/editProduct"
+              element={<EditProductForm />}
+            />
+          </Routes>
+        ) : (
+          // ROUTES FOR LOGGED IN USERS
+          <Routes>
+            {/* GENERAL */}
+            <Route path="/*" element={<AllProductsPage />} />
+            <Route path="/home" element={<Home />} />
+            {/* PRODUCT ROUTES */}
+            <Route path="/products" element={<AllProductsPage />} />
+            <Route path="/products/:id" element={<ExpandedProduct />} />
+            {/* CART ROUTE */}
+            <Route path="/cart" element={<Cart />} />
+            {/* ROUTES FOR LOGGED IN USERS */}
+            {/* <Route path="/myaccount" element={<UserAccountDetails />} /> */}
+          </Routes>
+        )
       ) : (
         // ROUTES IF YOU ARE NOT LOGGED IN
         <Routes>
           {/* LOGIN ROUTES */}
-          <Route path="/login" element={<AuthForm name="login" displayName="Login" />} />
-          <Route path="/signup" element={<AuthForm name="signup" displayName="Sign Up" />} />
+          <Route
+            path="/login"
+            element={<AuthForm name="login" displayName="Login" />}
+          />
+          <Route
+            path="/signup"
+            element={<AuthForm name="signup" displayName="Sign Up" />}
+          />
           {/* GENERAL */}
           <Route path="/*" element={<AllProductsPage />} />
-          <Route path="/home" element={<AllProductsPage />} />
+          <Route path="/home" element={<Home />} />
           {/* PRODUCT ROUTES */}
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/:id" element={<ExpandedProduct />} />

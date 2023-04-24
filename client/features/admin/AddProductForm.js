@@ -13,9 +13,6 @@ const AddProductForm = () => {
   const [newImages, setNewImages] = useState("");
   const [newInventory, setNewInventory] = useState("");
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
   const createNewProduct = (event) => {
     event.preventDefault();
     if (!newTitle || !newDesc || !newPrice || !newCategory) return;
@@ -35,125 +32,76 @@ const AddProductForm = () => {
       inventory: newInventory,
     };
     console.log(newProduct);
-    dispatch(addProduct(newProduct)); // need to write this
-    navigate("/admin/products"); // need to figure this out
+
+    const dispatch = useDispatch();
+    dispatch(addProduct(newProduct));
 
     // NEED TO CLEAR FORM AFTER SUBMIT - BELOW ISN'T WORKING YET
-    // setNewTitle("");
-    // setNewBrand("");
-    // setNewDesc("");
-    // setNewPrice("");
-    // setNewCategory("");
-    // setNewThumbnail("");
-    // setNewImages("");
-    // setNewInventory("");
+    setNewTitle("");
+    setNewBrand("");
+    setNewDesc("");
+    setNewPrice("");
+    setNewCategory("");
+    setNewThumbnail("");
+    setNewImages("");
+    setNewInventory("");
   };
 
   return (
     <div id="addProductForm">
       <h3>Create a new product</h3>
-      <br/>
+      <br />
       <form onSubmit={createNewProduct}>
-        <table>
-          <tbody>
-            <tr>
-              <td>
-                <label>Title:</label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  required
-                  onChange={(event) => setNewTitle(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Brand:</label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  onChange={(event) => setNewBrand(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Description:</label>
-              </td>
-              <td>
-                <textarea
-                  wrap="soft"
-                  required
-                  onChange={(event) => setNewDesc(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Price:</label>
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  required
-                  onChange={(event) => setNewPrice(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Category:</label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  required
-                  onChange={(event) => setNewCategory(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Inventory:</label>
-              </td>
-              <td>
-                <input
-                  type="number"
-                  min="0"
-                  onChange={(event) => setNewInventory(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Thumbnail:</label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  onChange={(event) => setNewThumbnail(event.target.value)}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>Additional images:</label>
-              </td>
-              <td>
-                <textarea
-                  wrap="soft"
-                  onChange={(event) => setNewImages(event.target.value)}
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br/>
-        <button id="createProductBtn" type="submit">Create new product</button>
+        <label>Title:</label>
+        <input
+          type="text"
+          required
+          onChange={(event) => setNewTitle(event.target.value)}
+        />
+        <label>Brand:</label>
+        <input
+          type="text"
+          onChange={(event) => setNewBrand(event.target.value)}
+        />
+        <label>Description:</label>
+        <textarea
+          wrap="soft"
+          required
+          onChange={(event) => setNewDesc(event.target.value)}
+        />
+        <label>Price:</label>
+        <input
+          type="number"
+          min="0"
+          required
+          onChange={(event) => setNewPrice(event.target.value)}
+        />
+        <label>Category:</label>
+        <input
+          type="text"
+          required
+          onChange={(event) => setNewCategory(event.target.value)}
+        />
+        <label>Inventory:</label>
+        <input
+          type="number"
+          min="0"
+          onChange={(event) => setNewInventory(event.target.value)}
+        />
+        <label>Thumbnail:</label>
+        <input
+          type="text"
+          onChange={(event) => setNewThumbnail(event.target.value)}
+        />
+        <label>Additional images:</label>
+        <textarea
+          wrap="soft"
+          onChange={(event) => setNewImages(event.target.value)}
+        />
+        <br/><br/>
+        <button className="productBtn" id="createProductBtn" type="submit">
+          Create new product
+        </button>
       </form>
     </div>
   );

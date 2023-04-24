@@ -38,7 +38,7 @@ const ExpandedProduct = () => {
   const deleteThisProduct = async (event) => {
     event.preventDefault();
     if (confirm("Are you sure you want to delete this product?") === true) {
-      dispatch(deleteProduct(id));
+      dispatch(deleteProduct(Number(selectedProduct.id)));
       navigate("/products/");
     }
   };
@@ -54,7 +54,7 @@ const ExpandedProduct = () => {
   return (
     <div className="page">
       <Link to="/products">
-        <p>❮❮❮ Back to all products</p>
+        <p id="backToProducts">❮❮❮ Back to all products</p>
       </Link>
       <div className="expandedProductInfo">
         {loading ? (
@@ -63,17 +63,6 @@ const ExpandedProduct = () => {
           <>
             <div className="imgCarousel">
               <img className="expandedImages" src={allImages[imageIdx]} />
-              <div className="scrollImages">
-                <button className="imageScrollBtn" onClick={imgBack}>
-                  ❮
-                </button>
-                <p>
-                  image {imageIdx + 1} of {allImages.length}
-                </p>
-                <button className="imageScrollBtn" onClick={imgFwd}>
-                  ❯
-                </button>
-              </div>
             </div>
             <div className="productInfo">
               <h2>{selectedProduct.title}</h2>
@@ -92,9 +81,20 @@ const ExpandedProduct = () => {
               ) : (
                 <>
                   <p>View more {selectedProduct.category}</p>
-                  <button>Add to cart</button>
+                  <button id="addBtn">Add to cart</button>
                 </>
               )}
+              <div className="scrollImages">
+                <button className="imageScrollBtn" onClick={imgBack}>
+                  ❮❮❮
+                </button>
+                <p>
+                  image {imageIdx + 1} of {allImages.length}
+                </p>
+                <button className="imageScrollBtn" onClick={imgFwd}>
+                  ❯❯❯
+                </button>
+              </div>
             </div>
           </>
         ) : (

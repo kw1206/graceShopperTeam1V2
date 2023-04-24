@@ -90,122 +90,74 @@ const EditProductForm = () => {
   };
 
   const cancelEdit = () => {
-    navigate("/products")
-  }
+    navigate("/products");
+  };
 
   return (
     <div className="page">
-      <div id="addProductForm">
-        <h3>Edit product # {selectedProduct.id}</h3>
+      <div id="editProductForm">
+        <h3>Edit product # {selectedProduct.id}: {selectedProduct.title}</h3>
         <br />
         <form onSubmit={editThisProduct}>
-          <table>
-            <tbody>
-              <tr>
-                <td>
-                  <label>Title:</label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    required
-                    value={editedTitle}
-                    onChange={(event) => setEditedTitle(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Brand:</label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editedBrand}
-                    onChange={(event) => setEditedBrand(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Description:</label>
-                </td>
-                <td>
-                  <textarea
-                    wrap="soft"
-                    required
-                    value={editedDesc}
-                    onChange={(event) => setEditedDesc(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Price:</label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    required
-                    value={editedPrice}
-                    onChange={(event) => setEditedPrice(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Category:</label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    required
-                    value={editedCategory}
-                    onChange={(event) => setEditedCategory(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Inventory:</label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editedInventory}
-                    onChange={(event) => setEditedInventory(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Thumbnail:</label>
-                </td>
-                <td>
-                  <input
-                    type="text"
-                    value={editedThumbnail}
-                    onChange={(event) => setEditedThumbnail(event.target.value)}
-                  />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <label>Additional images*:</label>
-                </td>
-                <td>
-                  <textarea
-                    wrap="soft"
-                    value={editedImages}
-                    onChange={(event) => setEditedImages(event.target.value)}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <p>*paste in image URLs separated by commas; no spaces</p>
-          <button id="editProductBtn" type="submit">Submit edits</button>
-          <button id="cancelEditBtn" onClick={cancelEdit}>Cancel</button>
+          <label>Title:</label>
+          <input
+            type="text"
+            required
+            value={editedTitle}
+            onChange={(event) => setEditedTitle(event.target.value)}
+          />
+          <label>Brand:</label>
+          <input
+            type="text"
+            value={editedBrand}
+            onChange={(event) => setEditedBrand(event.target.value)}
+          />
+          <label>Description:</label>
+          <textarea
+            wrap="soft"
+            required
+            value={editedDesc}
+            onChange={(event) => setEditedDesc(event.target.value)}
+          />
+          <label>Price:</label>
+          <input
+            type="text"
+            required
+            value={editedPrice}
+            onChange={(event) => setEditedPrice(event.target.value)}
+          />
+          <label>Category:</label>
+          <input
+            type="text"
+            required
+            value={editedCategory}
+            onChange={(event) => setEditedCategory(event.target.value)}
+          />
+          <label>Inventory:</label>
+          <input
+            type="text"
+            value={editedInventory}
+            onChange={(event) => setEditedInventory(event.target.value)}
+          />
+          <label>Thumbnail:</label>
+          <input
+            type="text"
+            value={editedThumbnail}
+            onChange={(event) => setEditedThumbnail(event.target.value)}
+          />
+          <label>Additional images*:</label>
+          <textarea
+            wrap="soft"
+            value={editedImages}
+            onChange={(event) => setEditedImages(event.target.value)}
+          />
+          <p>*paste in image URLs separated by <br/>commas; no spaces</p>
+          <button className="productBtn" id="editProductBtn" type="submit">
+            Submit edits
+          </button>
+          <button className="productBtn" id="cancelEditBtn" onClick={cancelEdit}>
+            Cancel
+          </button>
         </form>
       </div>
     </div>
