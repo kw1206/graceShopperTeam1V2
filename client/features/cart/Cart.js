@@ -81,33 +81,35 @@ const personInfo = {
 
 const Cart = () => {
   const { id } = useParams();
-  const [cartView, setCartView] = useState([]);
+  // const [cartView, setCartView] = useState([]);
   const [loading, setloading] = useState(true)
   const dispatch = useDispatch();
   const currentCart = useSelector(selectCurrentCart);
+  const [cartItems, setCartItems] = useState([])
   console.log('your current cart is ', currentCart);
 
-  let cartItems = [];
   // has a header that lists username, friendly message, and Items in cart
   useEffect(() => {
     dispatch(fetchCurrentCart(id));
     console.log('useEffect active');
+   if(currentCart[0]) {setCartItems(currentCart[0].items)}
+
   }, [dispatch]);
 
   useEffect(()=> {
-    if (currentCart.id >0){
+    if (currentCart.id > 0){
       console.log("here is cart in use effect", currentCart)
-      setCartView(currentCart)
     }
   },[currentCart])
 
   return (
+    
     <>
       <div id="cart-list" value={currentCart}>
         <h4></h4>
         <h2> Here is your Cart {personInfo.firstName}!</h2>
-        {cartItems.length > 0 ? (
-          cartItems.map((cartItem) => (
+        {currentCart[0] ? (
+          currentCart[0].items.map((cartItem) => (
             <CartItem cartItem={cartItem} key={cartItem.id} />
           ))
         ) : (

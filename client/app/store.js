@@ -6,11 +6,12 @@ import  selectCurrentCart from "../features/cart/cartSlice";
 import selectAllProducts from "../features/products/allProductsSlice";
 import expandedProductSlice from "../features/products/expandedProductSlice";
 
+//might need to add in a currentUser state to track
 const store = configureStore({
   reducer: {
     auth: authReducer,
     allUsers: selectAllUsers,
-    currentCartB: selectCurrentCart,
+    currentCart: selectCurrentCart,
     allProducts: selectAllProducts,
     expandedProduct: expandedProductSlice,
   },
