@@ -1,58 +1,36 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { addProduct } from "../products/expandedProductSlice";
-// import { addProductAsync } from "../products/allProductsSlice";
 
 const AddProductForm = () => {
-  // const loggedInAsAdmin = useSelector((state) => state.auth.me);
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
-  const [thumbnail, setThumbnail] = useState("");
-  const [images, setImages] = useState("");
   const [inventory, setInventory] = useState("");
-
-  const dispatch = useDispatch();
+  const [thumbnail, setThumbnail] = useState("");
+  const [images, setImages] = useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(addProduct({
-      title, brand, description, price, category, inventory, thumbnail, images }));
-      setTitle("");
-      setBrand("");
-      setDescription("");
-      setPrice("");
-      setCategory("");
-      setInventory("");
-      setThumbnail("");
-      setImages("");
-      
+      title, brand, description, price, category, inventory, thumbnail, images }))
+    setTitle("");
+    setBrand("");
+    setDescription("");
+    setPrice("");
+    setCategory("");
+    setInventory("");
+    setThumbnail("");
+    setImages([]);
   };
 
-    // if (!newTitle || !newDesc || !newPrice || !newCategory) return;
-    // if (newImages.includes(" "))
-    //   return alert(
-    //     "When adding additional images, please paste in image URLs separated by commas; no spaces."
-    //   );
-    // let formattedExtraImages = newImages.split(",");
-    // const newProduct = {
-    //   title: newTitle,
-    //   brand: newBrand,
-    //   description: newDesc,
-    //   price: newPrice,
-    //   category: newCategory,
-    //   thumbnail: newThumbnail,
-    //   images: formattedExtraImages,
-    //   inventory: newInventory,
-    // };
-    // console.log(newProduct);
-
-    // NEED TO CLEAR FORM AFTER SUBMIT - BELOW ISN'T WORKING YET
-    
+  const handleImageChange = (event) => {
+    setImages(event.target.value.split('\n'));
+  };
 
   return (
     <div id="addProductForm">
@@ -113,9 +91,9 @@ const AddProductForm = () => {
         <label htmlFor="images">Additional images:</label>
         <textarea
           name='images'
-          value={images}
+          value={images.join('\n')}
           wrap="soft"
-          onChange={(event) => setImages(event.target.value)}
+          onChange={handleImageChange}
         />
         <br/><br/>
         <button className="productBtn" id="createProductBtn" type="submit">
