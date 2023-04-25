@@ -223,7 +223,7 @@ select {
 
 .smallProductView {
   margin: 5px;
-  width: 250px;
+  width: 230px;
   height: 370px;
   border: 3px solid rgba(0, 0, 0, 0);
 ;}
@@ -239,8 +239,8 @@ select {
 }
 
 .thumbnail {
-  width: 210px;
-  height: 210px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
   border-radius: 20px;
   padding: 10px
@@ -417,10 +417,6 @@ tbody tr:hover {
   font-size: 12px;
 }
 
-#salesFigures {
-  border: 2px solid purple
-}
-
 .summaryHeader {
   background-color:#F7B801;
   width:auto;
@@ -448,8 +444,8 @@ th, thead {
 .summaryViews {
   margin: auto;
   padding-right: 40px;
-  border-left: 2px solid F7B801;
-  border-radius: 20px 0px 0px 0px;
+  border-left: 2px solid #F7B801;
+  border-radius: 25px 0px 0px 0px;
 }
 
 .summaryViews table {
@@ -467,9 +463,11 @@ th, thead {
 
 #accountDetails, #orderHistory {
   margin: 20px;
+  border: 2px solid #F7B801;
+  border-radius: 25px 25px 0px 0px;
 }
 
-#userDetailsTable {
+#userDetailsTable, #orderHistory {
   width: 500px;
 }
 
@@ -533,7 +531,7 @@ ul a:hover {
 #noOrderHistory {
   text-align: center;
   font-size: 12px;
-
+  padding-top: 20px
 }
 
 #editUserFormBtns {

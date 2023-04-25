@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   fetchSingleUser,
   fetchOrderHistory,
@@ -10,14 +10,13 @@ import {
 const UserAccountDetails = () => {
   const { id } = useParams();
   const selectedUser = useSelector((state) => selectSingleUser(state).user);
+  const loggedInUser = useSelector((state) => state.auth.me);
+  const userId = loggedInUser.id;
   const selectedUserOrderHistory = useSelector(
     (state) => selectSingleUser(state).orderHistory
   );
-
-  const loggedInUser = useSelector((state) => state.auth.me);
-  const userId = loggedInUser.id;
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (loggedInUser.isAdmin) {
       dispatch(fetchSingleUser(id));
@@ -28,15 +27,15 @@ const UserAccountDetails = () => {
     }
   }, []);
 
-  console.log("loggedInUser -->", loggedInUser);
-  console.log("userId -->", userId);
-  console.log("selectedUserOrderHistory -->", selectedUserOrderHistory);
-
   return (
     <div className="page">
-      <Link className="goBack" to="/home">
-        ❮❮❮ dashboard
-      </Link>
+      {loggedInUser.isAdmin ? (
+        <Link className="goBack" to="/home">
+          ❮❮❮ dashboard
+        </Link>
+      ) : (
+        <></>
+      )}
       <div className="userInfo">
         <div id="accountDetails">
           <h2>Account details</h2>
@@ -58,16 +57,6 @@ const UserAccountDetails = () => {
                 <td className="accountProperty">Password:</td>
                 <td>**********</td>
               </tr>
-              {/* <tr>
-                <td className="accountProperty">Address:</td>
-                <td>
-                  {dummyUser.address.address}
-                  <br />
-                  {dummyUser.address.city}, {dummyUser.address.city}
-                  <br />
-                  {dummyUser.address.postalCode}
-                </td>
-              </tr> */}
               <tr>
                 <td className="accountProperty">Payment info:</td>
                 <td>**********</td>
