@@ -29,10 +29,17 @@ export const selectCurrentUser = (state) => {
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
   async (id) => {
+    const token = window.localStorage.getItem('token');
     try {
-      const { data } = await axios.get(`api/users/${id}/cart`);
-      console.log('fetch cart activated data is ', data);
-      return data;
+      if (token) {
+        const { data } = await axios.get(`/api/users/${id}/cart`, {
+          headers: {
+            authorization: token,
+          },
+        });
+        console.log('fetch cart activated data is ', data);
+        return data;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -42,11 +49,12 @@ export const fetchCurrentCart = createAsyncThunk(
 export const deleteCartItem = createAsyncThunk(
   'currentCart/item/delete',
   async (id) => {
-  try {
+    try {
       // I think to delete and indivdual item I need the route to all items?
-      console.log("the id in deleteCartItem", id)
+      console.log('the id in deleteCartItem', id);
       const { data } = await axios.delete(`/api/cartItems/${id}`);
       if (data) {
+        console.log(data);
         return data;
       } else {
         console.log('unable to delete product');
@@ -57,6 +65,22 @@ export const deleteCartItem = createAsyncThunk(
   }
 );
 
+export const updateCartQuantity = createAsyncThunk(
+  'currentCart/item/update',
+  async ({ id, newQuantity }) => {
+    try {
+      const { data } = await axios.put(`api/cartItems/${id}`, {
+        quantity: String(newQuantity),
+      });
+      if (data) {
+        console.log('update cart data', data);
+        return data;
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 export const selectCurrentCart = (state) => {
   return state.currentCart;
 };
@@ -70,9 +94,15 @@ export const currentCartSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCurrentCart.fulfilled, (state, action) => {
-      return action.payload;
-    });
+    builder
+      .addCase(fetchCurrentCart.fulfilled, (state, action) => {
+        return action.payload;
+      })
+      .addCase(deleteCartItem.fulfilled, (state, action) => {
+        console.log('action is ', action);
+        console.log('state is ', state);
+        // fetchCurrentCart(state.auth.me.id)
+      });
   },
 });
 
