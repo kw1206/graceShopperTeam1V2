@@ -9,15 +9,15 @@ const CartItem = (props) => {
   const dispatch = useDispatch();
   // console.log("here is one prop item ", props)
   const { cartItem } = props;
-  const { quantity } = cartItem;
+  const { quantity, id } = cartItem;
   const { product } = cartItem;
   const [amountValue, setAmountValue] = useState(parseInt(quantity)); // type is now number
 
-  const { id, title, price, thumbnail } = product;
+  const { title, price, thumbnail } = product;
   // DELETING ITEM FUNCTIONS
   const deleteThisItem = async (event) => {
     event.preventDefault();
-    console.log(id);
+    console.log("deletItem ", id);
     dispatch(deleteCartItem(id));
     // dispatch(fetchCurrentCart(id));
   };
