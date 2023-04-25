@@ -21,7 +21,7 @@ const ExpandedProduct = () => {
     dispatch(fetchSingleProduct(id));
   }, []);
   useEffect(() => {
-    if (selectedProduct.id > 0) {
+    if (selectedProduct.id) {
       const thumbnail = selectedProduct.thumbnail;
       const extraImages = [...selectedProduct.images];
       const combinedImages = extraImages.unshift(thumbnail);
@@ -38,7 +38,7 @@ const ExpandedProduct = () => {
   const deleteThisProduct = async (event) => {
     event.preventDefault();
     if (confirm("Are you sure you want to delete this product?") === true) {
-      console.log(id)
+      console.log(id);
       dispatch(deleteProduct(id));
       navigate("/products/");
     }
@@ -54,16 +54,27 @@ const ExpandedProduct = () => {
 
   return (
     <div className="page">
-      <Link to="/products">
-        <p id="backToProducts">❮❮❮ Back to all products</p>
-      </Link>
+      {loggedInAsAdmin.isAdmin ? (
+        <div id="goBackLinks">
+          <Link className="goBack" to="/home">
+            ❮❮❮ dashboard
+          </Link>
+          <Link className="goBack" to="/products">
+            ❮❮❮ all products
+          </Link>
+        </div>
+      ) : (
+        <Link className="goBack" to="/products">
+          ❮❮❮ all products
+        </Link>
+      )}
       <div className="expandedProductInfo">
         {loading ? (
           <h3>Product loading</h3>
         ) : selectedProduct ? (
           <>
             <div className="imgCarousel">
-              <img className="expandedImages" src={allImages[imageIdx]} />
+              <img className="expandedImages" src={allImages.length === 1 ? allImages[0] : allImages[imageIdx]} />
             </div>
             <div className="productInfo">
               <h2>{selectedProduct.title}</h2>
@@ -72,9 +83,11 @@ const ExpandedProduct = () => {
               <p>${selectedProduct.price}</p>
               {loggedInAsAdmin.isAdmin ? (
                 <>
-                  <p>Inventory: {selectedProduct.invnetory}</p>
+                  <p>Inventory: {selectedProduct.inventory}</p>
                   <p>Product ID #{selectedProduct.id}</p>
-                  <button id="deleteBtn" onClick={deleteThisProduct}>Delete product</button>
+                  <button id="deleteBtn" onClick={deleteThisProduct}>
+                    Delete product
+                  </button>
                   <Link to={`/products/${id}/editProduct`}>
                     <button id="editBtn">Edit product</button>
                   </Link>
@@ -85,17 +98,21 @@ const ExpandedProduct = () => {
                   <button id="addBtn">Add to cart</button>
                 </>
               )}
-              <div className="scrollImages">
-                <button className="imageScrollBtn" onClick={imgBack}>
-                  ❮❮❮
-                </button>
-                <p>
-                  image {imageIdx + 1} of {allImages.length}
-                </p>
-                <button className="imageScrollBtn" onClick={imgFwd}>
-                  ❯❯❯
-                </button>
-              </div>
+              {allImages.length > 1 ? (
+                <div className="scrollImages">
+                  <button className="imageScrollBtn" onClick={imgBack}>
+                    ❮❮❮
+                  </button>
+                  <p>
+                    image {imageIdx + 1} of {allImages.length}
+                  </p>
+                  <button className="imageScrollBtn" onClick={imgFwd}>
+                    ❯❯❯
+                  </button>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
           </>
         ) : (

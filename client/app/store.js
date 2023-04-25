@@ -5,7 +5,7 @@ import selectAllUsers from "../features/admin/allUsersSlice";
 import  selectCurrentCart from "../features/cart/cartSlice";
 import selectAllProducts from "../features/products/allProductsSlice";
 import expandedProductSlice from "../features/products/expandedProductSlice";
-
+import selectSingleUser from "../features/users/userSlice";
 //might need to add in a currentUser state to track
 const store = configureStore({
   reducer: {
@@ -14,6 +14,7 @@ const store = configureStore({
     currentCart: selectCurrentCart,
     allProducts: selectAllProducts,
     expandedProduct: expandedProductSlice,
+    singleUser: selectSingleUser
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

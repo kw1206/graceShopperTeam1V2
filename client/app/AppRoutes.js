@@ -12,6 +12,7 @@ import ExpandedProduct from "../features/products/ExpandedProduct";
 import EditProductForm from "../features/admin/EditProductForm";
 import AddProductForm from "../features/admin/AddProductForm";
 import UserAccountDetails from "../features/users/UserAccount";
+import EditUserAccountDetails from "../features/users/EditUser"
 /**
  * COMPONENT
  */
@@ -33,7 +34,7 @@ const AppRoutes = () => {
           // ROUTES FOR ADMINS
           <Routes>
             {/* GENERAL */}
-            <Route path="/*" element={<AllProductsPage />} />
+            <Route path="/*" element={<Home />} />
             <Route path="/home" element={<Home />} />
             {/* PRODUCT ROUTES */}
             <Route path="/products" element={<AllProductsPage />} />
@@ -53,7 +54,7 @@ const AppRoutes = () => {
           <Routes>
             {/* GENERAL */}
             <Route path="/*" element={<AllProductsPage />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<AllProductsPage />} />
             {/* PRODUCT ROUTES */}
             <Route path="/products" element={<AllProductsPage />} />
             <Route path="/products/:id" element={<ExpandedProduct />} />
@@ -61,6 +62,7 @@ const AppRoutes = () => {
             <Route path="/cart" element={<Cart />} />
             {/* ROUTES FOR LOGGED IN USERS */}
             <Route path="/myaccount" element={<UserAccountDetails />} />
+            <Route path="/myaccount/edit" element={<EditUserAccountDetails />} />
           </Routes>
         )
       ) : (
@@ -77,7 +79,7 @@ const AppRoutes = () => {
           />
           {/* GENERAL */}
           <Route path="/*" element={<AllProductsPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/home" element={<AllProductsPage />} />
           {/* PRODUCT ROUTES */}
           <Route path="/products" element={<AllProductsPage />} />
           <Route path="/products/:id" element={<ExpandedProduct />} />
