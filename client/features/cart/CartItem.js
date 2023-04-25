@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { deleteCartItem, fetchCurrentCart } from './cartSlice';
+import { deleteCartItem, fetchCurrentCart, updateCartQuantity } from './cartSlice';
 import { useDispatch } from 'react-redux';
 
 //Need to add these to slices eventually
@@ -31,6 +31,8 @@ const CartItem = (props) => {
 
   function addOne() {
     const newValue = amountValue + 1;
+    const newQuantity = 1 + parseInt(quantity);
+    dispatch(updateCartQuantity({id, newQuantity}))
     setAmountValue(newValue);
   }
 

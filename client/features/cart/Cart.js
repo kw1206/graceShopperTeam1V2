@@ -27,24 +27,20 @@ const Cart = () => {
     //note api route Is NOT PROTECTED YET
   }, [currentUserID]);
 
-  useEffect(() => {
-    if (currentCart.id > 0) {
-      console.log('here is cart in use effect', currentCart);
-    }
-  }, [currentCart]);
+  // useEffect(() => {
+  //   if (currentCart.id > 0) {
+  //     console.log('here is cart in use effect', currentCart);
+  //   }
+  // }, [state.currentCart.cart]);
 
   return (
-    <>
+    <div className="page">
       <div id="cart-list" value={currentCart}>
-        <h1>BLANK</h1>
-        <h1>BLANK</h1>
-        <h1>BLANK</h1>
-        <h1>BLANK</h1>
-
         <h2> Here is your Cart {currentUser.me.firstName}!</h2>
+
         {currentCart[0] ? (
           currentCart[0].items.map((cartItem) => (
-            <CartItem cartItem={cartItem} key={cartItem.id} />
+            <CartItem cartItem={cartItem} userId={currentUserID} key={cartItem.id} />
           ))
         ) : (
           <p>
@@ -58,7 +54,7 @@ const Cart = () => {
         {' '}
         Submit your order{' '}
       </button>
-    </>
+    </div>
   );
 
   // contains another component which has individual items.
