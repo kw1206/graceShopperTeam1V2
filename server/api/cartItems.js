@@ -18,28 +18,12 @@ const isUser = async (req, res, next) => {
   }
 };
 
-// router.put('/:id', async (req, res, next) => {
-//   try {
-//     console.log("this is put route", req)
-//     const item = await Item.findByPk(req.params.id);
-//     if (item) {
-//       if (req.body.quantity === 0) {
-//         await item.destroy();
-//         res.json(item);
-//       }
-//       res.json(await item.update(req.body.quantity));
-//     }
-//   } catch (err) {
-//     next(err);
-//   }
-// });
-
 router.put('/:id', async (req, res, next) => {
   try {
     console.log(req) //remove during cleanup
     const item = await Item.findByPk(req.params.id);
     if (item) {
-      if (req.body.quantity === 0) {
+      if (req.body.quantity <= 0) {
         await item.destroy();
         res.json(item);
       } else {
