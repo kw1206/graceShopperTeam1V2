@@ -65,7 +65,9 @@ export const updateCartQuantity = createAsyncThunk(
       console.log("update activated")
       console.log("quantity", newQuantity)
       console.log("id", id)
-      const {data} = await axios.put(`api/cartItems/${id}`)
+      const {data} = await axios.put(`api/cartItems/${id}`, {
+        quantity: String(newQuantity)
+      })
 
       if(data) {
         console.log(data);
