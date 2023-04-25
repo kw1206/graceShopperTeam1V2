@@ -29,10 +29,17 @@ export const selectCurrentUser = (state) => {
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
   async (id) => {
+    const token = window.localStorage.getItem('token');
     try {
-      const { data } = await axios.get(`api/users/${id}/cart`);
-      console.log('fetch cart activated data is ', data);
-      return data;
+      if (token) {
+        const { data } = await axios.get(`/api/users/${id}/cart`, {
+          headers: {
+            authorization: token,
+          },
+        });
+        console.log('fetch cart activated data is ', data);
+        return data;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -60,21 +67,17 @@ export const deleteCartItem = createAsyncThunk(
 
 export const updateCartQuantity = createAsyncThunk(
   'currentCart/item/update',
-  async({id, newQuantity}) => {
+  async ({ id, newQuantity }) => {
     try {
-      console.log("update activated")
-      console.log("quantity", newQuantity)
-      console.log("id", id)
-      const {data} = await axios.put(`api/cartItems/${id}`, {
-        quantity: String(newQuantity)
-      })
-
-      if(data) {
-        console.log(data);
-        return data
+      const { data } = await axios.put(`api/cartItems/${id}`, {
+        quantity: String(newQuantity),
+      });
+      if (data) {
+        console.log('update cart data', data);
+        return data;
       }
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 );

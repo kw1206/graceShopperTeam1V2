@@ -11,6 +11,7 @@ import {
 const Cart = () => {
   const currentUser = useSelector(selectCurrentUser);
   const currentUserID = currentUser.me.id;
+  console.log("user id", currentUserID)
   const dispatch = useDispatch();
   const currentCart = useSelector(selectCurrentCart);
   const [cartItems, setCartItems] = useState([]);
@@ -22,7 +23,7 @@ const Cart = () => {
         setCartItems(currentCart[0].items);
       }
     }
-    console.log('no user');
+    // console.log('no user');
     // here would fetch the cart from local storage maybe?
     //note api route Is NOT PROTECTED YET
   }, [currentUserID]);

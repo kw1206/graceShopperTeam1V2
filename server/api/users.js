@@ -90,9 +90,10 @@ router.get('/:id/orderHistory', isUserOrAdmin, async (req, res, next) => {
 
 // add if statement, if theres no unfilfilled cart, create a new cart
 //removed is isUserOrAdmin
-router.get('/:id/cart', async (req, res, next) => {
+
+router.get('/:id/cart', isUserOrAdmin, async (req, res, next) => {
   try {
-    const cart = await Cart.findAll({
+    const existingCart = await Cart.findOne({
       where: {
         userId: req.params.id,
         isFulfilled: false,
@@ -104,7 +105,15 @@ router.get('/:id/cart', async (req, res, next) => {
         },
       ],
     });
-    res.json(cart);
+
+    if (existingCart) {
+      res.json(existingCart);
+    } else {
+      const newCart = await Cart.create({
+        userId: req.params.id,
+      });
+      res.json(newCart);
+    }
   } catch (err) {
     next(err);
   }
