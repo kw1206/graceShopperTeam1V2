@@ -1,10 +1,11 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { deleteCartProduct } from './cartSlice';
 
 function handleDelete(e) {
-  console.log(e.target);
+  console.log(e);
   const dispatch = useDispatch();
-  dispatch(deleteCampus(prop.key));
+  dispatch(deleteCartProduct());
 }
 
 const DeleteBtn = () => {
