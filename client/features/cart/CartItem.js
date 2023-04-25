@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { deleteCartItem, fetchCurrentCart } from './cartSlice';
+import {
+  deleteCartItem,
+  fetchCurrentCart,
+  updateCartQuantity,
+} from './cartSlice';
 import { useDispatch } from 'react-redux';
 
 //Need to add these to slices eventually
@@ -17,7 +21,7 @@ const CartItem = (props) => {
   // DELETING ITEM FUNCTIONS
   const deleteThisItem = async (event) => {
     event.preventDefault();
-    console.log("deletItem ", id);
+    console.log('deletItem ', id);
     dispatch(deleteCartItem(id));
     // dispatch(fetchCurrentCart(id));
   };
@@ -31,11 +35,15 @@ const CartItem = (props) => {
 
   function addOne() {
     const newValue = amountValue + 1;
+    const newQuantity = parseInt(newValue);
+    dispatch(updateCartQuantity({ id, newQuantity }));
     setAmountValue(newValue);
   }
 
   function subtractOne() {
     const newValue = amountValue - 1;
+    const newQuantity = parseInt(newValue);
+    dispatch(updateCartQuantity({ id, newQuantity }));
     setAmountValue(newValue);
   }
 

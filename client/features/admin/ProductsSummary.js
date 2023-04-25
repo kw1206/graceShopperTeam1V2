@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  selectAllProducts,
   fetchAllProducts,
 } from "../products/allProductsSlice";
 import { Link } from "react-router-dom";
@@ -25,7 +24,6 @@ const HeaderCell = ({ column, sorting, sortTable }) => {
   const isDescSorting = sorting.column === column && sorting.order === "desc";
   const isAscSorting = sorting.column === column && sorting.order === "asc";
   const futureSortingOrder = isDescSorting ? "asc" : "desc";
-  // const noSortingOrder = !sorting.order;
   return (
     <th
       key={column}
@@ -63,21 +61,18 @@ const Header = ({ columns, sorting, sortTable }) => {
 };
 
 const ProductSummary = () => {
-  // const products = useSelector(selectAllProducts);
   const products = useSelector((state) => state.allProducts);
   const [sorting, setSorting] = useState({ column: "id", order: "asc", filter: "all" });
   const columns = ["id", "title", "brand", "category", "price", "inventory"];
-
-  const sortTable = (newSorting) => {
-    setSorting({ ...sorting, ...newSorting });
-  };
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchAllProducts(sorting));
   }, [sorting]);
 
-  console.log(products);
+  const sortTable = (newSorting) => {
+    setSorting({ ...sorting, ...newSorting });
+  };
 
   return (
     <>

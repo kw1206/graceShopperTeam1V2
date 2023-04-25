@@ -6,7 +6,6 @@ import AddProductForm from "../admin/AddProductForm.js";
 
 const AllProductsPage = () => {
   const loggedInAsAdmin = useSelector((state) => state.auth.me);
-  // const products = useSelector((state) => state.allProducts);
   const products = useSelector(selectAllProducts);
   const [loading, setLoading] = useState(true);
   // default sort order + filter is ascending by id with all products on view
@@ -19,6 +18,18 @@ const AllProductsPage = () => {
   const [filterCategories, setFilterCategories] = useState([]);
   // categories to sort by
   const column = ["id", "title", "brand", "category", "price"];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchAllProducts(sortAndFilter));
+  }, [sortAndFilter, products.length]);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      setLoading(false);
+      setFilterCategories(getCategories(products));
+    }
+  }, [products]);
 
   // sort functionality
   const sortProductsBy = (event) => {
@@ -57,18 +68,6 @@ const AllProductsPage = () => {
     });
   };
 
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchAllProducts(sortAndFilter));
-  }, [sortAndFilter, products.length]);
-
-  useEffect(() => {
-    if (products.length > 0) {
-      setLoading(false);
-      setFilterCategories(getCategories(products));
-    }
-  }, [products]);
-
   return (
     <div className="page">
       <div className="selectSortAndFilter">
@@ -81,7 +80,7 @@ const AllProductsPage = () => {
           </select>
         </div>
         <div>
-          <label>Order</label>
+          <label>Order: </label>
           <select onChange={sortProductsOrder}>
             <option>ascending</option>
             <option>descending</option>
