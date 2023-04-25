@@ -7,7 +7,6 @@ import { fetchAllUsers } from "./allUsersSlice";
 // https://www.youtube.com/watch?v=BqVH9Z_6p38
 
 const Content = ({ entries, columns }) => {
-  console.log(entries);
   return (
     <tbody>
       {entries.map((entry) => (

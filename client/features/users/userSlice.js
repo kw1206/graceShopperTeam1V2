@@ -1,9 +1,3 @@
-//add routes/state for
-//axios req/route to serve up all users - restricted to just admin
-//axios req/route to individual user
-//axios req/route to order history
-//axios req/route to update their profile
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -49,45 +43,36 @@ export const fetchOrderHistory = createAsyncThunk(
   }
 );
 
-// export const editProduct = createAsyncThunk(
-//   "product/edit",
-//   async ({
-//     id,
-//     title,
-//     brand,
-//     description,
-//     price,
-//     category,
-//     inventory,
-//     thumbnail,
-//     images
-//   }) => {
-//     const token = window.localStorage.getItem("token");
-//     try {
-//       if (token) {
-//         const { data } = await axios.put(`/api/products/${id}`, {
-//           title,
-//           brand,
-//           description,
-//           price,
-//           category,
-//           thumbnail,
-//           images,
-//           inventory,
-//         }, {
-//         headers: {
-//           authorization: token,
-//         }
-//         });
-//         return data;
-//       } else {
-//         console.log("You are not authorized to edit products.");
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
+export const editUser = createAsyncThunk(
+  "user/edit",
+  async ({ id, firstName, lastName }) => {
+    const token = window.localStorage.getItem("token");
+    try {
+      if (token) {
+        console.log(
+          `id: ${id}, firstName: ${firstName}, lastName: ${lastName}`
+        );
+        const { data } = await axios.put(
+          `/api/users/${id}`,
+          {
+            firstName,
+            lastName,
+          },
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+        return data;
+      } else {
+        console.log("You are not authorized to edit this user.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const singleUserSlice = createSlice({
   name: "singleUser",
