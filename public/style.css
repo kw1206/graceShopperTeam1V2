@@ -37,7 +37,7 @@ a:hover, button:hover {
   margin: 0;
   display: flex;
   flex-direction: column;
-  width: 1500px;
+  max-width: 1500px;
   padding: 0;
   position:absolute;
   top: 150px;
@@ -63,6 +63,7 @@ a:hover, button:hover {
   background-color: #3D348B;
   position: absolute;
   width: 100%;
+  min-width: 1200px;
 }
 
 .navBar h1 {
@@ -77,7 +78,11 @@ a:hover, button:hover {
   justify-content: space-between;
   top: 0;
   position: sticky;
-  width: 100%
+  max-width: 1200px;
+}
+
+#navBarContents h1, #navBarContents a {
+  min-width: fit-content
 }
 
 nav {
@@ -87,7 +92,8 @@ nav {
 .navLinks {
   display: flex;
   flex-direction: row;
-  margin-right: 20px;
+  margin-right: 530px;
+  align-items: center;
 }
 
 nav p, nav a, nav button {
@@ -98,6 +104,21 @@ nav p, nav a, nav button {
   border: 0;
   background-color: rgba(0, 0, 0, 0);
   vertical-align: middle;
+}
+
+#initials {
+  border: 2px solid white;
+  border-radius: 50%
+}
+
+#initials:hover {
+  background-color: green;
+  box-shadow:4px 4px #7678ED;
+}
+
+#logoutBtn:hover {
+  background-color: gray;
+  box-shadow:4px 4px #7678ED;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -118,13 +139,13 @@ textarea {
 /* !!!!!!!!!! EDIT + ADD PRODUCT FORMS !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-#editProductForm, #addProductForm {
+#editProductForm, #addProductForm, #editUserForm {
   background-color: #F7B801;
   height: fit-content;
   width: fit-content;
   padding: 20px;
-  margin: 10px;
-  border-radius: 20px;
+  margin: 0px;
+  border-radius: 0px 20px 20px 0px;
 }
 
 #editProductForm form, #addProductForm form {
@@ -154,6 +175,7 @@ textarea {
   color: white;
   border-color: #f7ba0100;
   background-color: #F35B04;
+  box-shadow:4px 4px #7678ED;
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -165,7 +187,8 @@ textarea {
   background-color: #7678ED;
   position: absolute;
   top: -12px;
-  width: 100%;
+  width: 725px;
+  min-width: fit-content;
   padding-left: 15px;
   border-radius: 00px 0px 20px 0px;
 }
@@ -191,6 +214,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  /* overflow: ; */
 }
 
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -231,8 +255,8 @@ select {
   padding: 10px;
 }
 
-.smallProductView > a:hover {
-  color: #F7B801
+.smallProductView:hover {
+  box-shadow:4px 4px #7678ED;
 }
 
 .smallProductViewInfo > * {
@@ -244,8 +268,22 @@ select {
 /* !!!!!!!!!! EXPANDED PRODUCT !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-#backToProducts {
-  padding-left: 25px
+.goBack {
+  /* padding-left: 25px; */
+  padding: 0px 35px;
+}
+
+#goBackLinks {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding-left: 35px;
+  padding-bottom: 20px;
+}
+
+#goBackLinks a {
+  padding: 0;
+  margin: 0;
 }
 
 .expandedProductInfo {
@@ -259,6 +297,10 @@ select {
 
 .imgCarousel {
   width:fit-content;
+}
+
+.productInfo {
+  width: 500px;
 }
 
 .scrollImages {
@@ -310,12 +352,7 @@ table {
   padding: 0;
 }
 
-#allUsersTable {
-  border: 2px solid purple
-}
-
 #allUsersTable td {
-  border: 2px solid purple;
   width: 100%;
   font-size: 12px;
 }
@@ -338,7 +375,7 @@ thead > *, thead tr td:hover {
 }
 
 tbody tr:hover {
-  background-color: #F7B801;
+  background-color: hsla(45, 99%, 49%, 0.15);
 }
 
 #id {
@@ -357,6 +394,9 @@ tbody tr:hover {
   width: 70px;
 }
 
+#adminDashboard {
+  padding: 20px;
+}
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! ADMIN HOME PAGE !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -373,7 +413,8 @@ tbody tr:hover {
   height: 650px;
   margin: auto;
   overflow: scroll;
-  padding: 10px;
+  padding: 0px;
+  font-size: 12px;
 }
 
 #salesFigures {
@@ -381,7 +422,7 @@ tbody tr:hover {
 }
 
 .summaryHeader {
-  background-color: #F7B801;
+  background-color:#F7B801;
   width:auto;
   margin: 0;
   padding: 20px;
@@ -406,102 +447,22 @@ th, thead {
 
 .summaryViews {
   margin: auto;
+  padding-right: 40px;
+  border-left: 2px solid F7B801;
+  border-radius: 20px 0px 0px 0px;
 }
 
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-/* !!!!!!!!!! USER/GUEST HOME PAGE !!!!!!!!!! */
-/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-
-#userHomePage {
-  display: flex;
-  flex-wrap: wrap;
-  overflow:hidden;
+.summaryViews table {
   margin: 0;
-  padding: 0;
-  width: 100%
 }
-
-#circle1 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #F35B04;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle2 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #F7B801;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle3 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #7678ED;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle4 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #F7B801;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle5 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #F35B04;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle6 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #7678ED;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle7 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #3D348B;
-  position: relative;
-  top: -100px;
-  left: -100px
-}
-#circle8 {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: #3D348B;
-  position: relative;
-  top: -127px;
-  left: 0px
-}
-
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! USER ACCOUNT DETAILS PAGE !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 .userInfo {
   display: flex;
-  border: 2px solid green;
-  margin: 30px;
+  /* border: 2px solid green; */
+  /* margin: 30px; */
 }
 
 #accountDetails, #orderHistory {
@@ -569,13 +530,21 @@ ul a:hover {
   background-color: white;
 }
 
+#noOrderHistory {
+  text-align: center;
+  font-size: 12px;
+
+}
+
+#editUserFormBtns {
+  padding-top: 20px;
+}
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! LOGIN + REGISTER PAGES !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 #registerPage, #loginPage {
-  border: 2px solid red;
-  margin-left: 30px;
+  margin-left: 35px;
 }
 
 .loginSignUpBtn {

@@ -11,15 +11,13 @@ const Content = ({ entries, columns }) => {
   return (
     <tbody>
       {entries.map((entry) => (
-        <Link to={`/users/${entry.id}`}>
-          <tr key={entry.id}>
-            {columns.map((column) => (
-              <td key={column} className="usersTableCell">
-                {entry[column]}
-              </td>
-            ))}
-          </tr>
-        </Link>
+        <tr key={entry.id}>
+          {columns.map((column) => (
+            <td key={column} className="usersTableCell">
+              <Link to={`/users/${entry.id}`}>{entry[column]} </Link>
+            </td>
+          ))}
+        </tr>
       ))}
     </tbody>
   );

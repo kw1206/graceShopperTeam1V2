@@ -60,7 +60,7 @@ const AllProductsPage = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchAllProducts(sortAndFilter));
-  }, [sortAndFilter]);
+  }, [sortAndFilter, products.length]);
 
   useEffect(() => {
     if (products.length > 0) {

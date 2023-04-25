@@ -14,6 +14,7 @@ const Navbar = () => {
   };
 
   const firstName = useSelector((state) => state.auth.me.firstName);
+  const lastName = useSelector((state) => state.auth.me.lastName);
 
   return (
     <div
@@ -26,23 +27,56 @@ const Navbar = () => {
           {isLoggedIn ? (
             <div className="navLinks">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Dashboard</Link>
-              <Link to="/products">View products</Link>
-              <Link to="/cart">Cart</Link>
-              <p>Welcome back, {firstName}</p>
-              {loggedInAsAdmin.isAdmin ? <></> : <Link to="/cart">Cart</Link>}
-              <button type="button" onClick={logoutAndRedirectHome}>
+
+              {/* <Link to="/cart">Cart</Link> */}
+              {loggedInAsAdmin.isAdmin ? (
+                <>
+                  <Link title="view dashboard" to="/home">
+                    Dashboard
+                  </Link>
+                  <Link title="view all products" to="/products">
+                    View products
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link title="view all products" to="/products">
+                    All Products
+                  </Link>
+                  <Link title="view my cart" to="/cart">
+                    Cart
+                  </Link>
+                </>
+              )}
+              <Link id="initials" title="view my account" to="/myAccount">
+                {firstName.slice(0, 1)}
+                {lastName.slice(0, 1)}
+              </Link>
+              <button
+                id="logoutBtn"
+                title="logout"
+                type="button"
+                onClick={logoutAndRedirectHome}
+              >
                 Logout
               </button>
             </div>
           ) : (
             <div className="navLinks">
               {/* The navbar will show these links before you log in */}
-              <Link to="/home">Home</Link>
-              <Link to="/products">All Products</Link>
-              <Link to="/cart">Cart</Link>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              {/* <Link to="/home">Home</Link> */}
+              <Link title="view all products" to="/products">
+                All Products
+              </Link>
+              <Link title="view my cart" to="/cart">
+                Cart
+              </Link>
+              <Link title="login" to="/login">
+                Login
+              </Link>
+              <Link title="sign up" to="/signup">
+                Sign Up
+              </Link>
             </div>
           )}
         </nav>
