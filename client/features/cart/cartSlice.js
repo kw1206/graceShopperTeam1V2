@@ -21,6 +21,9 @@ export const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+export const selectCurrentUser = (state) => {
+  return state.auth;
+};
 
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
@@ -35,11 +38,12 @@ export const fetchCurrentCart = createAsyncThunk(
   }
 );
 
-export const deleteCartProduct = createAsyncThunk(
-  'currentCart/product/delete',
+export const deleteCartItem = createAsyncThunk(
+  'currentCart/item/delete',
   async ({ id }) => {
-    id = 3;
-    try {
+  try {
+      // I think to delete and indivdual item I need the route to all items?
+      console.log("the id", id)
       const { data } = await axios.delete(`/api/users/${id}/cart`);
       if (data) {
         return data;
@@ -54,10 +58,6 @@ export const deleteCartProduct = createAsyncThunk(
 
 export const selectCurrentCart = (state) => {
   return state.currentCart;
-};
-
-export const selectCurrentUser = (state) => {
-  return state.auth
 };
 
 const initialState = {
