@@ -20,8 +20,15 @@ const isUser = async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
+    console.log(req)
     const item = await Item.findByPk(req.params.id);
-    res.json(await item.update(req.body));
+    if (item) {
+      if (req.body.quantity === 0) {
+        await item.destroy();
+        res.json(item);
+      }
+      res.json(await item.update(req.body.quantity));
+    }
   } catch (err) {
     next(err);
   }
@@ -30,8 +37,12 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const item = await Item.findByPk(req.params.id);
-    await item.destroy();
-    res.json(item);
+    if (item) {
+      await item.destroy();
+      res.json(item);
+    } else {
+      console.log('item not found');
+    }
   } catch (err) {
     next(err);
   }
