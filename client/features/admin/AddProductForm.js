@@ -14,8 +14,8 @@ const AddProductForm = () => {
   const [thumbnail, setThumbnail] = useState("");
   const [images, setImages] = useState([]);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
     dispatch(addProduct({
       title, brand, description, price, category, inventory, thumbnail, images }))
     setTitle("");
@@ -28,10 +28,6 @@ const AddProductForm = () => {
     setImages([]);
   };
 
-  const handleImageChange = (event) => {
-    setImages(event.target.value.split('\n'));
-  };
-
   return (
     <div id="addProductForm">
       <h3>Create a new product</h3>
@@ -42,14 +38,14 @@ const AddProductForm = () => {
           name='title'
           value={title}
           required
-          onChange={(event) => setTitle(event.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <label htmlFor="brand">Brand:</label>
         <input
           name='brand'
           value={brand}
           required
-          onChange={(event) => setBrand(event.target.value)}
+          onChange={(e) => setBrand(e.target.value)}
         />
         <label htmlFor="description">Description:</label>
         <textarea
@@ -57,7 +53,7 @@ const AddProductForm = () => {
           value={description}
           required
           wrap="soft"
-          onChange={(event) => setDescription(event.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
         <label htmlFor="price">Price:</label>
         <input
@@ -65,14 +61,14 @@ const AddProductForm = () => {
           value={price}
           required
           type='number'
-          onChange={(event) => setPrice(event.target.value)}
+          onChange={(e) => setPrice(e.target.value)}
         />
         <label htmlFor="category">Category:</label>
         <input
           name='category'
           value={category}
           required
-          onChange={(event) => setCategory(event.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
         />
         <label htmlFor="inventory">Inventory:</label>
         <input
@@ -80,20 +76,20 @@ const AddProductForm = () => {
           value={inventory}
           type='number'
       
-          onChange={(event) => setInventory(event.target.value)}
+          onChange={(e) => setInventory(e.target.value)}
         />
         <label htmlFor="thumbnail">Thumbnail:</label>
         <input
           name='thumbnail'
           value={thumbnail}
-          onChange={(event) => setThumbnail(event.target.value)}
+          onChange={(e) => setThumbnail(e.target.value)}
         />
         <label htmlFor="images">Additional images:</label>
         <textarea
           name='images'
           value={images.join('\n')}
           wrap="soft"
-          onChange={handleImageChange}
+          onChange={(e) => setImages(e.target.value.split('\n'))}
         />
         <br/><br/>
         <button className="productBtn" id="createProductBtn" type="submit">

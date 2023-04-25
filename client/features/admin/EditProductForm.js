@@ -98,10 +98,6 @@ const EditProductForm = () => {
       });
   };
 
-  const cancelEdit = () => {
-    navigate("/products");
-  };
-
   return (
     <div className="page">
       <div id="editProductForm">
@@ -114,14 +110,14 @@ const EditProductForm = () => {
             type="text"
             required
             value={title}
-            onChange={(event) => setTitle(event.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
           />
           <label>Brand:</label>
           <input
             name='brand'
             type="text"
             value={brand}
-            onChange={(event) => setBrand(event.target.value)}
+            onChange={(e) => setBrand(e.target.value)}
           />
           <label>Description:</label>
           <textarea
@@ -129,7 +125,7 @@ const EditProductForm = () => {
             wrap="soft"
             required
             value={description}
-            onChange={(event) => setDescription(event.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
           />
           <label>Price:</label>
           <input
@@ -137,7 +133,7 @@ const EditProductForm = () => {
             type="text"
             required
             value={price}
-            onChange={(event) => setPrice(event.target.value)}
+            onChange={(e) => setPrice(e.target.value)}
           />
           <label>Category:</label>
           <input
@@ -145,34 +141,34 @@ const EditProductForm = () => {
             type="text"
             required
             value={category}
-            onChange={(event) => setCategory(event.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
           />
           <label>Inventory:</label>
           <input
             name='inventory'
             type="text"
             value={inventory}
-            onChange={(event) => setInventory(event.target.value)}
+            onChange={(e) => setInventory(e.target.value)}
           />
           <label>Thumbnail:</label>
           <input
             name='thumbnail'
             type="text"
             value={thumbnail}
-            onChange={(event) => setThumbnail(event.target.value)}
+            onChange={(e) => setThumbnail(e.target.value)}
           />
           <label>Additional images*:</label>
           <textarea
             name='images'
             wrap="soft"
             value={images.join('\n')}
-            onChange={(event) => setImages(event.target.value.split('\n'))}
+            onChange={(e) => setImages(e.target.value.split('\n'))}
           />
           <p>*paste in multiple image URLs <br/>on a new line</p>
           <button className="productBtn" id="editProductBtn" type="submit">
             Submit edits
           </button>
-          <button className="productBtn" id="cancelEditBtn" onClick={cancelEdit}>
+          <button className="productBtn" id="cancelEditBtn" onClick={() => navigate("/products")}>
             Cancel
           </button>
         </form>
