@@ -84,7 +84,7 @@ export const addProduct = createAsyncThunk(
     category,
     inventory,
     thumbnail,
-    // images
+    images
   }) => {
     const token = window.localStorage.getItem("token");
     try {
@@ -97,7 +97,7 @@ export const addProduct = createAsyncThunk(
           category,
           inventory,
           thumbnail,
-          // images
+          images
         },
         {
           headers: {
