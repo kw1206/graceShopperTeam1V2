@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { deleteCartItem, updateCartQuantity } from './cartSlice';
+import { deleteCartItem, updateCartQuantity, fetchCurrentCart } from './cartSlice';
 import { useDispatch } from 'react-redux';
 
 //Need to add these to slices eventually
@@ -21,7 +21,7 @@ const CartItem = (props) => {
     console.log('deletItem ', id);
       console.log("userId passed in", userId)
     dispatch(deleteCartItem({id, userId}));
-    // dispatch(fetchCurrentCart(id));
+    dispatch(fetchCurrentCart(userId));
   };
 
   //ADDING AND SUBTRACTING FUNCTIONS //
@@ -42,6 +42,7 @@ const CartItem = (props) => {
     const newValue = amountValue - 1;
     const newQuantity = parseInt(newValue);
     dispatch(updateCartQuantity({ id, newQuantity }));
+    dispatch(fetchCurrentCart(userId));
     setAmountValue(newValue);
   }
 
