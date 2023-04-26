@@ -82,6 +82,7 @@ export const updateCartQuantity = createAsyncThunk(
   }
 );
 export const selectCurrentCart = (state) => {
+  console.log("selectCurrenCart", state.currentCart)
   return state.currentCart;
 };
 
@@ -96,6 +97,7 @@ export const currentCartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCurrentCart.fulfilled, (state, action) => {
+        console.log("fetchcart action payload", action.payload)
         return action.payload;
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {

@@ -9,39 +9,50 @@ import {
 } from './cartSlice';
 
 const Cart = () => {
-  const currentUser = useSelector(selectCurrentUser);
-  const currentUserID = currentUser.me.id;
-  console.log("user id", currentUserID)
   const dispatch = useDispatch();
-  const currentCart = useSelector(selectCurrentCart);
+  //sets to check for current user
+  const currentUser = useSelector(selectCurrentUser);
+
+  // sets the current user id number and is value that changes
+  const currentUserID = currentUser.me.id;
+
+  const currentCart = useSelector((state) => state.currentCart);
+  //currentCart Items are state that is tracked.
+  const currentCartItems = currentCart.items;
+
   const [cartItems, setCartItems] = useState([]);
-  const [currentUserIs, setcurrentUserIs] = useState('');
+  console.log('cartItems ', cartItems);
+
+  // initiates the fetch call when a userId exists.
   useEffect(() => {
     if (currentUserID) {
+      console.log('user id', currentUserID);
+      console.log('dispatch fetch');
       dispatch(fetchCurrentCart(currentUserID));
-      if (currentCart[0]) {
-        setCartItems(currentCart[0].items);
-      }
     }
-    // console.log('no user');
     // here would fetch the cart from local storage maybe?
-    //note api route Is NOT PROTECTED YET
   }, [currentUserID]);
 
-  // useEffect(() => {
-  //   if (currentCart.id > 0) {
-  //     console.log('here is cart in use effect', currentCart);
-  //   }
-  // }, [state.currentCart.cart]);
-
+  useEffect(() => {
+    if (currentCartItems) {
+      console.log('currentCartItems exists', currentCartItems);
+      setCartItems(currentCartItems);
+      console.log('currentCart value in use effect', currentCart);
+    }
+  }, [currentCartItems]);
+  // setCartItems(currentCartItems);
   return (
     <div className="page">
       <div id="cart-list" value={currentCart}>
         <h2> Here is your Cart {currentUser.me.firstName}!</h2>
 
-        {currentCart[0] ? (
-          currentCart[0].items.map((cartItem) => (
-            <CartItem cartItem={cartItem} userId={currentUserID} key={cartItem.id} />
+        {cartItems.length ? (
+          cartItems.map((cartItem) => (
+            <CartItem
+              cartItem={cartItem}
+              userId={currentUserID}
+              key={cartItem.id}
+            />
           ))
         ) : (
           <p>
