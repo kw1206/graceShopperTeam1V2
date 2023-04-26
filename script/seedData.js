@@ -1797,76 +1797,64 @@ const cartsForSeed = [
 
 const itemsForSeed = [
   {
-    // id: 1, // first instance of the item ever being put into someone's cart at the store
     quantity: 10,
-    cartId: 1, // stefani's cart
-    productId: 1, // peanut butter
+    cartId: 1,
+    productId: 1,
   },
   {
-    // id: 2, // second instance of the item ever put into someone's cart at the store
     quantity: 5,
-    cartId: 2, // kit's cart
-    productId: 1, // peanut butter
+    cartId: 2,
+    productId: 1,
   },
   {
-    // id: 3, // third instance of an item being put into someone's cart
     quantity: 4,
-    cartId: 3, // elizabeth's cart
-    productId: 12, // jelly
+    cartId: 3,
+    productId: 12,
   },
   {
-    // id: 4, // fourth instance of an item being put into someone'cart
     quantity: 4,
-    cartId: 4, // stefani's cart
-    productId: 13, // bread
+    cartId: 4,
+    productId: 13,
   },
   {
-    // id: 1, // first instance of the item ever being put into someone's cart at the store
     quantity: 10,
-    cartId: 3, // stefani's cart
-    productId: 11, // peanut butter
+    cartId: 3,
+    productId: 11,
   },
   {
-    // id: 2, // second instance of the item ever put into someone's cart at the store
     quantity: 5,
-    cartId: 3, // kit's cart
-    productId: 21, // peanut butter
+    cartId: 3,
+    productId: 21,
   },
   {
-    // id: 3, // third instance of an item being put into someone's cart
     quantity: 4,
-    cartId: 3, // elizabeth's cart
-    productId: 22, // jelly
+    cartId: 3,
+    productId: 22,
   },
   {
-    // id: 4, // fourth instance of an item being put into someone'cart
     quantity: 4,
-    cartId: 3, // stefani's cart
-    productId: 23, // bread
+    cartId: 3,
+    productId: 23,
   },
   {
-    // id: 1, // first instance of the item ever being put into someone's cart at the store
     quantity: 10,
-    cartId: 4, // stefani's cart
-    productId: 31, // peanut butter
+    cartId: 4,
+    productId: 31,
   },
   {
-    // id: 2, // second instance of the item ever put into someone's cart at the store
     quantity: 5,
-    cartId: 2, // kit's cart
-    productId: 41, // peanut butter
+    cartId: 2,
+    productId: 41,
   },
   {
-    // id: 3, // third instance of an item being put into someone's cart
     quantity: 4,
-    cartId: 4, // elizabeth's cart
-    productId: 42, // jelly
+    cartId: 4,
+    productId: 42,
   },
   {
-    // id: 4, // fourth instance of an item being put into someone'cart
     quantity: 4,
-    cartId: 4, // stefani's cart
-    productId: 34, // bread
+    cartId: 4,
+    productId: 34,
   },
 ];
 
