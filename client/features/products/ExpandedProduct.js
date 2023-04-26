@@ -40,7 +40,7 @@ const ExpandedProduct = () => {
     if (confirm("Are you sure you want to delete this product?") === true) {
       console.log(id);
       dispatch(deleteProduct(id));
-      navigate("/products/");
+      navigate("/home");
     }
   };
 

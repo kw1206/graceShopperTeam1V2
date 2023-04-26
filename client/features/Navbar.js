@@ -80,9 +80,6 @@ const Navbar = () => {
               <Link title="view all products" to="/products">
                 All Products
               </Link>
-              <Link title="view my cart" to="/cart">
-                Cart
-              </Link>
               <Link title="login" to="/login">
                 Login
               </Link>
