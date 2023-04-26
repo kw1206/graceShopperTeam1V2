@@ -60,6 +60,7 @@ const AllProductsPage = () => {
     let filteredCategories = [...new Set(categories)];
     return filteredCategories.sort();
   };
+
   const filterProductsBy = (event) => {
     setSortAndFilter({
       column: sortAndFilter.column,
