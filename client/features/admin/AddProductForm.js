@@ -74,6 +74,7 @@ const AddProductForm = () => {
         <input
           name='inventory'
           value={inventory}
+          required
           type='number'
       
           onChange={(e) => setInventory(e.target.value)}
