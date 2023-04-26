@@ -1,11 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addCartItem } from '../cart/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const SingleProduct = (props) => {
   const { product } = props;
   const { id, title, price, brand, thumbnail } = product;
   const loggedInAsAdmin = useSelector((state) => state.auth.me);
+
+  //Elizabeth added This activates a call to api post the new item to the current logged in user
+  const dispatch = useDispatch()
+  function addToCart() {
+    dispatch(addCartItem({id}))
+  }
 
   return (
     <>
@@ -20,7 +28,10 @@ const SingleProduct = (props) => {
           {loggedInAsAdmin.isAdmin ? (
             <p>Product ID#: {id}</p>
           ) : (
-            <button className="smallViewAddBtn">Add to cart</button>
+            //Elizabeth added activates api post request to create new item.
+            <button className="smallViewAddBtn" onClick={addToCart}>
+              Add to cart
+            </button>
           )}
         </div>
       </div>

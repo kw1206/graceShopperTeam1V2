@@ -1,4 +1,3 @@
-// use to grab token from local Storage
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -13,7 +12,6 @@ export const fetchCurrentUser = createAsyncThunk(
             authorization: token,
           },
         });
-        console.log(data);
         return data;
       }
     } catch (error) {
@@ -26,6 +24,7 @@ export const selectCurrentUser = (state) => {
   return state.auth;
 };
 
+// QUERYS TO FULL CART
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
   async (id) => {
@@ -37,8 +36,52 @@ export const fetchCurrentCart = createAsyncThunk(
             authorization: token,
           },
         });
-        console.log('fetch cart activated data is ', data);
         return data;
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+//TO DO Make a submit that updates the cart page.
+export const updateCartStatus = createAsyncThunk(
+  'currentCart/purchase',
+  async (cartId ) => {
+    const token = window.localStorage.getItem('token');
+    try {
+      if (token) {
+        console.log(cartId)
+        const { data } = await axios.put(`/api/cart/${cartId}`,{
+          isFulfilled: true,
+        });
+        console.log('update Cart', data);
+      }
+    } catch (error) {}
+  }
+);
+
+export const addCartItem = createAsyncThunk(
+  'currentCartItem/add',
+  async ({ id }) => {
+    const token = window.localStorage.getItem('token');
+    try {
+      if (token) {
+        const { data } = await axios.post(
+          '/api/cartItems',
+          {
+            productId: id,
+            quantity: 1,
+          },
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
+        return data;
+      } else {
+        console.log('You are not authorized to add products.');
       }
     } catch (error) {
       console.log(error);
@@ -48,14 +91,11 @@ export const fetchCurrentCart = createAsyncThunk(
 
 export const deleteCartItem = createAsyncThunk(
   'currentCart/item/delete',
-  async (id) => {
+  async ({ id, userId }) => {
     try {
-      // I think to delete and indivdual item I need the route to all items?
-      console.log('the id in deleteCartItem', id);
       const { data } = await axios.delete(`/api/cartItems/${id}`);
       if (data) {
-        console.log(data);
-        return data;
+        return userId;
       } else {
         console.log('unable to delete product');
       }
@@ -73,7 +113,6 @@ export const updateCartQuantity = createAsyncThunk(
         quantity: String(newQuantity),
       });
       if (data) {
-        console.log('update cart data', data);
         return data;
       }
     } catch (error) {
@@ -81,6 +120,7 @@ export const updateCartQuantity = createAsyncThunk(
     }
   }
 );
+
 export const selectCurrentCart = (state) => {
   return state.currentCart;
 };
@@ -99,9 +139,7 @@ export const currentCartSlice = createSlice({
         return action.payload;
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
-        console.log('action is ', action);
-        console.log('state is ', state);
-        // fetchCurrentCart(state.auth.me.id)
+        fetchCurrentCart(action.payload);
       });
   },
 });
