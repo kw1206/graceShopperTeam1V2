@@ -4,8 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import {
   fetchSingleProduct,
   selectSingleProduct,
-  deleteProduct,
 } from "./expandedProductSlice";
+import { deleteProduct } from "./allProductsSlice";
 import { addCartItem } from "../cart/cartSlice";
 
 const ExpandedProduct = () => {
@@ -21,7 +21,7 @@ const ExpandedProduct = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
-  }, []);
+  }, [dispatch, id]);
 
   useEffect(() => {
     if (selectedProduct.id) {
@@ -33,7 +33,7 @@ const ExpandedProduct = () => {
   }, [selectedProduct]);
 
   useEffect(() => {
-    if (selectedProduct.id > 0) {
+    if (selectedProduct) {
       setLoading(false);
     }
   }, [selectedProduct]);
