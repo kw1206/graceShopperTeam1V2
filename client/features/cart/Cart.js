@@ -12,6 +12,7 @@ import {
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
   //sets to check for current user
   const currentUser = useSelector(selectCurrentUser);
 
@@ -38,6 +39,12 @@ const Cart = () => {
     }
   }, [currentCartItems]);
 
+  useEffect(() => {
+    if (currentCart) {
+      setLoading(false);
+    }
+  }, []);
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const cartId = currentCart.id;
@@ -52,43 +59,47 @@ const Cart = () => {
 
   return (
     <div className="page">
-      <div id="cart-list" value={currentCart}>
-        <div id="cartContents">
-          <h2> Here is your Cart {currentUser.me.firstName}!</h2>
-          {cartItems.length ? (
-            <>
-              <table id="cartTable">
-                <tbody>
-                  {cartItems.map((cartItem) => (
-                    <CartItem
-                      cartItem={cartItem}
-                      userId={currentUserID}
-                      key={cartItem.id}
-                    />
-                  ))}
-                </tbody>
-              </table>
-              <br></br>
-              <button
-                id="submitOrderBtn"
-                to="order"
-                onClick={handleSubmit}
-                value={`${currentCart.id}`}
-              >
-                {" "}
-                Submit your order{" "}
-              </button>
-            </>
-          ) : (
-            <>
-              <p>Your Cart is Empty!</p>
-              <Link id="browseLink" to="/products">
-                <button id="browse"> Browse the shop </button>
-              </Link>
-            </>
-          )}
+      {loading ? (
+        <h3>Loading your cart</h3>
+      ) : (
+        <div id="cart-list" value={currentCart}>
+          <div id="cartContents">
+            <h2> Here is your Cart {currentUser.me.firstName}!</h2>
+            {cartItems.length ? (
+              <>
+                <table id="cartTable">
+                  <tbody>
+                    {cartItems.map((cartItem) => (
+                      <CartItem
+                        cartItem={cartItem}
+                        userId={currentUserID}
+                        key={cartItem.id}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+                <br></br>
+                <button
+                  id="submitOrderBtn"
+                  to="order"
+                  onClick={handleSubmit}
+                  value={`${currentCart.id}`}
+                >
+                  {" "}
+                  Submit your order{" "}
+                </button>
+              </>
+            ) : (
+              <>
+                <p>Your Cart is Empty!</p>
+                <Link id="browseLink" to="/products">
+                  <button id="browse"> Browse the shop </button>
+                </Link>
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 
