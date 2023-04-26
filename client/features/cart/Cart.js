@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import CartItem from './CartItem';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import CartItem from "./CartItem";
 import {
   fetchCurrentCart,
   selectCurrentCart,
   selectCurrentUser,
   updateCartStatus,
-} from './cartSlice';
+} from "./cartSlice";
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -41,9 +41,9 @@ const Cart = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const cartId = currentCart.id;
-    if (confirm('ready to purchase?') === true) {
+    if (confirm("ready to purchase?") === true) {
       dispatch(updateCartStatus(cartId)).then(() => {
-        navigate('/products');
+        navigate("/products");
       });
     }
   };
@@ -51,31 +51,42 @@ const Cart = () => {
   return (
     <div className="page">
       <div id="cart-list" value={currentCart}>
-        <h2> Here is your Cart {currentUser.me.firstName}!</h2>
-        <div>
+        <div id="cartContents">
+          <h2> Here is your Cart {currentUser.me.firstName}!</h2>
           {cartItems.length ? (
-            cartItems.map((cartItem) => (
-              <CartItem
-                cartItem={cartItem}
-                userId={currentUserID}
-                key={cartItem.id}
-              />
-            ))
-          ) : (
-            <p>
-              Your Cart is Empty!
-              <button>
-                <Link to="/products"> Browse the shop </Link>
+            <>
+              <table id="cartTable">
+                <tbody>
+                  {cartItems.map((cartItem) => (
+                    <CartItem
+                      cartItem={cartItem}
+                      userId={currentUserID}
+                      key={cartItem.id}
+                    />
+                  ))}
+                </tbody>
+              </table>
+              <br></br>
+              <button
+                id="submitOrderBtn"
+                to="order"
+                onClick={handleSubmit}
+                value={`${currentCart.id}`}
+              >
+                {" "}
+                Submit your order{" "}
               </button>
-            </p>
+            </>
+          ) : (
+            <>
+              <p>Your Cart is Empty!</p>
+              <Link id="browseLink" to="/products">
+                <button id="browse"> Browse the shop </button>
+              </Link>
+            </>
           )}
         </div>
       </div>
-      <br></br>
-      <button to="order" onClick={handleSubmit} value={`${currentCart.id}`}>
-        {' '}
-        Submit your order{' '}
-      </button>
     </div>
   );
 

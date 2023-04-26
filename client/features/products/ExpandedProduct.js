@@ -80,7 +80,7 @@ const ExpandedProduct = () => {
         ) : selectedProduct ? (
           <>
             <div className="imgCarousel">
-              <img className="expandedImages" src={allImages.length === 1 ? allImages[0] : allImages[imageIdx]} />
+              <img alt={selectedProduct.title} className="expandedImages" src={allImages.length === 1 ? allImages[0] : allImages[imageIdx]} />
             </div>
             <div className="productInfo">
               <h2>{selectedProduct.title}</h2>

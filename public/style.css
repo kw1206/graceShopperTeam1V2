@@ -22,6 +22,10 @@ a {
   padding: 10px;
 }
 
+/* a:hover {
+  text-decoration: underline;
+} */
+
 button {
   border-radius: 20px;
   background-color: #3d348b00;
@@ -111,6 +115,19 @@ nav p, nav a, nav button {
   border-radius: 50%
 }
 
+#allProductsLink:hover {
+  background-color:#ffffff;
+  color: black;
+  border-radius: 20px;
+  box-shadow:4px 4px #7678ED;
+}
+
+#cartLink:hover {
+  background-color:#F35B04;
+  border-radius: 20px;
+  box-shadow:4px 4px #7678ED;
+}
+
 #initials:hover {
   background-color: green;
   box-shadow:4px 4px #7678ED;
@@ -171,10 +188,24 @@ textarea {
 /* !!!!!!!!!! PRODUCT BUTTONS !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-#createProductBtn:hover, #editProductBtn:hover, #cancelEditBtn:hover, #deleteBtn:hover, #editBtn:hover, .smallViewAddBtn:hover, #addBtn:hover, #editAccountBtn:hover, .loginSignUpBtn:hover {
+#createProductBtn:hover, #editProductBtn:hover, #cancelEditBtn:hover, #deleteBtn:hover, #editBtn:hover, .smallViewAddBtn:hover, #addBtn:hover, #editAccountBtn:hover, .loginSignUpBtn:hover, #submitOrderBtn:hover, #signupLink:hover, #browse:hover {
   color: white;
   border-color: #f7ba0100;
   background-color: #F35B04;
+  box-shadow:4px 4px #7678ED;
+}
+
+.subtractOne:hover {
+  color: white;
+  border-color: #f7ba0100;
+  background-color: gray;
+  box-shadow:4px 4px #7678ED;
+}
+
+.addOne:hover {
+  color: white;
+  border-color: #f7ba0100;
+  background-color: green;
   box-shadow:4px 4px #7678ED;
 }
 
@@ -287,7 +318,7 @@ select {
 }
 
 .expandedProductInfo {
-  margin: 0px 25px;
+  margin: 20px 25px;
   display: flex;
 }
 
@@ -333,6 +364,26 @@ select {
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! SINGLE CART ITEM !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+#cart-list {
+  margin: 20px 35px;
+}
+
+#cartContents {
+  /* background-color: blue; */
+}
+
+#cartTable{
+  width: 700px;
+}
+
+#thumbnailCell {
+  width: 75px;
+}
+
+#priceCell {
+  width: 100px;
+}
 
 .cart-thumbnail {
   width: 50px;
@@ -457,8 +508,6 @@ th, thead {
 
 .userInfo {
   display: flex;
-  /* border: 2px solid green; */
-  /* margin: 30px; */
 }
 
 #accountDetails, #orderHistory {
@@ -467,8 +516,12 @@ th, thead {
   border-radius: 25px 25px 0px 0px;
 }
 
-#userDetailsTable, #orderHistory {
+#userDetailsTable {
   width: 500px;
+}
+
+#orderHistory {
+  width: 600px;
 }
 
 #orderHistoryTable {
@@ -498,11 +551,11 @@ th, thead {
 }
 
 #orderNum {
-  width: 75px;
+  width: 35px;
 }
 
 #dateSubmitted {
-  width: 175px;
+  width: 100px;
 }
 
 #editAccountBtn {
@@ -520,6 +573,11 @@ li {
   list-style: none;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
 ul a {
   padding: 0px;
 }
@@ -537,14 +595,33 @@ ul a:hover {
 #editUserFormBtns {
   padding-top: 20px;
 }
+
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 /* !!!!!!!!!! LOGIN + REGISTER PAGES !!!!!!!!!! */
 /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 #registerPage, #loginPage {
   margin-left: 35px;
+  display: flex;
+  flex-direction: row;
 }
 
 .loginSignUpBtn {
   margin-top: 20px;
+}
+
+#loginInstructions {
+  margin: auto;
+  padding: 60px;
+  text-align: center;
+}
+
+#signupLink {
+  padding: 10px;
+  margin: 1em;
+  border-radius: 20px;
+}
+
+#browseLink {
+  padding: 0;
 }

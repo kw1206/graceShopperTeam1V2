@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { deleteCartItem, updateCartQuantity, fetchCurrentCart } from './cartSlice';
-import { useDispatch } from 'react-redux';
-
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import {
+  deleteCartItem,
+  updateCartQuantity,
+  fetchCurrentCart,
+} from "./cartSlice";
+import { useDispatch } from "react-redux";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -14,7 +17,7 @@ const CartItem = (props) => {
   const { title, price, thumbnail } = product;
   // DELETING ITEM FUNCTIONS
   const deleteThisItem = async (event) => {
-    dispatch(deleteCartItem({id, userId}));
+    dispatch(deleteCartItem({ id, userId }));
     dispatch(fetchCurrentCart(userId));
   };
 
@@ -22,7 +25,6 @@ const CartItem = (props) => {
 
   useEffect(() => {
     // here is where a put request needs to go
-    console.log('dispatch active');
   }, [dispatch]);
 
   function addOne() {
@@ -42,24 +44,30 @@ const CartItem = (props) => {
 
   return (
     <>
-      <span id={id}>
-        <h4 className="item-Name">{title}</h4>
-        <img className="cart-thumbnail" src={thumbnail} />
-        <span>${price}</span>{' '}
-        <button className="subtractOne" onClick={subtractOne}>
-          {' '}
-          -{' '}
-        </button>{' '}
-        {amountValue}{' '}
-        <button className="addOne" onClick={addOne}>
-          {' '}
-          +{' '}
-        </button>
-        {'  '}
-        <button id="deleteBtn" onClick={deleteThisItem}>
-          Delete
-        </button>
-      </span>
+      <tr id={id}>
+        <td id="thumbnailCell">
+          <img className="cart-thumbnail" src={thumbnail} />
+        </td>
+        <td>
+          <h4 className="item-Name">{title}</h4>
+        </td>
+        <td id="priceCell">${price}</td>
+        <td>
+          <button className="subtractOne" onClick={subtractOne}>
+            {" "}
+            -{" "}
+          </button>{" "}
+          {amountValue}{" "}
+          <button className="addOne" onClick={addOne}>
+            {" "}
+            +{" "}
+          </button>
+          {"  "}
+          <button id="deleteBtn" onClick={deleteThisItem}>
+            Delete
+          </button>
+        </td>
+      </tr>
     </>
   );
 };
