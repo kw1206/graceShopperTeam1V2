@@ -52,6 +52,7 @@ const ExpandedProduct = () => {
   const imgFwd = () => {
     if (imageIdx < allImages.length - 1) return setImageIdx(imageIdx + 1);
   };
+  
   //Elizabeth added This activates a call to api post the new item to the current logged in user
   function addToCart() {
     dispatch(addCartItem({id}))

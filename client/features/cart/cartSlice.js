@@ -1,4 +1,3 @@
-// use to grab token from local Storage
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -13,7 +12,6 @@ export const fetchCurrentUser = createAsyncThunk(
             authorization: token,
           },
         });
-        console.log(data);
         return data;
       }
     } catch (error) {
@@ -38,7 +36,6 @@ export const fetchCurrentCart = createAsyncThunk(
             authorization: token,
           },
         });
-        // console.log('fetch cart activated data is ', data);
         return data;
       }
     } catch (error) {
@@ -47,49 +44,44 @@ export const fetchCurrentCart = createAsyncThunk(
   }
 );
 
-//QUERYS TO CART ITEM
-// export const addCartItem = createAsyncThunk(
-//   `currentCart/addItem`,
-//   async (id) => {
-//     const token = window.localStorage.getItem('token');
-//     try {
-//       if (token) {
-//         console.log('add cart activated id is ', id);
-//         const { data } = await axios.post(`api/cartItems`, {
-//           headers: {
-//             authorization: token,
-//           },
-//         });
-//         console.log("add cart data is ", data);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-// );
-
-export const addCartItem = createAsyncThunk(
-  "currentCartItem/add",
-  async ({
-    id,
-  }) => {
-    const token = window.localStorage.getItem("token");
+//TO DO Make a submit that updates the cart page.
+export const updateCartStatus = createAsyncThunk(
+  'currentCart/purchase',
+  async (cartId ) => {
+    const token = window.localStorage.getItem('token');
     try {
       if (token) {
-        console.log("token", token)
-        console.log("product id in here is", id)
-        const { data } = await axios.post("/api/cartItems", {
-          productId: id,
-          quantity: 1
-        },
-        {
-          headers: {
-            authorization: token,
-          },
+        console.log(cartId)
+        const { data } = await axios.put(`/api/cart/${cartId}`,{
+          isFulfilled: true,
         });
+        console.log('update Cart', data);
+      }
+    } catch (error) {}
+  }
+);
+
+export const addCartItem = createAsyncThunk(
+  'currentCartItem/add',
+  async ({ id }) => {
+    const token = window.localStorage.getItem('token');
+    try {
+      if (token) {
+        const { data } = await axios.post(
+          '/api/cartItems',
+          {
+            productId: id,
+            quantity: 1,
+          },
+          {
+            headers: {
+              authorization: token,
+            },
+          }
+        );
         return data;
       } else {
-        console.log("You are not authorized to add products.");
+        console.log('You are not authorized to add products.');
       }
     } catch (error) {
       console.log(error);
@@ -101,12 +93,9 @@ export const deleteCartItem = createAsyncThunk(
   'currentCart/item/delete',
   async ({ id, userId }) => {
     try {
-      // console.log('the id in deleteCartItem', id);
       const { data } = await axios.delete(`/api/cartItems/${id}`);
       if (data) {
         return userId;
-        // fetchCurrentCart(userId);
-        // return data;
       } else {
         console.log('unable to delete product');
       }
@@ -124,7 +113,6 @@ export const updateCartQuantity = createAsyncThunk(
         quantity: String(newQuantity),
       });
       if (data) {
-        // console.log('update cart data', data);
         return data;
       }
     } catch (error) {
@@ -134,7 +122,6 @@ export const updateCartQuantity = createAsyncThunk(
 );
 
 export const selectCurrentCart = (state) => {
-  // console.log("selectCurrenCart", state.currentCart)
   return state.currentCart;
 };
 
@@ -149,12 +136,9 @@ export const currentCartSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCurrentCart.fulfilled, (state, action) => {
-        // console.log("fetchcart action payload", action.payload)
         return action.payload;
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
-        // console.log('action is ', action);
-        // console.log('state is ', state);
         fetchCurrentCart(action.payload);
       });
   },

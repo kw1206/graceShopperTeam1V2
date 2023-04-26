@@ -6,10 +6,11 @@ import {
   fetchCurrentCart,
   selectCurrentCart,
   selectCurrentUser,
+  updateCartStatus,
 } from './cartSlice';
 
 const Cart = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   //sets to check for current user
   const currentUser = useSelector(selectCurrentUser);
@@ -37,11 +38,15 @@ const Cart = () => {
     }
   }, [currentCartItems]);
 
-  function handleSubmit(){
-    console.log("submit")
-    // navigate('/products')
-    
-  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    const cartId = currentCart.id;
+    if (confirm('ready to purchase?') === true) {
+      dispatch(updateCartStatus(cartId)).then(() => {
+        navigate('/products');
+      });
+    }
+  };
 
   return (
     <div className="page">

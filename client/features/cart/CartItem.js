@@ -3,13 +3,10 @@ import { useSelector } from 'react-redux';
 import { deleteCartItem, updateCartQuantity, fetchCurrentCart } from './cartSlice';
 import { useDispatch } from 'react-redux';
 
-//Need to add these to slices eventually
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
-  // console.log("here is one prop item ", props)
   const { cartItem, userId } = props;
-  // console.log("userId passed in", userId)
   const { quantity, id } = cartItem;
   const { product } = cartItem;
   const [amountValue, setAmountValue] = useState(parseInt(quantity)); // type is now number
@@ -17,9 +14,6 @@ const CartItem = (props) => {
   const { title, price, thumbnail } = product;
   // DELETING ITEM FUNCTIONS
   const deleteThisItem = async (event) => {
-    // event.preventDefault();
-    console.log('deletItem ', id);
-      console.log("userId passed in", userId)
     dispatch(deleteCartItem({id, userId}));
     dispatch(fetchCurrentCart(userId));
   };

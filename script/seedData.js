@@ -1775,22 +1775,22 @@ const usersForSeed = [
 const cartsForSeed = [
   {
     id: 1,
-    cartStatus: 'pending',
+    isFulfilled: false,
     userId: 1,
   },
   {
     id: 2,
-    cartStatus: 'pending',
+    isFulfilled: false,
     userId: 2,
   },
   {
     id: 3,
-    cartStatus: 'fulfilled',
+    isFulfilled: true,
     userId: 33,
   },
   {
     id: 4,
-    cartStatus: 'pending',
+    isFulfilled: false,
     userId: 33,
   },
 ];
