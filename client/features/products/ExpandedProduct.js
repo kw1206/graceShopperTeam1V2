@@ -9,18 +9,20 @@ import {
 import { addCartItem } from "../cart/cartSlice";
 
 const ExpandedProduct = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedInAsAdmin = useSelector((state) => state.auth.me);
+  const selectedProduct = useSelector(selectSingleProduct);
+
   const { id } = useParams();
   const [imageIdx, setImageIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [allImages, setAllImages] = useState([]);
 
-  const loggedInAsAdmin = useSelector((state) => state.auth.me);
-  const selectedProduct = useSelector(selectSingleProduct);
-
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchSingleProduct(id));
   }, []);
+
   useEffect(() => {
     if (selectedProduct.id) {
       const thumbnail = selectedProduct.thumbnail;
@@ -29,17 +31,16 @@ const ExpandedProduct = () => {
       setAllImages(extraImages);
     }
   }, [selectedProduct]);
+
   useEffect(() => {
     if (selectedProduct.id > 0) {
       setLoading(false);
     }
   }, [selectedProduct]);
 
-  const navigate = useNavigate();
-  const deleteThisProduct = async (event) => {
+  const handleDelete = async (event) => {
     event.preventDefault();
     if (confirm("Are you sure you want to delete this product?") === true) {
-      console.log(id);
       dispatch(deleteProduct(id));
       navigate("/products/");
     }
@@ -91,7 +92,7 @@ const ExpandedProduct = () => {
                 <>
                   <p>Inventory: {selectedProduct.inventory}</p>
                   <p>Product ID #{selectedProduct.id}</p>
-                  <button id="deleteBtn" onClick={deleteThisProduct}>
+                  <button id="deleteBtn" onClick={handleDelete}>
                     Delete product
                   </button>
                   <Link to={`/products/${id}/editProduct`}>

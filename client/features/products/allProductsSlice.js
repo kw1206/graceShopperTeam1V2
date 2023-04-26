@@ -19,7 +19,7 @@ export const fetchAllProducts = createAsyncThunk(
       }
       return sortedData;
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );

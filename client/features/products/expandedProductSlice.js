@@ -8,7 +8,7 @@ export const fetchSingleProduct = createAsyncThunk(
       const { data } = await axios.get(`/api/products/${id}`);
       return data;
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -29,7 +29,7 @@ export const deleteProduct = createAsyncThunk(
         console.log("You are not authorized to delete products.");
       }
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -69,7 +69,7 @@ export const editProduct = createAsyncThunk(
         console.log("You are not authorized to edit products.");
       }
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -109,7 +109,7 @@ export const addProduct = createAsyncThunk(
         console.log("You are not authorized to add products.");
       }
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );

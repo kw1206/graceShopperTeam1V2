@@ -17,7 +17,7 @@ const AddProductForm = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     dispatch(addProduct({
-      title, brand, description, price, category, inventory, thumbnail, images }))
+      title, brand, description, price, category, inventory, thumbnail, images }));
     setTitle("");
     setBrand("");
     setDescription("");
@@ -26,6 +26,7 @@ const AddProductForm = () => {
     setInventory("");
     setThumbnail("");
     setImages([]);
+    window.location.reload();
   };
 
   return (
