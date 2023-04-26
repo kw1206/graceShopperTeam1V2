@@ -1527,7 +1527,7 @@ const usersForSeed = [
     lastName: 'TempUserLast',
     username: 'a@b.com',
     password: '123',
-    id: 33
+    id: 33 // hardcoded for seeding purposes and cart testing
   },
   {
     firstName: 'AdminFirstName',
@@ -1774,9 +1774,9 @@ const usersForSeed = [
 
 const cartsForSeed = [
   {
-    id: 1, // the first cart ever at the store
+    id: 1,
     cartStatus: 'pending',
-    userId: 1, // it belongs to stefani
+    userId: 1,
   },
   {
     id: 2,
