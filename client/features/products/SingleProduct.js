@@ -19,7 +19,7 @@ const SingleProduct = (props) => {
     <>
       <div className="smallProductView">
         <Link to={`/products/${id}`}>
-          <img className="thumbnail" src={thumbnail} />
+          <img alt={title} className="thumbnail" src={thumbnail} />
         </Link>
         <div className="smallProductViewInfo">
           <h3>{title}</h3>

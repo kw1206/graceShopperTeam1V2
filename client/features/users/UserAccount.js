@@ -77,7 +77,7 @@ const UserAccountDetails = () => {
             <table id="orderHistoryTable">
               <thead>
                 <tr>
-                  <th id="orderNum">Order #</th>
+                  <th id="orderNum">Order</th>
                   <th id="dateSubmitted">Date submitted</th>
                   <th id="itemsPurchased">Items purchased</th>
                 </tr>

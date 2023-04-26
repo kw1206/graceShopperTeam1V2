@@ -15,20 +15,20 @@ const Navbar = () => {
 
   useEffect(() => {
     if (firstName) {
-      let initial = firstName.slice(0,1).toUpperCase()
-      setFirstInitial(initial)
+      let initial = firstName.slice(0, 1).toUpperCase();
+      setFirstInitial(initial);
     }
     if (lastName) {
-      let initial = lastName.slice(0,1).toUpperCase()
-      setLastInitial(initial)
+      let initial = lastName.slice(0, 1).toUpperCase();
+      setLastInitial(initial);
     }
   }, [firstName, lastName]);
-  
+
   const logoutAndRedirectHome = () => {
     dispatch(logout());
     navigate("/login");
   };
-  
+
   return (
     <div
       className="navBar"
@@ -41,7 +41,7 @@ const Navbar = () => {
             // if you are logged in...
             <div className="navLinks">
               {loggedInAsAdmin.isAdmin ? (
-              // links if you are logged in as an admin
+                // links if you are logged in as an admin
                 <>
                   <Link title="view dashboard" to="/home">
                     Dashboard
@@ -51,12 +51,12 @@ const Navbar = () => {
                   </Link>
                 </>
               ) : (
-              // links if you are logged in as a user
+                // links if you are logged in as a user
                 <>
-                  <Link title="view all products" to="/products">
+                  <Link id="allProductsLink" title="view all products" to="/products">
                     All Products
                   </Link>
-                  <Link title="view my cart" to="/cart">
+                  <Link id="cartLink" title="view my cart" to="/cart">
                     Cart
                   </Link>
                 </>
@@ -75,10 +75,13 @@ const Navbar = () => {
               </button>
             </div>
           ) : (
-          // links if you are not logged in
+            // links if you are not logged in
             <div className="navLinks">
               <Link title="view all products" to="/products">
                 All Products
+              </Link>
+              <Link title="view my cart" to="/login">
+                Cart
               </Link>
               <Link title="login" to="/login">
                 Login
