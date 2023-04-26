@@ -26,6 +26,7 @@ export const selectCurrentUser = (state) => {
   return state.auth;
 };
 
+// QUERYS TO FULL CART
 export const fetchCurrentCart = createAsyncThunk(
   'currentCart/fetch',
   async (id) => {
@@ -46,6 +47,56 @@ export const fetchCurrentCart = createAsyncThunk(
   }
 );
 
+//QUERYS TO CART ITEM
+// export const addCartItem = createAsyncThunk(
+//   `currentCart/addItem`,
+//   async (id) => {
+//     const token = window.localStorage.getItem('token');
+//     try {
+//       if (token) {
+//         console.log('add cart activated id is ', id);
+//         const { data } = await axios.post(`api/cartItems`, {
+//           headers: {
+//             authorization: token,
+//           },
+//         });
+//         console.log("add cart data is ", data);
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+// );
+
+export const addCartItem = createAsyncThunk(
+  "currentCartItem/add",
+  async ({
+    id,
+  }) => {
+    const token = window.localStorage.getItem("token");
+    try {
+      if (token) {
+        console.log("token", token)
+        console.log("product id in here is", id)
+        const { data } = await axios.post("/api/cartItems", {
+          productId: id,
+          quantity: 1
+        },
+        {
+          headers: {
+            authorization: token,
+          },
+        });
+        return data;
+      } else {
+        console.log("You are not authorized to add products.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const deleteCartItem = createAsyncThunk(
   'currentCart/item/delete',
   async ({ id, userId }) => {
@@ -53,7 +104,7 @@ export const deleteCartItem = createAsyncThunk(
       // console.log('the id in deleteCartItem', id);
       const { data } = await axios.delete(`/api/cartItems/${id}`);
       if (data) {
-        return userId
+        return userId;
         // fetchCurrentCart(userId);
         // return data;
       } else {
@@ -81,6 +132,7 @@ export const updateCartQuantity = createAsyncThunk(
     }
   }
 );
+
 export const selectCurrentCart = (state) => {
   // console.log("selectCurrenCart", state.currentCart)
   return state.currentCart;
@@ -103,7 +155,7 @@ export const currentCartSlice = createSlice({
       .addCase(deleteCartItem.fulfilled, (state, action) => {
         // console.log('action is ', action);
         // console.log('state is ', state);
-        fetchCurrentCart(action.payload)
+        fetchCurrentCart(action.payload);
       });
   },
 });

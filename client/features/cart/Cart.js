@@ -9,6 +9,7 @@ import {
 } from './cartSlice';
 
 const Cart = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   //sets to check for current user
   const currentUser = useSelector(selectCurrentUser);
@@ -21,12 +22,10 @@ const Cart = () => {
   const currentCartItems = currentCart.items;
 
   const [cartItems, setCartItems] = useState([]);
-  // console.log('cartItems ', cartItems);
 
   // initiates the fetch call when a userId exists.
   useEffect(() => {
     if (currentUserID) {
-      console.log('user id', currentUserID);
       dispatch(fetchCurrentCart(currentUserID));
     }
     // here would fetch the cart from local storage maybe?
@@ -34,42 +33,41 @@ const Cart = () => {
 
   useEffect(() => {
     if (currentCartItems) {
-      // console.log('currentCartItems exists', currentCartItems);
       setCartItems(currentCartItems);
-      // console.log('currentCart value in use effect', currentCart);
     }
   }, [currentCartItems]);
 
-  // useEffect(() => {
-  //   if (cartItems) {
-  //     console.log('dispatch fetch on delete');
-  //     console.log('cartItems use effect', cartItems);
-  //   }
-  // }),
-  //   [cartItems];
+  function handleSubmit(){
+    console.log("submit")
+    // navigate('/products')
+    
+  }
 
-    return (
+  return (
     <div className="page">
       <div id="cart-list" value={currentCart}>
         <h2> Here is your Cart {currentUser.me.firstName}!</h2>
-
-        {cartItems.length ? (
-          cartItems.map((cartItem) => (
-            <CartItem
-              cartItem={cartItem}
-              userId={currentUserID}
-              key={cartItem.id}
-            />
-          ))
-        ) : (
-          <p>
-            Your Cart is Empty!
-            <Link to="home"> Browse the shop </Link>
-          </p>
-        )}
+        <div>
+          {cartItems.length ? (
+            cartItems.map((cartItem) => (
+              <CartItem
+                cartItem={cartItem}
+                userId={currentUserID}
+                key={cartItem.id}
+              />
+            ))
+          ) : (
+            <p>
+              Your Cart is Empty!
+              <button>
+                <Link to="/products"> Browse the shop </Link>
+              </button>
+            </p>
+          )}
+        </div>
       </div>
       <br></br>
-      <button to="order" value={`${currentCart.id}`}>
+      <button to="order" onClick={handleSubmit} value={`${currentCart.id}`}>
         {' '}
         Submit your order{' '}
       </button>
