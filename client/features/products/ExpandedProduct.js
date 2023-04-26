@@ -13,7 +13,7 @@ const ExpandedProduct = () => {
   const [imageIdx, setImageIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const [allImages, setAllImages] = useState([]);
-
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const loggedInAsAdmin = useSelector((state) => state.auth.me);
   const selectedProduct = useSelector(selectSingleProduct);
 
@@ -52,10 +52,14 @@ const ExpandedProduct = () => {
   const imgFwd = () => {
     if (imageIdx < allImages.length - 1) return setImageIdx(imageIdx + 1);
   };
-  
+
   //Elizabeth added This activates a call to api post the new item to the current logged in user
   function addToCart() {
-    dispatch(addCartItem({id}))
+    if (isLoggedIn) {
+      dispatch(addCartItem({ id }));
+    } else {
+      navigate("/login");
+    }
   }
 
   return (
@@ -80,7 +84,13 @@ const ExpandedProduct = () => {
         ) : selectedProduct ? (
           <>
             <div className="imgCarousel">
-              <img alt={selectedProduct.title} className="expandedImages" src={allImages.length === 1 ? allImages[0] : allImages[imageIdx]} />
+              <img
+                alt={selectedProduct.title}
+                className="expandedImages"
+                src={
+                  allImages.length === 1 ? allImages[0] : allImages[imageIdx]
+                }
+              />
             </div>
             <div className="productInfo">
               <h2>{selectedProduct.title}</h2>
@@ -101,7 +111,9 @@ const ExpandedProduct = () => {
               ) : (
                 <>
                   <p>View more {selectedProduct.category}</p>
-                  <button id="addBtn" onClick={addToCart}>Add to cart</button>
+                  <button id="addBtn" onClick={addToCart}>
+                    Add to cart
+                  </button>
                 </>
               )}
               {allImages.length > 1 ? (

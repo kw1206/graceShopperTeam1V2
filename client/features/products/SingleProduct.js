@@ -1,18 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { addCartItem } from '../cart/cartSlice';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate} from "react-router-dom";
+import { addCartItem } from "../cart/cartSlice";
+import { useDispatch } from "react-redux";
 
 const SingleProduct = (props) => {
   const { product } = props;
   const { id, title, price, brand, thumbnail } = product;
   const loggedInAsAdmin = useSelector((state) => state.auth.me);
-
+  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const navigate = useNavigate()
   //Elizabeth added This activates a call to api post the new item to the current logged in user
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   function addToCart() {
-    dispatch(addCartItem({id}))
+    if (isLoggedIn) {
+      dispatch(addCartItem({ id }));
+    } else {
+      navigate("/login");
+    }
   }
 
   return (
