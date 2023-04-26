@@ -16,18 +16,17 @@ const Cart = () => {
   // sets the current user id number and is value that changes
   const currentUserID = currentUser.me.id;
 
-  const currentCart = useSelector((state) => state.currentCart);
+  const currentCart = useSelector(selectCurrentCart);
   //currentCart Items are state that is tracked.
   const currentCartItems = currentCart.items;
 
   const [cartItems, setCartItems] = useState([]);
-  console.log('cartItems ', cartItems);
+  // console.log('cartItems ', cartItems);
 
   // initiates the fetch call when a userId exists.
   useEffect(() => {
     if (currentUserID) {
       console.log('user id', currentUserID);
-      console.log('dispatch fetch');
       dispatch(fetchCurrentCart(currentUserID));
     }
     // here would fetch the cart from local storage maybe?
@@ -35,13 +34,21 @@ const Cart = () => {
 
   useEffect(() => {
     if (currentCartItems) {
-      console.log('currentCartItems exists', currentCartItems);
+      // console.log('currentCartItems exists', currentCartItems);
       setCartItems(currentCartItems);
-      console.log('currentCart value in use effect', currentCart);
+      // console.log('currentCart value in use effect', currentCart);
     }
   }, [currentCartItems]);
-  // setCartItems(currentCartItems);
-  return (
+
+  // useEffect(() => {
+  //   if (cartItems) {
+  //     console.log('dispatch fetch on delete');
+  //     console.log('cartItems use effect', cartItems);
+  //   }
+  // }),
+  //   [cartItems];
+
+    return (
     <div className="page">
       <div id="cart-list" value={currentCart}>
         <h2> Here is your Cart {currentUser.me.firstName}!</h2>
