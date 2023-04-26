@@ -41,12 +41,14 @@ const Cart = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const cartId = currentCart.id;
-    if (confirm("ready to purchase?") === true) {
+    if (confirm("Ready to purchase?")) {
       dispatch(updateCartStatus(cartId)).then(() => {
         navigate("/products");
+        window.location.reload();        
       });
     }
   };
+  
 
   return (
     <div className="page">
