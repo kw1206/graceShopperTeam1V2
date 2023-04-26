@@ -1527,6 +1527,7 @@ const usersForSeed = [
     lastName: 'TempUserLast',
     username: 'a@b.com',
     password: '123',
+    id: 33 // hardcoded for seeding purposes and cart testing
   },
   {
     firstName: 'AdminFirstName',
@@ -1773,51 +1774,87 @@ const usersForSeed = [
 
 const cartsForSeed = [
   {
-    // id: 1, // the first cart ever at the store
-    cartStatus: 'pending',
-    userId: 1, // it belongs to stefani
+    id: 1,
+    isFulfilled: false,
+    userId: 1,
   },
   {
-    // id: 2,
-    cartStatus: 'pending',
+    id: 2,
+    isFulfilled: false,
     userId: 2,
   },
   {
-    // id: 3,
-    cartStatus: 'fulfilled',
-    userId: 3,
+    id: 3,
+    isFulfilled: true,
+    userId: 33,
   },
   {
-    // id: 4,
-    cartStatus: 'pending',
-    userId: 3,
+    id: 4,
+    isFulfilled: false,
+    userId: 33,
   },
 ];
 
 const itemsForSeed = [
   {
-    // id: 1, // first instance of the item ever being put into someone's cart at the store
     quantity: 10,
-    cartId: 1, // stefani's cart
-    productId: 1, // peanut butter
+    cartId: 1,
+    productId: 1,
   },
   {
-    // id: 2, // second instance of the item ever put into someone's cart at the store
     quantity: 5,
-    cartId: 2, // kit's cart
-    productId: 1, // peanut butter
+    cartId: 2,
+    productId: 1,
   },
   {
-    // id: 3, // third instance of an item being put into someone's cart
     quantity: 4,
-    cartId: 3, // elizabeth's cart
-    productId: 2, // jelly
+    cartId: 3,
+    productId: 12,
   },
   {
-    // id: 4, // fourth instance of an item being put into someone'cart
     quantity: 4,
-    cartId: 1, // stefani's cart
-    productId: 3, // bread
+    cartId: 4,
+    productId: 13,
+  },
+  {
+    quantity: 10,
+    cartId: 3,
+    productId: 11,
+  },
+  {
+    quantity: 5,
+    cartId: 3,
+    productId: 21,
+  },
+  {
+    quantity: 4,
+    cartId: 3,
+    productId: 22,
+  },
+  {
+    quantity: 4,
+    cartId: 3,
+    productId: 23,
+  },
+  {
+    quantity: 10,
+    cartId: 4,
+    productId: 31,
+  },
+  {
+    quantity: 5,
+    cartId: 2,
+    productId: 41,
+  },
+  {
+    quantity: 4,
+    cartId: 4,
+    productId: 42,
+  },
+  {
+    quantity: 4,
+    cartId: 4,
+    productId: 34,
   },
 ];
 

@@ -6,6 +6,7 @@ import {
   selectSingleProduct,
   deleteProduct,
 } from "./expandedProductSlice";
+import { addCartItem } from "../cart/cartSlice";
 
 const ExpandedProduct = () => {
   const { id } = useParams();
@@ -51,6 +52,11 @@ const ExpandedProduct = () => {
   const imgFwd = () => {
     if (imageIdx < allImages.length - 1) return setImageIdx(imageIdx + 1);
   };
+  
+  //Elizabeth added This activates a call to api post the new item to the current logged in user
+  function addToCart() {
+    dispatch(addCartItem({id}))
+  }
 
   return (
     <div className="page">
@@ -95,7 +101,7 @@ const ExpandedProduct = () => {
               ) : (
                 <>
                   <p>View more {selectedProduct.category}</p>
-                  <button id="addBtn">Add to cart</button>
+                  <button id="addBtn" onClick={addToCart}>Add to cart</button>
                 </>
               )}
               {allImages.length > 1 ? (
