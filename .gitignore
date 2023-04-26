@@ -7,3 +7,4 @@ yarn-error.log
 package-lock.json
 .vscode
 client/features/cart/unusedFiles
+.env

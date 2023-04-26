@@ -8,28 +8,7 @@ export const fetchSingleProduct = createAsyncThunk(
       const { data } = await axios.get(`/api/products/${id}`);
       return data;
     } catch (error) {
-      console.log(error);
-    }
-  }
-);
-
-export const deleteProduct = createAsyncThunk(
-  "product/delete",
-  async (id) => {
-    const token = window.localStorage.getItem("token");
-    try {
-      if (token) {
-        const { data } = await axios.delete(`/api/products/${id}`, {
-          headers: {
-            authorization: token,
-          },
-        });
-        return data;
-      } else {
-        console.log("You are not authorized to delete products.");
-      }
-    } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -69,7 +48,7 @@ export const editProduct = createAsyncThunk(
         console.log("You are not authorized to edit products.");
       }
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -109,7 +88,7 @@ export const addProduct = createAsyncThunk(
         console.log("You are not authorized to add products.");
       }
     } catch (error) {
-      console.log(error);
+      return error.message;
     }
   }
 );
@@ -128,9 +107,6 @@ const expandedProductSlice = createSlice({
       })
       .addCase(addProduct.fulfilled, (state, action) => {
       return action.payload;
-      })
-      .addCase(deleteProduct.fulfilled, (state, action) => {
-        return action.payload;
       })
   },
 });

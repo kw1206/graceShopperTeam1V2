@@ -19,7 +19,28 @@ export const fetchAllProducts = createAsyncThunk(
       }
       return sortedData;
     } catch (error) {
-      console.log(error);
+      return error.message;
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "product/delete",
+  async (id) => {
+    const token = window.localStorage.getItem("token");
+    try {
+      if (token) {
+        const { data } = await axios.delete(`/api/products/${id}`, {
+          headers: {
+            authorization: token,
+          },
+        });
+        return data;
+      } else {
+        console.log("You are not authorized to delete products.");
+      }
+    } catch (error) {
+      return error.message;
     }
   }
 );
@@ -33,6 +54,9 @@ const allProducts = createSlice({
       .addCase(fetchAllProducts.fulfilled, (state, action) => {
       return action.payload;
       })
+      .addCase(deleteProduct.fulfilled, (state, action) => {
+        return state.filter((product) => product.id !== action.payload.id);
+      });
   }
 });
 
