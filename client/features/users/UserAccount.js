@@ -83,7 +83,7 @@ const UserAccountDetails = () => {
                 </tr>
               </thead>
               <tbody>
-                {dummyOrder.map((order) => (
+                {selectedUserOrderHistory.map((order) => (
                   <tr key={order.id}>
                     <td>{order.id}</td>
                     <td>{order.updatedAt.slice(0, 10)}</td>
